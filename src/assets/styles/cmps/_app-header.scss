@@ -1,28 +1,30 @@
 header {
-    background-color: $clr5;
+    // background-color: $clr5;
     padding: 10px;
     display: flex;
     justify-content: space-between;
+    border-bottom:1px solid $clr2; ;
+   
 
     .loggedin-user {
-        background-color: $clr1;
+        // background-color: $clr1;
         padding: 2px 8px;
         border-radius: 1em;
         align-self: flex-end;
         color: whitesmoke;
         span{
-            background-color: $clr2;
+            // background-color: $clr2;
             padding: 4px;
             margin: 10px;
             border-radius: 50%;
         }
     }
     nav {
-        background-color: $clr4;
+        // background-color: $clr4;
         padding: 5px 0;
     }
     nav a:not(:first-child) {
-        border-top: 1px solid $clr1;
+        // border-top: 1px solid $clr2;
         padding: 0 5px;
         margin: 10px;
     }
@@ -35,5 +37,29 @@ header {
         height: 25px;
         border-radius: 50%;
     }
-    
+    .h1-header{
+       
+        cursor: pointer;
+        font-family: Cookie,cursive;
+        margin: 0;
+        font-weight: 400;
+        // display: block;
+        font-size: 2em;
+        // margin-block-start: 0.67em;
+        // margin-block-end: 0.67em;
+        // margin-inline-start: 0px;
+        // margin-inline-end: 0px;
+    }
+    .instabul-router-link{
+        text-decoration: none;
+    }
+    .header-links{
+
+        display: inline;
+    }
+    .nav-bar{
+        width: 100%;
+        display: flex;
+        justify-content : space-between;
+    }
 }

@@ -25,14 +25,14 @@ export default {
     };
   },
   created() {
-    console.log("story app loaded!!!");
+   // console.log("story app loaded!!!");
     this.$store.dispatch({ type: "loadStories" });
 
   },
     computed: {
     storiesToShow() {
       const storiesToShow = this.$store.getters.getStories;
-      console.log("stories on story App", storiesToShow);
+      //console.log("stories on story App", storiesToShow);
       return storiesToShow;
     },
   },

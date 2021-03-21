@@ -43,17 +43,17 @@ function remove(id) {
   return storageService.remove(KEY, id)
 }
 
-function save(gig) {
-  // if (gig._id) {
-  //   return axios.put(gig_URL + gig._id, gig)
+function save(story) {
+  // if (story._id) {
+  //   return axios.put(story_URL + story._id, story)
   //     .then(res => res.data)
   // } else {
-  //   return axios.post(gig_URL, gig)
+  //   return axios.post(story_URL, story)
   //     .then(res => res.data)
   // }
-  console.log('gig srvice', gig);
-  const savedGig = (gig._id) ? storageService.put(KEY, gig) : storageService.post(KEY, gig)
-  console.log('savedGig', savedGig);
+//  console.log('story srvice', story);
+  const savedGig = (story._id) ? storageService.put(KEY, story) : storageService.post(KEY, story)
+
   return savedGig;
 }
 

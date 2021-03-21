@@ -11,7 +11,7 @@
     </div>
     <div v-else>
       <h2>Login</h2>
-     <div v-if="!loggedinUser"   class="login-warning">  you need to sign up first !      </div>
+     <div v-if="!loggedinUser"   class="login-warning">  you need to Login/Sign up first !      </div>
       <form @submit.prevent="doLogin">
         <select v-model="loginCred.username">
           <option value="">Select User</option>
@@ -89,7 +89,9 @@ export default {
       }
       try {
         await this.$store.dispatch({ type: "login", userCred: this.loginCred });
-        this.$router.push('/')
+           this.userId = this.$store.getters.loggedinUser._id
+           this.$router.push(`/user/${this.userId}`)
+          // this.$router.push('/')
       } catch(err) {
           console.log(err)
           this.msg = "Failed to login"
@@ -99,6 +101,7 @@ export default {
       this.$store.dispatch({ type: "logout" });
     },
     async doSignup() {
+      console.log('do signup in login-logout')
       if (!this.signupCred.fullname || !this.signupCred.password || !this.signupCred.username) {
         this.msg = "Please fill up the form"
         return

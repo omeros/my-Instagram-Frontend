@@ -8,6 +8,10 @@
                           <!-- <li   @click=" myFilter"  v-bind:class="{checked : isActive}">{{story}}</li> -->
                   
                       <div class="post-details">
+                        <div class="post-details-header">
+                             <p> by {{story.by.fullname}} </p>  </div> 
+                               
+                       
                           <img class="story-img" :src="story.imgUrl" />
                           <div class="story-details-contect">
                                 <div class="story-actions"></div>
@@ -25,7 +29,7 @@
                                 </div>
                                      
 
-                                      {{story.txt}}
+                                     
                           </div>
                       </div>
                 
@@ -54,7 +58,7 @@ export default {
           }
       },
       mounted (){
-        console.log('story in preview',this.story)
+     //   console.log('story in preview',this.story)
       
 
       },

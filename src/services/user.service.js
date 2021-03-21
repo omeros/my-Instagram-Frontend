@@ -47,11 +47,11 @@ function getUsers(filterBy) {
   }
 
 function getById(userId) {
-    return storageService.get('user', userId)
+    return storageService.get(KEY, userId)
     // return httpService.get(`user/${userId}`)
 }
 function remove(userId) {
-    return storageService.remove('user', userId)
+    return storageService.remove(KEY, userId)
     // return httpService.delete(`user/${userId}`)
 }
 
@@ -70,7 +70,7 @@ async function increaseScore(by = SCORE_FOR_REVIEW) {
 }
 
 async function login(userCred) {
-    const users = await storageService.query('user')
+    const users = await storageService.query(KEY)
     const user = users.find(user => user.username === userCred.username)
     return _saveLocalUser(user)
 
@@ -83,7 +83,7 @@ async function signup(userCred) {
     newUser.username = userCred.username
     newUser.password = userCred.password
 
-    const user = await storageService.post('user', newUser)
+    const user = await storageService.post(KEY, newUser)
     // const user = await httpService.post('auth/signup', userCred)
     return _saveLocalUser(user)
 }
@@ -108,7 +108,7 @@ function getEmpthyUser(){
         username : "",
         password : "",
         imgUrl : "",
-        reatedAt :   new Date(),
+        createdAt :   new Date(),
         following : [
           {
             _id : "",

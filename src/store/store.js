@@ -20,6 +20,27 @@ export const store = new Vuex.Store({
     getStories(state) {
       return state.stories
     },
+
+    getStoryByUserId: (state) => (id) => {
+      var  storyToFind=null
+      state.stories.find(story => {
+          if (story.by._id === id){
+              storyToFind = story;
+          }
+
+      }) 
+      return storyToFind
+    },
+    getStoryById: (state) => (id) => {
+      var  storyToEdit=null
+      state.stories.find(story => {
+          if (story._id === id){
+              storyToEdit = story;
+          }
+
+      }) 
+      return storyToEdit
+    },
   //   getToysToShow(state) {
   //     console.log('gettoysToShow',state)
   //     if (!state.filterBy) return state.toys
@@ -40,7 +61,7 @@ export const store = new Vuex.Store({
     loadStories({ commit, state }) {
       storyService.query(state.filter || undefined)
       .then(stories => {
-        console.log('in store - load stories from local storage',stories)
+      //  console.log('in store - load stories from local storage',stories)
         commit({ type: 'setStories', stories });
       })
       .catch(err => {

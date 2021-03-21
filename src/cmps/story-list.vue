@@ -1,7 +1,7 @@
 <template>
-  <section class="gig-app-container">
-    <div class="gig-list-container">
-      <div  class="gig-container" v-for="story in stories" :key="story._id">
+  <section class="story-app-container">
+    <div class="story-list-container">
+      <div  class="story-container" v-for="story in stories" :key="story._id">
         <story-preview :story="story" />
       </div>
     </div>
@@ -17,7 +17,7 @@ export default {
     },
   },
      mounted (){
-        console.log('story in list',this.stories)
+  //      console.log('story in list',this.stories)
       },
   components: {
     storyPreview,

@@ -6,8 +6,7 @@ import { socketService, SOCKET_EMIT_USER_WATCH, SOCKET_EVENT_USER_UPDATED } from
 
 export const userStore = {
     state: {
-        loggedinUser: userService.getLoggedinUser(),
-        // loggedinUser: userService.getLoggedinUser(),
+        loggedinUser: 'hgh',//userService.getLoggedinUser(),
         users: [],
         watchedUser: null
     },
@@ -41,6 +40,7 @@ export const userStore = {
         async login({ commit }, { userCred }) {
             try {
                 const user = await userService.login(userCred);
+                console.log('in user store, user returned from service',user)
                 commit({ type: 'setLoggedinUser', user })
                 return user;
             } catch (err) {
@@ -71,7 +71,7 @@ export const userStore = {
         async loadUsers({ commit, state }) {
             try {
                 const users = await userService.getUsers(state.filter || undefined);
-                // console.log('in user store - load users from local storage',users)
+                 console.log('in user store - load users from local storage',users)
                 commit({ type: 'setUsers', users })
             } catch (err) {
                 console.log('userStore: Error in loadUsers', err)

@@ -5,8 +5,8 @@
     "imgUrl": "http://res.cloudinary.com/dou6jct1v/image/upload/v1607193854/gfdgv65ygfc_ndykjz.jpg",
     "createdAt": 123543452,
     "by": {
-      "_id": "u101",
-      "fullname": "Ulash Ulashi",
+      "_id": "u102",
+      "fullname": "victoria_ogai",
       "imgUrl": "http://coding-academy.org/books-photos/2.jpg"
     },
     "loc": {
@@ -118,7 +118,7 @@
     "createdAt": 123543452,
     "by": {
       "_id": "u101",
-      "fullname": "Ulash Ulashi",
+      "fullname": "david herv",
       "imgUrl": "http://coding-academy.org/books-photos/9.jpg"
     },
     "loc": {
