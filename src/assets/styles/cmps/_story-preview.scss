@@ -37,3 +37,19 @@ body {
     line-height: 1.8;
     color: #262626;
 }
+.story-details-img{
+   height: 25px;
+   width: 25px;
+   border-radius: 50%;
+   display: inline;
+
+}
+.post-details-header{
+    display: flex;
+    justify-content : space-between;
+    width: 400px;
+    // display: inline;
+}
+.post-details-p{
+    // display: inline;
+}

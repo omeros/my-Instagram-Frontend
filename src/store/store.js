@@ -11,8 +11,8 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   strict: true,
   state: {
-    stories: null,
-    filter: null,
+    stories: [],
+    filterBy :null,
     lastPath: null,
     editChanges: null,
   },
@@ -20,12 +20,26 @@ export const store = new Vuex.Store({
     getStories(state) {
       return state.stories
     },
+    storiesToShow(state){
+  
+    //    console.log('getStoriesToShow',state)
+        if (!state.filterBy) return state.stories
+        const searchStr = state.filterBy.toLowerCase()
+        const storiesToShow = state.stories.filter(story => {
+            return story.by.fullname.toLowerCase().includes(searchStr)
+        })
+
+        return  storiesToShow
+
+
+
+    },
 
     getStoryByUserId: (state) => (id) => {
-      var  storyToFind=null
+      var  storyToFind=[]
       state.stories.find(story => {
           if (story.by._id === id){
-              storyToFind = story;
+              storyToFind.push(story);
           }
 
       }) 
@@ -52,6 +66,11 @@ export const store = new Vuex.Store({
   // },
   },
   mutations: {
+    filterByChanged(state,payload){
+      console.log('filterByChanged is running',payload.strFilter.name)
+      state.filterBy = payload.strFilter.name
+      
+  },
     setStories(state, { stories }) {
       state.stories = stories;
     },

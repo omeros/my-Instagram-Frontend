@@ -7,7 +7,7 @@
     "by": {
       "_id": "u102",
       "fullname": "victoria_ogai",
-      "imgUrl": "http://coding-academy.org/books-photos/2.jpg"
+      "imgUrl": "http://res.cloudinary.com/dou6jct1v/image/upload/v1607424867/129731593_432980857709355_6640233282068899811_n_d4a8eh.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -22,7 +22,7 @@
           "fullname": "Bob",
           "imgUrl": "http://coding-academy.org/books-photos/3.jpg"
         },
-        "txt": "good one!",
+        "txt": " i have to try to drive in that one!",
         "likedBy": [ 
           {
             "_id": "u105",
@@ -38,7 +38,14 @@
           "fullname": "Dob",
           "imgUrl": "http://coding-academy.org/books-photos/5.jpg"
         },
-        "txt": "not good!"
+        "txt": "i like the color !",
+        "likedBy": [ 
+          {
+            "_id": "u105",
+            "fullname": "Bob",
+            "imgUrl": "http://coding-academy.org/books-photos/4.jpg"
+          }
+        ]
       }
     ],
     "likedBy": [
@@ -61,9 +68,9 @@
     "imgUrl": "http://res.cloudinary.com/dou6jct1v/image/upload/v1607112489/56997677_130637228028241_6457101944593932280_n_bzamef.jpg",
     "createdAt": 123543452,
     "by": {
-      "_id": "u101",
-      "fullname": "Ulash Ulashi",
-      "imgUrl": "http://coding-academy.org/books-photos/9.jpg"
+      "_id": "u102",
+      "fullname": "victoria_ogai",
+      "imgUrl": "http://res.cloudinary.com/dou6jct1v/image/upload/v1607424867/129731593_432980857709355_6640233282068899811_n_d4a8eh.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -117,9 +124,9 @@
     "imgUrl": "http://res.cloudinary.com/dou6jct1v/image/upload/v1607338248/kalen-emsley-uSFOwYo1qEw-unsplas_wkvomh.jpg",
     "createdAt": 123543452,
     "by": {
-      "_id": "u101",
-      "fullname": "david herv",
-      "imgUrl": "http://coding-academy.org/books-photos/9.jpg"
+      "_id": "u102",
+      "fullname": "victoria_ogai",
+      "imgUrl": "http://res.cloudinary.com/dou6jct1v/image/upload/v1607424867/129731593_432980857709355_6640233282068899811_n_d4a8eh.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -173,9 +180,457 @@
     "imgUrl": "http://res.cloudinary.com/dou6jct1v/image/upload/v1607417881/118975125_347561996602667_4657724799518566923_n_dtdk55.jpg",
     "createdAt": 123543452,
     "by": {
+      "_id": "u102",
+      "fullname": "victoria_ogai",
+      "imgUrl": "http://res.cloudinary.com/dou6jct1v/image/upload/v1607424867/129731593_432980857709355_6640233282068899811_n_d4a8eh.jpg"
+    },
+    "loc": {
+      "lat": 11.11,
+      "lng": 22.22,
+      "name": "Tel Aviv"
+    },
+    "comments": [
+      {
+        "id": "c1001",
+        "by": {
+          "_id": "u105",
+          "fullname": "Bob",
+          "imgUrl": "http://coding-academy.org/books-photos/10.jpg"
+        },
+        "txt": "good one!",
+        "likedBy": [
+          {
+            "_id": "u105",
+            "fullname": "Bob",
+            "imgUrl": "http://coding-academy.org/books-photos/11.jpg"
+          }
+        ]
+      },
+      {
+        "id": "c1002",
+        "by": {
+          "_id": "u106",
+          "fullname": "Dob",
+          "imgUrl": "http://coding-academy.org/books-photos/12.jpg"
+        },
+        "txt": "not good!"
+      }
+    ],
+    "likedBy": [
+      {
+        "_id": "u105",
+        "fullname": "Bob",
+        "imgUrl": "http://coding-academy.org/books-photos/13.jpg"
+      },
+      {
+        "_id": "u106",
+        "fullname": "Dob",
+        "imgUrl": "http://coding-academy.org/books-photos/14.jpg"
+      }
+    ],
+    "tags":["fun", "no_filter"]
+  },
+  {
+    "_id": "s110",
+    "txt": "i love green Fields...",
+    "imgUrl": "https://images.pexels.com/photos/1402850/pexels-photo-1402850.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+    "createdAt": 123543452,
+    "by": {
+      "_id": "u102",
+      "fullname": "victoria_ogai",
+      "imgUrl": "http://res.cloudinary.com/dou6jct1v/image/upload/v1607424867/129731593_432980857709355_6640233282068899811_n_d4a8eh.jpg"
+    },
+    "loc": {
+      "lat": 11.11,
+      "lng": 22.22,
+      "name": "Tel Aviv"
+    },
+    "comments": [
+      {
+        "id": "c1001",
+        "by": {
+          "_id": "u105",
+          "fullname": "Bob",
+          "imgUrl": "http://coding-academy.org/books-photos/10.jpg"
+        },
+        "txt": "good one!",
+        "likedBy": [
+          {
+            "_id": "u105",
+            "fullname": "Bob",
+            "imgUrl": "http://coding-academy.org/books-photos/11.jpg"
+          }
+        ]
+      },
+      {
+        "id": "c1002",
+        "by": {
+          "_id": "u106",
+          "fullname": "Dob",
+          "imgUrl": "http://coding-academy.org/books-photos/12.jpg"
+        },
+        "txt": "not good!"
+      }
+    ],
+    "likedBy": [
+      {
+        "_id": "u105",
+        "fullname": "Bob",
+        "imgUrl": "http://coding-academy.org/books-photos/13.jpg"
+      },
+      {
+        "_id": "u106",
+        "fullname": "Dob",
+        "imgUrl": "http://coding-academy.org/books-photos/14.jpg"
+      }
+    ],
+    "tags":["fun", "no_filter"]
+  },
+  {
+    "_id": "s112",
+    "txt": "i love green Fields...",
+    "imgUrl": "https://images.pexels.com/photos/1447092/pexels-photo-1447092.png?auto=compress&cs=tinysrgb&h=750&w=1260",
+    "createdAt": 123543452,
+    "by": {
+      "_id": "u102",
+      "fullname": "victoria_ogai",
+      "imgUrl": "http://res.cloudinary.com/dou6jct1v/image/upload/v1607424867/129731593_432980857709355_6640233282068899811_n_d4a8eh.jpg"
+    },
+    "loc": {
+      "lat": 11.11,
+      "lng": 22.22,
+      "name": "Tel Aviv"
+    },
+    "comments": [
+      {
+        "id": "c1001",
+        "by": {
+          "_id": "u105",
+          "fullname": "Bob",
+          "imgUrl": "http://coding-academy.org/books-photos/10.jpg"
+        },
+        "txt": "good one!",
+        "likedBy": [
+          {
+            "_id": "u105",
+            "fullname": "Bob",
+            "imgUrl": "http://coding-academy.org/books-photos/11.jpg"
+          }
+        ]
+      },
+      {
+        "id": "c1002",
+        "by": {
+          "_id": "u106",
+          "fullname": "Dob",
+          "imgUrl": "http://coding-academy.org/books-photos/12.jpg"
+        },
+        "txt": "not good!"
+      }
+    ],
+    "likedBy": [
+      {
+        "_id": "u105",
+        "fullname": "Bob",
+        "imgUrl": "http://coding-academy.org/books-photos/13.jpg"
+      },
+      {
+        "_id": "u106",
+        "fullname": "Dob",
+        "imgUrl": "http://coding-academy.org/books-photos/14.jpg"
+      }
+    ],
+    "tags":["fun", "no_filter"]
+  },
+  {
+    "_id": "s105",
+    "txt": "i love green Fields...",
+    "imgUrl": "https://images.pexels.com/photos/373893/pexels-photo-373893.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+    "createdAt": 123543452,
+    "by": {
       "_id": "u101",
-      "fullname": "Ulash Ulashi",
-      "imgUrl": "http://coding-academy.org/books-photos/9.jpg"
+      "fullname": "malina scarlett",
+      "imgUrl": "http://coding-academy.org/books-photos/11.jpg"
+    },
+    "loc": {
+      "lat": 11.11,
+      "lng": 22.22,
+      "name": "Tel Aviv"
+    },
+    "comments": [
+      {
+        "id": "c1001",
+        "by": {
+          "_id": "u105",
+          "fullname": "Bob",
+          "imgUrl": "http://coding-academy.org/books-photos/10.jpg"
+        },
+        "txt": "good one!",
+        "likedBy": [
+          {
+            "_id": "u105",
+            "fullname": "Bob",
+            "imgUrl": "http://coding-academy.org/books-photos/11.jpg"
+          }
+        ]
+      },
+      {
+        "id": "c1002",
+        "by": {
+          "_id": "u106",
+          "fullname": "Dob",
+          "imgUrl": "http://coding-academy.org/books-photos/12.jpg"
+        },
+        "txt": "not good!"
+      }
+    ],
+    "likedBy": [
+      {
+        "_id": "u105",
+        "fullname": "Bob",
+        "imgUrl": "http://coding-academy.org/books-photos/13.jpg"
+      },
+      {
+        "_id": "u106",
+        "fullname": "Dob",
+        "imgUrl": "http://coding-academy.org/books-photos/14.jpg"
+      }
+    ],
+    "tags":["fun", "no_filter"]
+  },
+  {
+    "_id": "s106",
+    "txt": "i love green Fields...",
+    "imgUrl": "https://images.pexels.com/photos/1525612/pexels-photo-1525612.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+    "createdAt": 123543452,
+    "by": {
+      "_id": "u101",
+      "fullname": "malina scarlett",
+      "imgUrl": "http://coding-academy.org/books-photos/11.jpg"
+    },
+    "loc": {
+      "lat": 11.11,
+      "lng": 22.22,
+      "name": "Tel Aviv"
+    },
+    "comments": [
+      {
+        "id": "c1001",
+        "by": {
+          "_id": "u105",
+          "fullname": "Bob",
+          "imgUrl": "http://coding-academy.org/books-photos/10.jpg"
+        },
+        "txt": "good one!",
+        "likedBy": [
+          {
+            "_id": "u105",
+            "fullname": "Bob",
+            "imgUrl": "http://coding-academy.org/books-photos/11.jpg"
+          }
+        ]
+      },
+      {
+        "id": "c1002",
+        "by": {
+          "_id": "u106",
+          "fullname": "Dob",
+          "imgUrl": "http://coding-academy.org/books-photos/12.jpg"
+        },
+        "txt": "not good!"
+      }
+    ],
+    "likedBy": [
+      {
+        "_id": "u105",
+        "fullname": "Bob",
+        "imgUrl": "http://coding-academy.org/books-photos/13.jpg"
+      },
+      {
+        "_id": "u106",
+        "fullname": "Dob",
+        "imgUrl": "http://coding-academy.org/books-photos/14.jpg"
+      }
+    ],
+    "tags":["fun", "no_filter"]
+  },
+  {
+    "_id": "s107",
+    "txt": "i love green Fields...",
+    "imgUrl": "https://images.pexels.com/photos/1209978/pexels-photo-1209978.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+    "createdAt": 123543452,
+    "by": {
+      "_id": "u101",
+      "fullname": "malina scarlett",
+      "imgUrl": "http://coding-academy.org/books-photos/11.jpg"
+    },
+    "loc": {
+      "lat": 11.11,
+      "lng": 22.22,
+      "name": "Tel Aviv"
+    },
+    "comments": [
+      {
+        "id": "c1001",
+        "by": {
+          "_id": "u105",
+          "fullname": "Bob",
+          "imgUrl": "http://coding-academy.org/books-photos/10.jpg"
+        },
+        "txt": "good one!",
+        "likedBy": [
+          {
+            "_id": "u105",
+            "fullname": "Bob",
+            "imgUrl": "http://coding-academy.org/books-photos/11.jpg"
+          }
+        ]
+      },
+      {
+        "id": "c1002",
+        "by": {
+          "_id": "u106",
+          "fullname": "Dob",
+          "imgUrl": "http://coding-academy.org/books-photos/12.jpg"
+        },
+        "txt": "not good!"
+      }
+    ],
+    "likedBy": [
+      {
+        "_id": "u105",
+        "fullname": "Bob",
+        "imgUrl": "http://coding-academy.org/books-photos/13.jpg"
+      },
+      {
+        "_id": "u106",
+        "fullname": "Dob",
+        "imgUrl": "http://coding-academy.org/books-photos/14.jpg"
+      }
+    ],
+    "tags":["fun", "no_filter"]
+  },
+  {
+    "_id": "s108",
+    "txt": "amazig work",
+    "imgUrl": "https://images.pexels.com/photos/4033153/pexels-photo-4033153.jpeg?auto=compress&cs=tinysrgb&h=800&w=1260",
+    "createdAt": 123543452,
+    "by": {
+      "_id": "u103",
+      "fullname": "Charles.g",
+      "imgUrl": "https://images.pexels.com/photos/4033305/pexels-photo-4033305.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+    },
+    "loc": {
+      "lat": 11.11,
+      "lng": 22.22,
+      "name": "Tel Aviv"
+    },
+    "comments": [
+      {
+        "id": "c1001",
+        "by": {
+          "_id": "u105",
+          "fullname": "Bob",
+          "imgUrl": "http://coding-academy.org/books-photos/10.jpg"
+        },
+        "txt": "good one!",
+        "likedBy": [
+          {
+            "_id": "u105",
+            "fullname": "Bob",
+            "imgUrl": "http://coding-academy.org/books-photos/11.jpg"
+          }
+        ]
+      },
+      {
+        "id": "c1002",
+        "by": {
+          "_id": "u106",
+          "fullname": "Dob",
+          "imgUrl": "http://coding-academy.org/books-photos/12.jpg"
+        },
+        "txt": "not good!"
+      }
+    ],
+    "likedBy": [
+      {
+        "_id": "u105",
+        "fullname": "Bob",
+        "imgUrl": "http://coding-academy.org/books-photos/13.jpg"
+      },
+      {
+        "_id": "u106",
+        "fullname": "Dob",
+        "imgUrl": "http://coding-academy.org/books-photos/14.jpg"
+      }
+    ],
+    "tags":["fun", "no_filter"]
+  },
+  {
+    "_id": "s111",
+    "txt": "amazig work",
+    "imgUrl": "https://images.pexels.com/photos/3786217/pexels-photo-3786217.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+    "createdAt": 123543452,
+    "by": {
+      "_id": "u103",
+      "fullname": "Charles.g",
+      "imgUrl": "https://images.pexels.com/photos/4033305/pexels-photo-4033305.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+    },
+    "loc": {
+      "lat": 11.11,
+      "lng": 22.22,
+      "name": "Tel Aviv"
+    },
+    "comments": [
+      {
+        "id": "c1001",
+        "by": {
+          "_id": "u105",
+          "fullname": "Bob",
+          "imgUrl": "http://coding-academy.org/books-photos/10.jpg"
+        },
+        "txt": "good one!",
+        "likedBy": [
+          {
+            "_id": "u105",
+            "fullname": "Bob",
+            "imgUrl": "http://coding-academy.org/books-photos/11.jpg"
+          }
+        ]
+      },
+      {
+        "id": "c1002",
+        "by": {
+          "_id": "u106",
+          "fullname": "Dob",
+          "imgUrl": "http://coding-academy.org/books-photos/12.jpg"
+        },
+        "txt": "not good!"
+      }
+    ],
+    "likedBy": [
+      {
+        "_id": "u105",
+        "fullname": "Bob",
+        "imgUrl": "http://coding-academy.org/books-photos/13.jpg"
+      },
+      {
+        "_id": "u106",
+        "fullname": "Dob",
+        "imgUrl": "http://coding-academy.org/books-photos/14.jpg"
+      }
+    ],
+    "tags":["fun", "no_filter"]
+  },
+  {
+    "_id": "s109",
+    "txt": "amazig work",
+    "imgUrl": "https://images.pexels.com/photos/3825527/pexels-photo-3825527.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+    "createdAt": 123543452,
+    "by": {
+      "_id": "u103",
+      "fullname": "Charles.g",
+      "imgUrl": "https://images.pexels.com/photos/4033305/pexels-photo-4033305.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
     },
     "loc": {
       "lat": 11.11,
@@ -223,4 +678,5 @@
     ],
     "tags":["fun", "no_filter"]
   }
+
 ]

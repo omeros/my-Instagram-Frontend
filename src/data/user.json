@@ -1,14 +1,9 @@
 [
   {
-    
-
-
-
-
-    "_id": "u101",
-    "username": "malina.s",
-    "password": "mukmuk",
-    "fullname": "malina scarlett",
+     "_id": "u101",
+    "username": "🎀 malina.s 🎀",
+    "password": "1234",
+    "fullname": " malina scarlett ",
     "bio" : "Public Figure",
     "imgUrl": "http://coding-academy.org/books-photos/11.jpg",
     "createdAt": 123543452,
@@ -29,14 +24,36 @@
     "savedPostIds": ["s104", "s111", "s123"]
    },
   {
-
     "_id": "u102",
-   
-    "username": "victoria_ogai",
-    "password": "mukmuk",
+    "username": "🌳 victoria_ogai 🌳",
+    "password": "1234",
     "fullname": "VICTORIA OGAI",
     "bio" : "Architect & Interior design",
     "imgUrl": "http://res.cloudinary.com/dou6jct1v/image/upload/v1607424867/129731593_432980857709355_6640233282068899811_n_d4a8eh.jpg",
+    "createdAt": 123543452,
+    "following": [
+      {
+        "_id": "u106",
+        "fullname": "Dob",
+        "imgUrl": "http://some-img"
+      }
+    ],
+    "followers": [
+      {
+        "_id": "u105",
+        "fullname": "Bob",
+        "imgUrl": "http://some-img"
+      }
+    ],
+    "savedPostIds": ["s104", "s111", "s123"]
+   },
+  {
+    "_id": "u103",
+    "username": "🍀 Charles.g 🍀",
+    "password": "1234",
+    "fullname": "Charles Grashow",
+    "bio" : "Biological engineer",
+    "imgUrl": "https://images.pexels.com/photos/4033305/pexels-photo-4033305.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
     "createdAt": 123543452,
     "following": [
       {

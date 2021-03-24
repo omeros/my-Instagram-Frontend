@@ -19,8 +19,7 @@ export default {
 
         data() {
     return {
-
-  
+       loggedinUser : null,
     }
   },
 
@@ -28,6 +27,7 @@ export default {
     console.log("Vue App was created!!!");
     this.$store.dispatch({ type: "loadStories" });
     this.$store.dispatch({ type: "loadUsers" });
+  //  this.loggedinUser = this.$store.getters.loggedinUser;
  
   },
 

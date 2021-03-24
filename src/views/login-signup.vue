@@ -78,7 +78,7 @@ export default {
     },
   },
   created() {
-    this.loadUsers()
+    //this.loadUsers()
     
   },
   methods: {

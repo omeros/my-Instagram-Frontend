@@ -1,5 +1,5 @@
 <template>
-      <section class="main-layout">
+      <section class="app-center">
  
 
           <!-- <toy-filter @filtered="setFilter" /> -->
@@ -31,7 +31,8 @@ export default {
   },
     computed: {
     storiesToShow() {
-      const storiesToShow = this.$store.getters.getStories;
+      const storiesToShow = this.$store.getters.storiesToShow;
+      // const storiesToShow = this.$store.getters.getStories;
       //console.log("stories on story App", storiesToShow);
       return storiesToShow;
     },

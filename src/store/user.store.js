@@ -6,19 +6,48 @@ import { socketService, SOCKET_EMIT_USER_WATCH, SOCKET_EVENT_USER_UPDATED } from
 
 export const userStore = {
     state: {
-        loggedinUser: 'hgh',//userService.getLoggedinUser(),
+        loggedinUser: userService.getLoggedinUser() || 'abc',
         users: [],
-        watchedUser: null
+        watchedUser: null,
+
     },
     getters: {
         users({ users }) { return users },
-        loggedinUser({ loggedinUser }) { 
-            console.log('loggedinUser in user store',loggedinUser)
+        loggedinUser({ loggedinUser }) {
+            console.log('loggedinUser in user store', loggedinUser)
             return loggedinUser
-         },
+        },
+
+
+        getUserById: (state) => (id) => {
+            var userToFind = null
+            state.users.find(user => {
+                if (user._id === id) {
+                    userToFind = user;
+                }
+
+            })
+            return userToFind
+        },
+        // getUsersToShow(state) {
+        //     console.log('getusersToShow',state)
+        //     if (!state.filterBy) return state.users
+        //     const searchStr = state.filterBy.toLowerCase()
+        //     const usersToShow = state.users.filter(user => {
+        //         return user.username.toLowerCase().includes(searchStr)
+        //     })
+        //     return usersToShow
+        // },
+
+
         watchedUser({ watchedUser }) { return watchedUser }
     },
     mutations: {
+        // filterByChanged(state,payload){
+        //     console.log('filterByChanged is running',payload.strFilter.name)
+        //     state.filterBy = payload.strFilter.name
+            
+        // },
         setLoggedinUser(state, { user }) {
             state.loggedinUser = user;
         },
@@ -27,9 +56,9 @@ export const userStore = {
         },
         setWatchedUser(state, { user }) {
             state.watchedUser = user;
-        },       
+        },
         setUsers(state, { users }) {
-            console.log('in user store  setUsers - load users from local storage',users)
+            console.log('in user store  setUsers - load users from local storage', users)
             state.users = users;
         },
         removeUser(state, { userId }) {
@@ -40,7 +69,7 @@ export const userStore = {
         async login({ commit }, { userCred }) {
             try {
                 const user = await userService.login(userCred);
-                console.log('in user store, user returned from service',user)
+                console.log('in user store, user returned from service', user)
                 commit({ type: 'setLoggedinUser', user })
                 return user;
             } catch (err) {
@@ -71,18 +100,18 @@ export const userStore = {
         async loadUsers({ commit, state }) {
             try {
                 const users = await userService.getUsers(state.filter || undefined);
-                 console.log('in user store - load users from local storage',users)
+                console.log('in user store - load users from local storage', users)
                 commit({ type: 'setUsers', users })
             } catch (err) {
                 console.log('userStore: Error in loadUsers', err)
                 throw err
             }
-        },        
+        },
         async loadAndWatchUser({ commit }, { userId }) {
             try {
                 const user = await userService.getById(userId);
                 commit({ type: 'setWatchedUser', user })
-                socketService.emit(SOCKET_EMIT_USER_WATCH, userId) 
+                socketService.emit(SOCKET_EMIT_USER_WATCH, userId)
                 socketService.off(SOCKET_EVENT_USER_UPDATED)
                 socketService.on(SOCKET_EVENT_USER_UPDATED, user => {
                     commit({ type: 'setWatchedUser', user })
