@@ -1,0 +1,53 @@
+.abc{
+  // position: relative;
+}
+.story-preview-modal{
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+
+    box-shadow: 5px 10px 10px 100vh #888888be;    
+
+    height: 557px;
+    width: 935px;
+    // height: 100px;
+    // width: 100px;
+    top: 5;
+    left: 10;
+    z-index: 22;
+    position: fixed;
+    background-color: #fff;
+  }
+
+  .story-preview-modal-content{
+      
+    display: flex;
+    // flex-direction: row;
+      height: 100%;
+  }
+
+  
+  .story-preview-modal-img-container{
+  
+    width: 100%;
+    height:inherit;
+    // width: 100%;
+    // flex-shrink: 1;
+  }
+
+  .story-preview-img-modal{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+ 
+
+}
+
+
+.story-preview-post-modal{
+    // flex-grow: 5;
+    // flex-shrink: 2;
+    max-width: 100%;
+    height: 100%;
+    // height: inherit;
+  }

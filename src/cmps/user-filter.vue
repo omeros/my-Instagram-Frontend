@@ -1,5 +1,8 @@
 <template>
-  <input class="main-header-search"   type="text"  @input="setFilter"  placeholder="Search "  v-model="filterBy.name"  />
+ <div> 
+   <!-- <span class="mlrQa coreSpriteSearchIcon"><img src="src\assets\styles\img\search (1).png" alt=""></span> -->
+    <input class="main-header-search"   type="text"  @input="setFilter"  placeholder="Search "  v-model="filterBy.name"  />
+ </div>
 </template>
 
 <script>

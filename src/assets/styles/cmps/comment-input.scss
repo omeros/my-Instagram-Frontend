@@ -1,0 +1,27 @@
+.comment-input-row{                            
+    position: relative;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    min-height: 56px;
+    // border-top: outset  ;
+    }
+
+    .comment-smiley-btn{
+        padding-right: 15px;
+        padding-top: 10px;
+        cursor: pointer;
+        
+    }
+    .add-comment-btn{
+        color: #0095f6;
+        font-weight: 600;
+        padding: 16px 26px 12px  0px;
+        width: 10px;
+        outline: none;
+        opacity: 0.3;
+    
+    }
+    .istxt{
+        opacity: 0.9;
+    }

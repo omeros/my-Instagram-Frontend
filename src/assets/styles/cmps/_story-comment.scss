@@ -1,0 +1,54 @@
+.screen-comment{
+   display: flex;
+   justify-content: space-between;
+   padding: 5px;
+}
+
+.test{
+   padding-left: 5px;
+}
+
+.straight-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-img-comment{
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline;
+    margin: 0px 16px 0px 0px;
+}
+ .light-comment{
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 13px;
+    color: #262626;
+    padding-right: 3px; 
+ }
+ .heavy-comment{
+   font-family: Arial, Helvetica, sans-serif; 
+   font-size: 13px;
+   color: #262626;
+   font-weight: 600;
+   padding-right: 3px;
+   padding-bottom: 1px;
+}
+.small{
+   height: 12px;
+}
+
+ .nolike-cooment{
+    border: 0px;
+   height: 12px;
+   border: none;
+   background-color: rgb(71, 52, 122);
+}
+.like-comment{
+   fill: #ed4954;
+   // background-origin: padding-box;
+   border: none;
+   height: 12px;
+
+}

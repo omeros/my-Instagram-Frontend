@@ -3,6 +3,8 @@ import { utilService } from "./util.service.js";
 import { storageService } from "./async-storage.service.js";
 const gStories = require('../data/story.json');
 const KEY = 'storyDB';
+const gSmiles = require('../data/smiley.json');
+
 
 // const GIG_URL = 'http://localhost:3030/api/gig/'
 // _createToys();
@@ -12,7 +14,8 @@ export const storyService = {
   getById,
   remove,
   save,
-  getEmpthystory
+  getEmpthystory,
+  getSmiles
 }
 
 function query(filterBy) {
@@ -52,9 +55,9 @@ function save(story) {
   //     .then(res => res.data)
   // }
 //  console.log('story srvice', story);
-  const savedGig = (story._id) ? storageService.put(KEY, story) : storageService.post(KEY, story)
+  const savedStory = (story._id) ? storageService.put(KEY, story) : storageService.post(KEY, story)
 
-  return savedGig;
+  return savedStory;
 }
 
 function getEmpthystory(){
@@ -120,17 +123,9 @@ function getEmpthystory(){
 }
 
 
-
-// Create Test toys Data:
-// function _createToys() {
-//   var toys = JSON.parse(localStorage.getItem(KEY))
-//   if (!toys || !toys.length) {
-//     const TOY_URL = 'http://www.filltext.com/?rows=20&_id=%7bindex%7d&name=%7blorem|2%7d&price=%7bnumber|100%7d&type=%5b%22Educational%22,%22Funny%22,%22Adult%22%5d&createdAt=%7bdate|1970,2000%7d&inStock=%7bbool%7d&pretty=true'
-//     return axios.get(TOY_URL)
-//       .then(res => {
-//         toys = res.data
-//         localStorage.setItem(KEY, JSON.stringify(toys))
-//       })
-//   }
-//   return toys;
-// }
+function getSmiles(){
+  gSmiles.forEach(smile=>{
+   smile._idx = utilService.makeId()
+  })
+  return gSmiles
+}

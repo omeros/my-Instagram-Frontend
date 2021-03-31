@@ -17,8 +17,6 @@
 // Components
 @import "cmps/app-header";
 @import "cmps/review-list";
-
-@import "cmps/app-header";
 @import "cmps/app-footer";
 @import "cmps/app-chat";
 @import "cmps/story-preview";
@@ -26,6 +24,14 @@
 @import "cmps/story-list";
 @import "cmps/story-preview";
 @import "cmps/user-filter";
+@import "cmps/comments-preview";
+@import "cmps/story-preview-modal";
+@import "cmps/story-preview-modal-container";
+@import "cmps/new-story-modal";
+@import "cmps/story-comment";
+@import "cmps/action-bar";
+@import "cmps/comment-input";
+@import "cmps/smiley-modal";
 
 
 
@@ -37,6 +43,7 @@
 @import "views/story-app";
 @import "views/story-details";
 @import "views/user-details";
+
 
 
 @import "./app";

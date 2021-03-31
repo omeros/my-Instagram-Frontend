@@ -6,6 +6,8 @@ import reviewApp from './views/review-app.vue'
 import loginSignup from './views/login-signup.vue'
 import storyApp from './views/story-app.vue'
 import userDetails from './views/user-details.vue'
+import  commentsPreview from  '@/cmps/comments-preview.vue'
+// import userFilter from "@/cmps/user-filter.vue";
 // import userApp from './views/user-app.vue'
 
 
@@ -16,9 +18,20 @@ export const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/login',
+      name: 'loginSignup',
+      component: loginSignup
+    },
+    {
       path: '/',
       name: 'storyApp',
-      component: storyApp
+      component: storyApp,
+      children: [
+        {
+            path: '/:userId',
+            component: commentsPreview
+        },
+      ]
     },
     {
       path: '/review',
@@ -30,16 +43,6 @@ export const router = new Router({
       name: 'chat',
       component: chat
     },
-    {
-      path: '/login',
-      name: 'loginSignup',
-      component: loginSignup
-    },
-    // {
-    //   path: '/users',
-    //   name: 'users',
-    //   component: userApp
-    // },
     {
       path: '/user/:id',
       name: 'user-details',

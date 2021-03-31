@@ -1,9 +1,14 @@
 button {
-    border:0;
-    background-color: $clr1;
-    color:whitesmoke;
-    padding: 5px 10px;
-    margin: 5px;
+    // border:0;
+    // background-color: $clr3;
+    // color:rgb(12, 14, 12);
+    // padding: 5px 10px;
+    // margin: 5px;
+
+    cursor: pointer; 
+    border: 0;
+    background: none; 
+    padding: 0;
 }
 
 form > * {

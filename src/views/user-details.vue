@@ -1,6 +1,9 @@
 <template>
-  <section class="main-details app-center " v-if="user">
-    <div class="profile">
+  <section class="main-details app-center "  v-if="user"  @click.stop="closeModal()" >
+
+
+
+    <div class="profile"  >
       <div class="img-container">
         <img :src="user.imgUrl" class="details-img" />
       </div>
@@ -8,7 +11,7 @@
       <div class="details-container">
 
           <div class="profile-description-top">
-            <h2 class="profile-description-top-username"> {{ user.fullname }} </h2>
+            <h2 class="profile-description-top-username"> {{ user.username }} </h2>
           </div>
 
       <div class="followers-num">
@@ -31,7 +34,7 @@
       </div>
 
         <div class="profile-description-bio">
-          <h3> {{ user.username }} </h3>
+          <h3>{{ user.fullname }}</h3>
           <p>{{ user.bio }}</p>
         </div>
 
@@ -45,20 +48,31 @@
      </div>
 
      
-      <!-- <div  class="story-container" v-for="story in stories" :key="story._id"> -->
-
        <div class="profile-posts"   >
             <div class="profile-posts-item"   v-for="story in stories" :key="story._id">
-            <!-- <div class="profile-posts"  > -->
-            <img :src="story.imgUrl" class="details-stories-img" />
+            <img :src="story.imgUrl" class="details-stories-img"  @click.stop="openModal(story._id)"/>
         </div>
     </div>
+        <div class="details-story-modal hide" v-bind:class="{show: isModal }">
+          <div  class=" modal-content ">
+              <div class="story-modal-img-container">
+                <img v-if="isModal" :src="storyToShow.imgUrl" class="img-modal"/>
+              </div>
+              <div class="post-modal"> 
+                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. eeeeeeeeeeeeeeeeeeeeeeeee
+              </div>
+          </div>
+         </div>
+
+
+
 
   </section>
 </template>
 
 <script>
-// import {userService} from '../services/user.service';
+ 
+// import { eventBus } from "../services/event-bus.service.js"
 
 export default {
   name: "user-details",
@@ -67,13 +81,14 @@ export default {
       userId: null,
       user: null,
       stories: null,
+      isModal : false,
+      storyToShow : null
     };
   },
   async created() {
-    // const user = await userService.getById(id);
-    // this.user = user
+
   },
-  watch: {
+   watch: {
     // userId: {
     //   handler() {
     //   this.$store.dispatch({ type: "loadAndWatchUser", userId: this.userId });
@@ -81,20 +96,38 @@ export default {
     //   immediate: true,
     // },
   },
+    // created() {
+    //     eventBus.$on('closeModalFromBus', this.isModal = false)
+    // },
+    // destroyed(){
+    //     eventBus.$off('closeModalFromBus', this.isModal = false)
+    // },
   mounted() {
     this.userId = this.$route.params.id;
-
-    //  var myJSON = JSON.stringify(this.$store.getters.loggedinUser);
-    //  this.user = JSON.parse(myJSON);
-
-    //  console.log("user loged in in user details", this.$store.getters.getUserById( this.userId) );
     this.user = this.$store.getters.getUserById(this.userId);
-    // this.user = this.$store.getters.loggedinUser;
-    // console.log("user loged in in user details", this.user);
     const storiesToShow = this.$store.getters.getStoryByUserId(this.userId);
     console.log("stories on user-details", storiesToShow);
     this.stories = storiesToShow;
   },
+    methods: {
+      openModal(storyId){
+          var storyToShow = this.stories.filter(story=>{
+              if(story._id===storyId){
+              return story
+            }
+          })
+          this.isModal = !this.isModal
+          console.log('the story to sow : ',storyToShow[0])
+          console.log('isModal : ',  this.isModal)
+          this.storyToShow=storyToShow[0]
+   
+      },
+      closeModal(){
+      this.isModal = !this.isModal
+           console.log('isModal : ',  this.isModal)
+      },
+    
+    },
   computed: {
     followersNum() {
       return this.user.followers.length;

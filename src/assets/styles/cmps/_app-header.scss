@@ -5,15 +5,28 @@ header {
     // display: flex;
     // justify-content: space-between;
      height: 54px;
-     border-bottom:1px solid $clr2; ;
+     border-bottom:1px solid $clr2; 
+   
+
+    // from asi
+    // background: gainsboro;
+    padding: 0 20px;
    
 .inner-header{
      display: flex;
      justify-content: space-between;
+     -webkit-box-pack: justify;
 
 }
+.instagram-logo{
+    padding-right: 16px;
+    //  padding-top: 60px;
+}
 .search-container{
-    padding-top: 10px;
+    position: relative;
+    padding: 10px 50px 20px 180px;
+    width:199px ;
+    // height: 28px;
 }
     .loggedin-user {
         // background-color: $clr1;
@@ -30,21 +43,24 @@ header {
     }
     nav {
         // background-color: $clr4;
-        padding: 5px 0;
+        padding: 0 0 0 50px;
     }
     nav a:not(:first-child) {
         // border-top: 1px solid $clr2;
-        padding: 0 5px;
+        // padding: 0 5px;
         margin: 10px;
     }
     nav .active {
-        color: $clr1;
+        color: $clr2;
     }
 
     .user-logo{
-        width: 30px;
-        height: 30px;
+        width: 22px;
+        height: 22px;
         border-radius: 50%;
+    }
+    .pressed{
+        opacity: 0.3;
     }
     .h1-header{
        
@@ -52,23 +68,65 @@ header {
         font-family: Cookie,cursive;
         margin: 0;
         font-weight: 400;
+        padding-top: 10px;
+        padding-bottom: 10px;
         // display: block;
-        font-size: 2em;
+        font-size: 32px;
         // margin-block-start: 0.67em;
         // margin-block-end: 0.67em;
         // margin-inline-start: 0px;
         // margin-inline-end: 0px;
     }
-    .instabul-router-link{
+    .add-story{
+        padding-right: 8px;
+    }
+    .instagram-router-link{
+        color : #262626 ;
         text-decoration: none;
+    }
+    .login-router-link{
+        text-decoration: none;
+        // display: inline;
+        margin: 0;
     }
     .header-links{
 
         display: inline;
     }
     .nav-bar{
+       // position: relative;
         width: 100%;
         display: flex;
-        justify-content : space-between;
+        justify-content : flex-start;
+        align-items: center; // from asi
+        -webkit-box-pack: flex;  // from asi
     }
+    .logo-container{
+        display: flex;
+        width:636px ;
+        padding-left: 180px;
+        padding-right: 100px;
+    }
+    .hart{
+      color: rgb(31, 13, 128);
+    }
+    .pluse-img{
+        width: 25px;
+        padding: 0;
+    }
+    .t{
+       
+        padding: 10px;
+    }
+    .modal-container{
+  
+        
+    }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+      }
+      .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
+      }
 }

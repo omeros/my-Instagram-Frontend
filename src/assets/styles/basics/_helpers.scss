@@ -20,6 +20,15 @@
     align-items: center;
 }
 
+
+.opacity:hover{
+ opacity: 0.6;
+}
+.opacity{
+ opacity: 0.99;
+ cursor: pointer;
+}
+
 .flex {
 
     display: flex;

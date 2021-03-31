@@ -1,0 +1,41 @@
+.inner-smiley-modal{
+    display: flex;
+    flex-direction: row;
+
+    flex-wrap: wrap;
+    padding-left: 10px;
+    padding-right: 0;
+
+    width: 100%;
+    height: 70%;
+}
+
+.most-popular{
+    width: 300px;
+    font-size: large;
+    color: rgb(155, 152, 152);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 10px;
+  
+}
+
+.grid-smiley{
+    width: 80%;
+    height: 80%;
+  display: grid;
+  grid-template-columns: 70px  70px 70px 70px;
+  grid-template-rows: 60px 60px 60px ;
+  padding: 0;
+  
+}
+
+
+.smily-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33px;
+    height: 33px;
+    cursor: pointer;
+//  padding: 10px;
+}
