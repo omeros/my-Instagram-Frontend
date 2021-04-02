@@ -44,19 +44,21 @@ export const store = new Vuex.Store({
     getStories(state) {
       return state.stories
     },
+    getEmptyStory(state){
+       var emptyStory = storyService.getEmptystory()
+       var theUser =  userStore.state.loggedinUser
+       emptyStory.by._id=theUser._id
+       emptyStory.by.fullname=theUser.fullname
+       emptyStory.by.imgUrl=theUser.imgUrl
+       return  emptyStory
+    },
     storiesToShow(state) {
-
-      //    console.log('getStoriesToShow',state)
       if (!state.filterBy) return state.stories
       const searchStr = state.filterBy.toLowerCase()
       const storiesToShow = state.stories.filter(story => {
         return story.by.fullname.toLowerCase().includes(searchStr)
       })
-
       return storiesToShow
-
-
-
     },
 
     getStoryByUserId: (state) => (id) => {
@@ -65,7 +67,6 @@ export const store = new Vuex.Store({
         if (story.by._id === id) {
           storyToFind.push(story);
         }
-
       })
       return storyToFind
     },
@@ -79,38 +80,22 @@ export const store = new Vuex.Store({
       })
       return storyToEdit
     },
-    //   getToysToShow(state) {
-    //     console.log('gettoysToShow',state)
-    //     if (!state.filterBy) return state.toys
-    //     const searchStr = state.filterBy.toLowerCase()
-    //     const toysToShow = state.toys.filter(toy => {
-    //         return toy.name.toLowerCase().includes(searchStr)
-    //     })
-    //     return toysToShow
-    // },
   },
   mutations: {
-
     filterByChanged(state, payload) {
       console.log('filterByChanged is running', payload.strFilter.name)
       state.filterBy = payload.strFilter.name
-
     },
     setStories(state, { stories }) {
-     // console.log('set stories in store', stories)
       state.stories = stories;
     },
 
     //   var storyRemoveLike = state.stories.filter(story => {
     //     return (story._id===storyId)
     //   })
-  
- 
-
-      updateStories(state,payload) {
-       // console.log('updateStories in storeeeeeee',payload.updatedStory)
-        const idx = state.stories.findIndex(p => p._id === payload.updatedStory._id)
-         state.stories.splice(idx, 1, payload.updatedStory);
+    updateStories(state,payload) {
+      const idx = state.stories.findIndex(p => p._id === payload.updatedStory._id)
+      state.stories.splice(idx, 1, payload.updatedStory);
   },
   commentLikedBefor(state,payload) {
     this.state.isCommentLikedBefor = true

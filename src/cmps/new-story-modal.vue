@@ -1,44 +1,83 @@
 <template>
-  <div class="main-modal padding" >
- 
+   
    <div class="modal-header2 flex "  v-bind:class="{left: myImage }">
-      
-          <img  class="image" v-if="myImage" :src="myImage" width="" height="">
 
-          <div class="flex">
-            <input v-if="!myImage"  class="file-btn round"  type="file" accept="image/*" @change="uploadImage($event)" id="file-input">
+          <div class="image-container-new-story">
+              <img  class="image" v-if="myImage" :src="myImage" width="" height="">
+
+              <div class="flex">
+                <input v-if="!myImage"  class="file-btn round"  type="file" accept="image/*" @change="uploadImage($event)" id="file-input">
+              </div>
           </div>
-          <button >   <img  class="save-btn" v-if="myImage" src="https://res.cloudinary.com/omerphoto/image/upload/v1617099828/save_q9xvig.png" width="20" height="20">
+          
+                <div class="comment-new-story"  >
+                        <div class="post-details-header-preview">
+                            <div class="screen-preview">
+                                <router-link :to="`/user/${ emptyStory.by._id}`" > <img :src="emptyStory.by.imgUrl" class="story-details-img-preview opacity" /></router-link>
+                                <span class="post-details-router-name-preview opacity">
+                                    <router-link :to="`/user/${ emptyStory.by._id}`"  > {{ emptyStory.by.fullname }} </router-link>
+                                </span>
+                            </div>
+                            <button class="post-details-header-btn-preview opacity">
+                                <svg height="16" viewBox="0 0 48 48" width="16"><circle clip-rule="evenodd" cx="8" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="24" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="40" cy="24" fill-rule="evenodd" r="4.5"></circle></svg>
+                            </button>
+                        </div>
+
+
+
+
+                    <div class="line2"></div>
+                    <commentInput :storyId="emptyStory._id"   @openSmiley=openSmiley   @closeSmiley=closeSmiley  />
+                    <div class="line2"></div>
+                </div>
+              
+   
+
+          <!-- <button >   <img  class="save-btn" v-if="myImage" src="https://res.cloudinary.com/omerphoto/image/upload/v1617099828/save_q9xvig.png" width="20" height="20">
           </button>  
+          <label for=""  v-if="myImage" >say somthing : </label>
+          <input type="text"  class="my-input" v-if="myImage" > -->
     </div>
 
-  </div>
 </template>
 
 <script>
+import commentInput from "@/cmps/comment-input.vue";
 export default {
+  props:["emptyStory"],
      data() {
         return {
                 txt :  null,
                 myImage :  null,
+                isSmilyModal : false,
         }
       },
-
+   created() {
+     console.log('emptyStory on new story modal',this.emptyStory)
+   },
   methods: {
+        openSmiley(){
+      this.isSmilyModal = !this.isSmilyModal;
+    },
+    closeSmiley(){
+      this.isSmilyModal  = false;
+    },
         uploadImage(e){
-          
-
             const image = e.target.files[0];
             const reader = new FileReader();
             reader.readAsDataURL(image);
             reader.onload = e =>{
                 this.myImage = e.target.result;
-                console.log('somethinggg',this.previewImage);
+                //console.log('somethinggg',this.myImage);
             };
                   
                       
         }
-}
+},
+
+  components:{
+    commentInput,
+  },
 }
 </script>
 

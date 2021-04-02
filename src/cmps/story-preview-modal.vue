@@ -4,7 +4,7 @@
     <div class="story-details-content-preview" >
                     <!------ user details ----------->
                         <div class="post-details-header-preview">
-                            <div class="acreen-preview">
+                            <div class="screen-preview">
                                 <router-link :to="`/user/${ story.by._id}`" > <img :src="story.by.imgUrl" class="story-details-img-preview opacity" /></router-link>
                                 <span class="post-details-router-name-preview opacity">
                                     <router-link :to="`/user/${ story.by._id}`"  > {{ story.by.fullname }} </router-link>
@@ -17,7 +17,7 @@
         <div class="main-comments-preview">
                 <div class="story-actions-preview">
                     <div class="user-comment-preview">
-                            <div class="acreen-preview">
+                            <div class="screen-preview">
                               <router-link :to="`/user/${ story.by._id}`" > <img :src="story.by.imgUrl" class="story-details-img-preview-user-comment opacity" /></router-link>
                                 <span class="heavy opacity">
                                     <router-link :to="`/user/${ story.by._id}`"  > {{ story.by.fullname }} </router-link>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="story-row-preview" >
                         <div class="comment-preview" v-for="comment in story.comments" :key="comment.id">
-                            <storyComment :story="story" :comment="comment" :smiles="smiles" :index="story.comments.indexOf(comment)" :key="componentKey" />
+                            <storyComment :story="story" :comment="comment" :smiles="smiles" :index="story.comments.indexOf(comment)" :key=" " />
                         </div>
                 </div>
         </div>   
@@ -52,12 +52,11 @@
 
                         </div>
               
-  <!--------- separate-line ----------->
-    <div class="line"></div>
-    <!------------ post-row ---------------->
-    <commentInput :storyId="story._id"   @openSmiley=openSmiley   @closeSmiley=closeSmiley  />
-        
-                
+         <!--------- separate-line ----------->
+          <div class="line"></div>
+          <!------------ post-row ---------------->
+          <commentInput :storyId="story._id"   @openSmiley=openSmiley   @closeSmiley=closeSmiley  />
+               
     </div> 
     </section>
 </template>
@@ -86,74 +85,52 @@ export default {
   },
     created() {
             eventBus.$on('test', () => {
-              console.log('update commponent')
-              this.componentKey += 1;
+            console.log('update commponent')
+            this.componentKey += 1;
          })
-     
-          console.log('smiles in story-modal-modal',this.smile)
+     console.log('smiles in story-modal-modal',this.smile)
     },
    computed: {
-         isCommentLikedCompute : function (commentIdx){
+        isCommentLikedCompute : function (commentIdx){
           var theloggedInUser =  this.$store.getters.loggedinUser 
-         var isLikedBefor = this.story.comments[commentIdx].likedBy.some(user => {
-         return (user._id===theloggedInUser._id)
-         })
-         return isLikedBefor
+        var isLikedBefor = this.story.comments[commentIdx].likedBy.some(user => {
+        return (user._id===theloggedInUser._id)
+        })
+        return isLikedBefor
     },
 
-   },
+  },
   methods: {
     addIcon(smile){
-     // console.log('smile in story preview modal',smile)
-        eventBus.$emit('addIcon',smile)
-        this.smile = smile; 
+      eventBus.$emit('addIcon',smile)
+      this.smile = smile; 
     },
-        openSmiley(){
-          this.isSmilyModal = !this.isSmilyModal;
-        },
-        closeSmiley(){
-            this.isSmilyModal  = false;
-        },
-          openModal(storyId){
-            this.isModal = true;
-         },
+    openSmiley(){
+      this.isSmilyModal = !this.isSmilyModal;
+    },
+    closeSmiley(){
+      this.isSmilyModal  = false;
+    },
+    openModal(storyId){
+      this.isModal = true;
+    },
       closeModal(){
-        this.isModal = false
+      this.isModal = false
     },
     removeComment(id) {
-      //console.log('comment id delete from story preview,' ,id)
-      // this.$emit("removeComment", id);
     },
     myFilter() {
       this.isActive = !this.isActive;
      },
-
     addLikeToComment(commentIdx){ 
-   //   console.log('comment index to change' , commentIdx)
       this.isCommntLiked2[1]=!this.isCommntLiked2[1]
-      //  console.log(' this.isCommntLiked2[1]' ,  this.isCommntLiked2[1])
-
-     var details = {
+      var details = {
           storyId :  this.story._id,
           commentIdx : commentIdx
         }
-
-      // if(!this.isCommntLiked2[commentIdx]){
-      //         console.log('nooooooooooooooooooooooo')
-      //      console.log(' this.isCommntLiked2[commentIdx]', this.isCommntLiked2[commentIdx])
-      //   this.isCommntLiked2[commentIdx]=true
-  
-      //  }else if(this.isCommntLiked2[commentIdx]) {
-      //    console.log('yessssssssssssssssssss')
-      //      console.log(' this.isCommntLiked2[commentIdx]', this.isCommntLiked2[commentIdx])
-      //     this.isCommntLiked2[commentIdx]=false
-      //  }
-
-       this.$store.dispatch({ type: 'addLikeToComment', theDetails : details })
-      
-   },
+      this.$store.dispatch({ type: 'addLikeToComment', theDetails : details })
+  },
     addLike(id){
-     // console.log('thd id in story-preview',id)
       if(!this.isLiked){
         this.$store.dispatch({ type: 'setLikeToStory', storyId: id })
         this.isLiked = !this.isLiked
@@ -161,7 +138,6 @@ export default {
         this.$store.dispatch({ type: 'removeLikeFromStory', storyId: id })
         this.isLiked = !this.isLiked
       }
-        // this.$emit('like', id)
     },
     addComment(id){
         var commentStory ={
@@ -177,8 +153,8 @@ export default {
       var theloggedInUser =  this.$store.getters.loggedinUser 
       var isLikedBefor = this.story.comments[commentIdx].likedBy.some(user => {
         return (user._id===theloggedInUser._id)
-        })
-         return isLikedBefor
+      })
+       return isLikedBefor
     }
 
 
@@ -195,5 +171,4 @@ export default {
 </script>
 
 <style>
-
 </style>

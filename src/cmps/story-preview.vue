@@ -168,6 +168,7 @@ export default {
             this.isSmilyModal  = false;
         },
           openModal(){
+            console.log('fhsjkfhksjdfn')
            this.$emit("storyToModal", this.story);
          },
       closeModal(){

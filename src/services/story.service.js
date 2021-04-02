@@ -14,7 +14,7 @@ export const storyService = {
   getById,
   remove,
   save,
-  getEmpthystory,
+  getEmptystory,
   getSmiles
 }
 
@@ -22,8 +22,6 @@ function query(filterBy) {
   if (!filterBy) localStorage.setItem(KEY, JSON.stringify(gStories))
   else {
     const stories = gStories.filter(story => {
-      // return (story.tags.includes(filterBy.name) || ((story.tags.includes(filterBy.name)) && (story.price >= filterBy.price.minPrice && story.price <= filterBy.price.maxPrice) &&
-      //   (filterBy.rating === story.rating) && (filterBy.level === story.creator.level))
       return (story.tags.includes(filterBy.name) && (filterBy.rating === story.rating) 
       ) 
     })
@@ -33,37 +31,22 @@ function query(filterBy) {
 }
 
 function getById(id) {
-  // return axios.get(TOY_URL + id)
-  //   .then(res => {
-  //     return res.data
-  //   })
   return storageService.get(KEY, id)
 }
 
 function remove(id) {
-  // return axios.delete(TOY_URL + id)
-  //   .then(res => res.data)
+
   return storageService.remove(KEY, id)
 }
 
 function save(story) {
-  // if (story._id) {
-  //   return axios.put(story_URL + story._id, story)
-  //     .then(res => res.data)
-  // } else {
-  //   return axios.post(story_URL, story)
-  //     .then(res => res.data)
-  // }
-//  console.log('story srvice', story);
+
   const savedStory = (story._id) ? storageService.put(KEY, story) : storageService.post(KEY, story)
 
   return savedStory;
 }
 
-function getEmpthystory(){
-
-
-
+function getEmptystory(){
   return {
     txt: '',
     imgUrl: '',

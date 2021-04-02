@@ -71,9 +71,7 @@
 </template>
 
 <script>
- 
-// import { eventBus } from "../services/event-bus.service.js"
-
+import { eventBus } from "@/services/event-bus.service.js";
 export default {
   name: "user-details",
   data() {
@@ -89,19 +87,11 @@ export default {
 
   },
    watch: {
-    // userId: {
-    //   handler() {
-    //   this.$store.dispatch({ type: "loadAndWatchUser", userId: this.userId });
-    //   },
-    //   immediate: true,
-    // },
+
   },
-    // created() {
-    //     eventBus.$on('closeModalFromBus', this.isModal = false)
-    // },
-    // destroyed(){
-    //     eventBus.$off('closeModalFromBus', this.isModal = false)
-    // },
+   created() {
+   
+   },
   mounted() {
     this.userId = this.$route.params.id;
     this.user = this.$store.getters.getUserById(this.userId);
@@ -116,15 +106,19 @@ export default {
               return story
             }
           })
-          this.isModal = !this.isModal
-          console.log('the story to sow : ',storyToShow[0])
-          console.log('isModal : ',  this.isModal)
-          this.storyToShow=storyToShow[0]
+          console.log('open modal in user-details')
+        // eventBus.$emit('xxx')
+
+
+          // this.isModal = !this.isModal
+          // console.log('the story to sow : ',storyToShow[0])
+          // console.log('isModal : ',  this.isModal)
+          // this.storyToShow=storyToShow[0]
    
-      },
+    },
       closeModal(){
-      this.isModal = !this.isModal
-           console.log('isModal : ',  this.isModal)
+     // this.isModal = !this.isModal
+           console.log('close modal in user details  ')
       },
     
     },

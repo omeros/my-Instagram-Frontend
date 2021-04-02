@@ -13,28 +13,16 @@
                   <div class="search-container">
                       <user-filter @filtered="setFilter" />
                   </div>
-
-                        <transition name="fade">
-                          <div class="modal-container" v-if="open">
-                            <new-story-modal/>
-                          </div>
-                        </transition>
-
-              </div>
-
-            <nav>
-              
-            
                   
-                <button class="" @click.stop="openModal()">
+              </div>
+            <nav>
+                            <div class="header-links">
+                 <button class="pluse-img-btn" @click.stop="openModal()">
                   <img  class="pluse-img opacity"  src="https://res.cloudinary.com/omerphoto/image/upload/v1617069437/pluse1_lmstmi.gif"  alt="profile pic" />
                 </button>
-              
 
-
-              <div class="header-links">
                 <router-link to="/">
-                  <span class="instagram-logo opacity" role="img" aria-label="logo">
+                  <span class="home-logo opacity" role="img" aria-label="logo">
                     <svg height="30" viewBox="0 0 48 48" width="22">
                       <path d="M45.5 48H30.1c-.8 0-1.5-.7-1.5-1.5V34.2c0-2.6-2.1-4.6-4.6-4.6s-4.6 2.1-4.6 4.6v12.3c0 .8-.7 1.5-1.5 1.5H2.5c-.8 0-1.5-.7-1.5-1.5V23c0-.4.2-.8.4-1.1L22.9.4c.6-.6 1.6-.6 2.1 0l21.5 21.5c.3.3.4.7.4 1.1v23.5c.1.8-.6 1.5-1.4 1.5z"></path>
                     </svg
@@ -55,6 +43,12 @@
               </div>
             </nav>
       </div>
+        <transition name="fade">
+               <div class="modal-container " v-if="open">
+               <!-- <div class="modal-container hide" > -->
+                       <new-story-modal :emptyStory="emptyStory" />
+                   </div>
+          </transition>
 
       
 
@@ -62,6 +56,7 @@
   </header>
 </template>
 <script>
+import { eventBus } from "@/services/event-bus.service.js";
 import userFilter from "@/cmps/user-filter.vue";
 import newStoryModal from "@/cmps/new-story-modal.vue";
 export default {
@@ -70,9 +65,18 @@ export default {
       return {
         instagramPressed : false,
          filterBy: null,
-         open : false
+         open : false,
+         emptyStory : null
       }
     },
+  created() {
+          eventBus.$on("closeAddStoryModal", () => {
+            this.closeModal()
+    });
+  },
+
+
+
   computed: {
     loggedInUser() {
   //    console.log(" loggedinUser in app-head", this.$store.getters.loggedinUser);
@@ -80,7 +84,11 @@ export default {
     },
   },
      methods: {
+       closeModal(){
+         this.open = false;
+       },
        openModal(){
+         this.emptyStory =  this.$store.getters.getEmptyStory
          this.open= !this.open
        },
        instagramIsPressed(){

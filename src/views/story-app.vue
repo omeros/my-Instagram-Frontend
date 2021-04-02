@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { eventBus } from "@/services/event-bus.service.js";
 import { storyService } from "../services/story.service.js";
 import storyList from "@/cmps/story-list";
 import storyPreviewModalContainer from "@/cmps/story-preview-modal-container";
@@ -20,10 +21,11 @@ export default {
 
     return {
       filterBy: null,
-      storiesToEdit : storyService.getEmpthystory(),
+      // storiesToEdit : storyService.getEmptystory(),
+      // storiesToEdit : this.$store.getters.getEmptyStory,
       selectedStory : null,
       smiliesToShow : storyService.getSmiles(),
-
+  // this.emptyStory =  this.$store.getters.getEmptyStory
      
    
     };
@@ -31,8 +33,8 @@ export default {
   created() {
    // console.log("story app loaded!!!");
     this.$store.dispatch({ type: "loadStories" });
+      },
 
-  },
     computed: {
     storiesToShow() {
       const storiesToShow = this.$store.getters.storiesToShow;
@@ -52,6 +54,7 @@ export default {
        },
        closeModal(){
          this.selectedStory = null
+             eventBus.$emit('closeAddStoryModal')
        }
      },
     components: {

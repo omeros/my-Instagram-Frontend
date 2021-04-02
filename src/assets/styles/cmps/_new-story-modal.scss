@@ -1,18 +1,16 @@
-.main-modal{
-    
-    
-}
 
 
 .modal-header2{
     // background-image: url("https://images.pexels.com/photos/712413/pexels-photo-712413.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
     // background-color: #dbe08a;
-    width: 500px;
-    height: 450px;
-    background-color: rgb(179, 79, 22);
+    width: 1000px;
+    height: 600px;
+    background-color: rgb(250, 249, 248);
+    box-shadow: 5px 10px 10px 500vh #888888be;    
+
     position: absolute;
-    bottom: 200;
-    right: 100;
+    top: 60px;
+    left: 300px;
     z-index: 999;
     border-radius: 10px;
   
@@ -31,10 +29,19 @@
     align-items: center;
     justify-content: start;
 }
+.image-container-new-story{
+    min-width: 600px;
 
+}
 .image{
  
+    //width: 600px;
+}
+.my-input{
+    border-radius:10px;
+    height: 40px;
     width: 300px;
+    font-size: large;
 }
 
 
@@ -70,3 +77,60 @@
     padding-left: 10px;
     margin: 10px;
 }
+.line2{
+    width: 400px;
+    border-top: 1px solid rgba(var(--ce3,239,239,239),1);
+    border-bottom: 1px solid rgba(var(--ce3,239,239,239),1);
+    // border-top: 15px solid black
+    
+}
+.comment-new-story{
+    height: 600px;
+    width: 350px;
+    // display: flex;
+    // justify-content: flex-start;
+}
+
+// .post-details-header-preview{
+    
+//     padding: 16px;
+//     display: flex;
+//     justify-content : space-between;
+//      flex-direction: row;
+//     -webkit-box-pack: justify;
+//     //  max-width: 335px;
+//     width :335px;
+//     height: 64px;
+//     border-bottom: 1px solid rgba(var(--ce3,239,239,239),1);
+// }
+
+// .screen-preview{
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+// .story-details-img-preview{
+//     height: 25px;
+//     width: 25px;
+//     border-radius: 50%;
+//     display: inline;
+//     margin: 0px 16px 0px 0px;
+// }
+
+// .post-details-router-name-preview{
+//     color: #262626;
+//     background-color: #fff;
+//     font-weight: 600;
+//     text-align: left;
+//     outline: none;
+//     font-size: 13px;
+// }
+
+// .post-details-router-name-preview{
+//     color: #262626;
+//     background-color: #fff;
+//     font-weight: 600;
+//     text-align: left;
+//     outline: none;
+//     font-size: 13px;
+// }
