@@ -27,7 +27,7 @@
 
 
                     <div class="line2"></div>
-                    <commentInput :storyId="emptyStory._id"   @openSmiley=openSmiley   @closeSmiley=closeSmiley  />
+                    <commentInput  :storyId="emptyStory._id"    @addComment=addComment   @openSmiley=openSmiley   @closeSmiley=closeSmiley  />
                     <div class="line2"></div>
                 </div>
               
@@ -56,6 +56,13 @@ export default {
      console.log('emptyStory on new story modal',this.emptyStory)
    },
   methods: {
+        addComment(commentStory){
+        this.emptyStory.txt=commentStory.txt
+        this.emptyStory.imgUrl= this.myImage
+        this.$store.dispatch({ type: 'addNewStory', newStory: this.emptyStory })
+        // this.componentKey += 1;
+        // this.$forceUpdate(); 
+    },
         openSmiley(){
       this.isSmilyModal = !this.isSmilyModal;
     },

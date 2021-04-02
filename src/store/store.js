@@ -106,27 +106,22 @@ export const store = new Vuex.Store({
 
   },
   actions: {
-    // isCommentLiked  (context, payload)
-    // {
-    //   var storyId= details.storyId
-    //   var commentIdx = details.commentIdx
-    //    var isLikedBefor = [false];
-    //    var theUser =  userStore.state.loggedinUser
-    //    isLikedBefor = story.comments[commentIdx].likedBy.filter(user => {
-    //    if(user._id===userDetails._id){
-    //     const isItTheUser = (element) => element._id===user._id;
-    //       var idx = storyCommentToLike.comments[commentIdx].likedBy.findIndex(isItTheUser)
-    //       console.log('the id to delete',idx)
-    //       storyCommentToLike.comments[commentIdx].likedBy.splice(idx,1)
-    //         console.log('yes baby')
-    //       return true
-    //      }
-    //   })
-    //   console.log('isLikedBefor',isLikedBefor)
-    //    return isLikedBefor
-    // },
+     addNewStory(context, payload){
+      console.log('payload in store',payload.newStory)
+      
+      storyService.save(payload.newStory)
+      .then(updatedStory => {
+        context.commit({ type: 'updateStories', updatedStory });
+      })
+     .catch(err => {
+      console.log('Store: Cannot update like to comment in  stories', err);
+      throw new Error('Cannot update like to comment in  stories');
+    })
 
 
+
+      
+     },
 
     addLikeToComment(context, payload){
       var storyId = payload.theDetails.storyId

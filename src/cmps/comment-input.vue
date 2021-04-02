@@ -26,7 +26,6 @@ export default {
   },
   destroyed() {
     eventBus.$off("addIcon", (smile) => {
-      console.log("what do you want?");
       this.addIconToComment(smile);
     });
   },
@@ -37,13 +36,9 @@ export default {
         txt: this.txt,
         storyId: this.storyId,
       };
-      this.$store.dispatch({
-        type: "addCommentToStory",
-        comment: commentStory,
-      });
+      this.$emit("addComment", commentStory);
       this.txt = null;
       this.closeSmiley();
-      eventBus.$emit("test"); // this.$forceUpdate();
     },
     addIconToComment(smile) {
       var x = smile;

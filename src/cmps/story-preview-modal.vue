@@ -1,6 +1,5 @@
 <template>
 <section v-if="story">
-
     <div class="story-details-content-preview" >
                     <!------ user details ----------->
                         <div class="post-details-header-preview">
@@ -34,29 +33,23 @@
                 </div>
                 <div class="story-row-preview" >
                         <div class="comment-preview" v-for="comment in story.comments" :key="comment.id">
-                            <storyComment :story="story" :comment="comment" :smiles="smiles" :index="story.comments.indexOf(comment)" :key=" " />
+                            <storyComment :story="story" :comment="comment" :smiles="smiles" :index="story.comments.indexOf(comment)" :key="componentKey" />
                         </div>
                 </div>
         </div>   
                         <div class="line"></div>
-
-    
                         <!------- like and save story -------->
                         <actionBar :story="story" />
                         <div class="position-modal">
-
-                                          <!-- smily-modal  -->
+                                  <!-- smily-modal  -->
                                 <div class="smily-modal-preview  " v-if="isSmilyModal">
                                   <smileyMoldal   :smiles="smiles"  @smileyToShow=addIcon />
                                 </div>
-
                         </div>
-              
-         <!--------- separate-line ----------->
+          <!--------- separate-line ----------->
           <div class="line"></div>
           <!------------ post-row ---------------->
-          <commentInput :storyId="story._id"   @openSmiley=openSmiley   @closeSmiley=closeSmiley  />
-               
+          <commentInput :storyId="story._id"  @addComment=addComment  @openSmiley=openSmiley   @closeSmiley=closeSmiley  />        
     </div> 
     </section>
 </template>
@@ -79,18 +72,18 @@ export default {
         isModal : false,
         isSmilyModal : false,
         istest : false,
-       componentKey : 0,
+        componentKey : 0,
     
     };
   },
     created() {
-            eventBus.$on('test', () => {
-            console.log('update commponent')
-            this.componentKey += 1;
-         })
-     console.log('smiles in story-modal-modal',this.smile)
+          //   eventBus.$on('test', () => {
+          //   console.log('update commponent')
+          //   this.componentKey += 1;
+          // })
+     // console.log('smiles in story-modal-modal',this.smile)
     },
-   computed: {
+    computed: {
         isCommentLikedCompute : function (commentIdx){
           var theloggedInUser =  this.$store.getters.loggedinUser 
         var isLikedBefor = this.story.comments[commentIdx].likedBy.some(user => {
@@ -121,7 +114,7 @@ export default {
     },
     myFilter() {
       this.isActive = !this.isActive;
-     },
+    },
     addLikeToComment(commentIdx){ 
       this.isCommntLiked2[1]=!this.isCommntLiked2[1]
       var details = {
@@ -139,14 +132,16 @@ export default {
         this.isLiked = !this.isLiked
       }
     },
-    addComment(id){
-        var commentStory ={
-          txt : this.txt,
-          storyId : id,
-        } 
+    addComment(commentStory){
+        // var commentStory ={
+        //   txt : this.txt,
+        //   storyId : id,
+        // } 
+        console.log('fsfdsfsdfsd',commentStory)
         this.$store.dispatch({ type: 'addCommentToStory', comment: commentStory })
-        this.txt = null;
-        this.closeSmily()
+        // this.componentKey += 1;
+        // this.$forceUpdate();
+     
     },
     isCommentLikedfunc(commentIdx)
     {
