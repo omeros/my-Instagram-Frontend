@@ -1,6 +1,6 @@
 <template>
-<section v-if="story">
-    <div class="story-details-content-preview" >
+<section v-if="story" >
+    <div class="story-details-content-preview"    >
                     <!------ user details ----------->
                         <div class="post-details-header-preview">
                             <div class="screen-preview">
@@ -9,7 +9,7 @@
                                     <router-link :to="`/user/${ story.by._id}`"  > {{ story.by.fullname }} </router-link>
                                 </span>
                             </div>
-                            <button class="post-details-header-btn-preview opacity">
+                            <button class="post-details-header-btn-preview opacity"  @click="deletPost()">
                                 <svg height="16" viewBox="0 0 48 48" width="16"><circle clip-rule="evenodd" cx="8" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="24" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="40" cy="24" fill-rule="evenodd" r="4.5"></circle></svg>
                             </button>
                         </div>
@@ -78,7 +78,7 @@ export default {
   },
     created() {
           //   eventBus.$on('test', () => {
-          //   console.log('update commponent')
+             console.log('update commponent',this.story)
           //   this.componentKey += 1;
           // })
      // console.log('smiles in story-modal-modal',this.smile)
@@ -94,7 +94,21 @@ export default {
 
   },
   methods: {
-    addIcon(smile){
+
+
+    // addComment(commentStory){
+    //     this.emptyStory.txt=commentStory.txt
+    //     this.emptyStory.imgUrl= this.myImage
+    //     this.$store.dispatch({ type: 'addNewStory', newStory: this.emptyStory })
+    //     // this.componentKey += 1;
+    //     // this.$forceUpdate(); 
+    // },
+    deletPost(){
+       console.log('delete post id : ',this.story._id)
+
+
+    },
+     addIcon(smile){
       eventBus.$emit('addIcon',smile)
       this.smile = smile; 
     },

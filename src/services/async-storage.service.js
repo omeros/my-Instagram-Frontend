@@ -19,6 +19,7 @@ function get(entityType, entityId) {
         .then(entities => entities.find(entity => entity._id === entityId))
 }
 function post(entityType, newEntity) {
+    console.log('newEntity at async service',newEntity)
     newEntity._id = _makeId()
     return query(entityType)
         .then(entities => {

@@ -20,14 +20,14 @@
         "by": {
           "_id": "u101",
           "fullname": "malina.s",
-          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/malina1_nzt848.jpg"
+          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/Faces/malina1_nzt848.jpg"
         },
         "txt": " i have to try to drive that one!",
         "likedBy": [ 
           {
             "_id": "u105",
             "fullname": "charls.b",
-            "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/charles_ed8c5v.jpg"
+            "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/Faces/charles_ed8c5v.jpg"
           },
           {
             "_id": "u107",
@@ -41,7 +41,7 @@
         "by": {
           "_id": "u103",
           "fullname": "charls.b",
-          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/charles_ed8c5v.jpg"
+          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/Faces/charles_ed8c5v.jpg"
         },
         "txt": "i like the color !",
         "likedBy": [ 
@@ -73,7 +73,7 @@
         "by": {
           "_id": "u102",
           "fullname": "victoria ogai",
-          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/victoria1_ngn4hn.jpg"
+          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/Faces/victoria1_ngn4hn.jpg"
         },
         "txt": "Wow What vendor is That ??? !",
         "likedBy": [ 
@@ -89,7 +89,7 @@
         "by": {
           "_id": "u101",
           "fullname": "charls.b",
-          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/charles_ed8c5v.jpg"
+          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/Faces/charles_ed8c5v.jpg"
         },
         "txt": "god, did i died and come to heaven ?",
         "likedBy": [ 
@@ -117,13 +117,13 @@
   },
    {
     "_id": "s202",
-    "txt": " Shin Like A Diamond",
+    "txt": " Shine Like A Diamond",
     "imgUrl": "https://images.pexels.com/photos/5330287/pexels-photo-5330287.jpeg?auto=compress&cs=tinysrgb&h=450&w=1260",
     "createdAt": 123543452,
     "by": {
       "_id": "u107",
       "fullname": "Rick Redding",
-      "imgUrl": "https://images.pexels.com/photos/4348277/pexels-photo-4348277.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+      "imgUrl": "https://images.pexels.com/photos/4348277/pexels-photo-4348277.jpeg?auto=compress&cs=tinysrgb&h=350&w=860"
     },
     "loc": {
       "lat": 11.11,
@@ -136,14 +136,14 @@
         "by": {
           "_id": "u105",
           "fullname": "malina.s",
-          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/malina1_nzt848.jpg"
+          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/Faces/malina1_nzt848.jpg"
         },
         "txt": " i have to try to drive that one!",
         "likedBy": [ 
           {
             "_id": "u105",
             "fullname": "charls.b",
-            "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/charles_ed8c5v.jpg"
+            "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/Faces/charles_ed8c5v.jpg"
           }
         ]
       },
@@ -152,7 +152,7 @@
         "by": {
           "_id": "u101",
           "fullname": "charls.b",
-          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/charles_ed8c5v.jpg"
+          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/Faces/charles_ed8c5v.jpg"
         },
         "txt": "i like the color !",
         "likedBy": [ 
@@ -186,7 +186,7 @@
     "by": {
       "_id": "u107",
       "fullname": "Rick Redding",
-      "imgUrl": "https://images.pexels.com/photos/4348277/pexels-photo-4348277.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+      "imgUrl": "https://images.pexels.com/photos/4348277/pexels-photo-4348277.jpeg?auto=compress&cs=tinysrgb&h=350&w=860"
     },
     "loc": {
       "lat": 11.11,
@@ -199,7 +199,7 @@
         "by": {
           "_id": "u105",
           "fullname": "malina.s",
-          "imgUrl": "http://coding-academy.org/books-photos/3.jpg"
+          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/Faces/malina1_nzt848.jpg"
         },
         "txt": " i have to try to drive that one!",
         "likedBy": [ 
@@ -215,7 +215,7 @@
         "by": {
           "_id": "u101",
           "fullname": "charls.b",
-          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/charles_ed8c5v.jpg"
+          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/Faces/charles_ed8c5v.jpg"
         },
         "txt": "i like the color !",
         "likedBy": [ 
@@ -262,14 +262,14 @@
         "by": {
           "_id": "u105",
           "fullname": "malina.s",
-          "imgUrl": "http://coding-academy.org/books-photos/3.jpg"
+          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/Faces/malina1_nzt848.jpg"
         },
         "txt": " i have to try to drive that one!",
         "likedBy": [ 
           {
             "_id": "u105",
             "fullname": "charls.b",
-            "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/charles_ed8c5v.jpg"
+            "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/Faces/charles_ed8c5v.jpg"
           }
         ]
       },
@@ -278,7 +278,7 @@
         "by": {
           "_id": "u101",
           "fullname": "charls.b",
-          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/charles_ed8c5v.jpg"
+          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/Faces/charles_ed8c5v.jpg"
         },
         "txt": "i like the color !",
         "likedBy": [ 
@@ -312,7 +312,7 @@
     "by": {
       "_id": "u102",
       "fullname": "victoria ogai",
-      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/victoria1_ngn4hn.jpg"
+      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/Faces/victoria1_ngn4hn.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -325,7 +325,7 @@
         "by": {
           "_id": "u105",
           "fullname": "malina.s",
-          "imgUrl": "http://coding-academy.org/books-photos/3.jpg"
+          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/Faces/malina1_nzt848.jpg"
         },
         "txt": " i have to try to drive that one!",
         "likedBy": [ 
@@ -375,7 +375,7 @@
     "by": {
       "_id": "u102",
       "fullname": "victoria_ogai",
-      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/victoria1_ngn4hn.jpg"
+      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/Faces/victoria1_ngn4hn.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -388,7 +388,7 @@
         "by": {
           "_id": "u105",
           "fullname": " malina scarlett",
-          "imgUrl": "http://coding-academy.org/books-photos/10.jpg"
+          "imgUrl": "hhttps://res.cloudinary.com/omerphoto/image/upload/v1616845537/Faces/malina1_nzt848.jpg"
         },
         "txt": "good one!",
         "likedBy": [
@@ -431,7 +431,7 @@
     "by": {
       "_id": "u102",
       "fullname": "victoria_ogai",
-      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/victoria1_ngn4hn.jpg"
+      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/Faces/victoria1_ngn4hn.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -487,7 +487,7 @@
     "by": {
       "_id": "u102",
       "fullname": "victoria_ogai",
-      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/victoria1_ngn4hn.jpg"
+      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/Faces/victoria1_ngn4hn.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -543,7 +543,7 @@
     "by": {
       "_id": "u102",
       "fullname": "victoria_ogai",
-      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/victoria1_ngn4hn.jpg"
+      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/Faces/victoria1_ngn4hn.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -599,7 +599,7 @@
     "by": {
       "_id": "u102",
       "fullname": "victoria_ogai",
-      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/victoria1_ngn4hn.jpg"
+      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/Faces/victoria1_ngn4hn.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -655,7 +655,7 @@
     "by": {
       "_id": "u101",
       "fullname": "malina scarlett",
-      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/malina1_nzt848.jpg"
+      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/Faces/malina1_nzt848.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -711,7 +711,7 @@
     "by": {
       "_id": "u103",
       "fullname": "chaels grashow",
-      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/charles_ed8c5v.jpg"
+      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/Faces/charles_ed8c5v.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -767,7 +767,7 @@
     "by": {
       "_id": "u101",
       "fullname": "malina scarlett",
-      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/malina1_nzt848.jpg"
+      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/Faces/malina1_nzt848.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -823,7 +823,7 @@
     "by": {
       "_id": "u101",
       "fullname": "malina scarlett",
-      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/malina1_nzt848.jpg"
+      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/Faces/malina1_nzt848.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -879,7 +879,7 @@
     "by": {
       "_id": "u103",
       "fullname": "Charles.g",
-      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/charles_ed8c5v.jpg"
+      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/Faces/charles_ed8c5v.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -935,7 +935,7 @@
     "by": {
       "_id": "u103",
       "fullname": "Charles.g",
-      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/charles_ed8c5v.jpg"
+      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/Faces/charles_ed8c5v.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -991,7 +991,7 @@
     "by": {
       "_id": "u103",
       "fullname": "Charles.g",
-      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/charles_ed8c5v.jpg"
+      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/Faces/charles_ed8c5v.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -1047,7 +1047,7 @@
     "by": {
       "_id": "u103",
       "fullname": "Charles.g",
-      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/charles_ed8c5v.jpg"
+      "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/Faces/charles_ed8c5v.jpg"
     },
     "loc": {
       "lat": 11.11,
@@ -1067,7 +1067,7 @@
           {
             "_id": "u105",
             "fullname": "Rick Redding",
-            "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/malina1_nzt848.jpg"
+            "imgUrl": "https://images.pexels.com/photos/4348277/pexels-photo-4348277.jpeg?auto=compress&cs=tinysrgb&h=350&w=860"
           }
         ]
       },

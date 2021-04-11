@@ -5,7 +5,7 @@
     "password": "1234",
     "fullname": " malina scarlett ",
     "bio" : "Public Figure",
-    "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/malina1_nzt848.jpg",
+    "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/Faces/malina1_nzt848.jpg",
     "createdAt": 123543452,
     "following": [
       {
@@ -98,7 +98,7 @@
     "password": "1234",
     "fullname": "victoria ogai",
     "bio" : "🍀 Architect & Interior design 🍀",
-    "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/victoria1_ngn4hn.jpg",
+    "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616846141/Faces/victoria1_ngn4hn.jpg",
     "createdAt": 123543452,
     "following": [
       {
@@ -122,7 +122,7 @@
     "password": "1234",
     "fullname": "Charles Grashow",
     "bio" : "Biological engineer 😉 ",
-    "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/charles_ed8c5v.jpg",
+    "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845142/Faces/charles_ed8c5v.jpg",
     "createdAt": 123543452,
     "following": [
       {

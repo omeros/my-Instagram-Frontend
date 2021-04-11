@@ -1,6 +1,5 @@
 <template>
        <section  >
-       <!-- <section  > -->
          <storyPreviewModalContainer v-if="selectedStory"  :story="selectedStory" :smiles="smiliesToShow" v-on:click="close" />
          <div @click.stop="closeModal()">
               <div class="app-center">

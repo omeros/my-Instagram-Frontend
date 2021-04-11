@@ -1,6 +1,6 @@
 <template>
   <div id="app" >
-    <div id="nav">
+    <div id="nav"  @click.stop="closeModal()">
        <app-header />
        <router-view   />
      <app-footer />
@@ -11,6 +11,7 @@
 
 
 <script>
+import { eventBus } from "@/services/event-bus.service.js";
 import appHeader from "@/cmps/app-header";
 import appFooter from "@/cmps/app-footer";
 // import { eventBus } from "./services/event-bus.service.js"
@@ -33,6 +34,8 @@ export default {
   },
     methods: {
       closeModal(){
+          eventBus.$emit('closeAddStoryModal')
+          eventBus.$emit('closeDetailsModal')
         //  eventBus.$emit('closeModal')
       }
     },

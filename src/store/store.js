@@ -47,9 +47,9 @@ export const store = new Vuex.Store({
     getEmptyStory(state){
        var emptyStory = storyService.getEmptystory()
        var theUser =  userStore.state.loggedinUser
-       emptyStory.by._id=theUser._id
-       emptyStory.by.fullname=theUser.fullname
-       emptyStory.by.imgUrl=theUser.imgUrl
+       emptyStory.by._id = theUser._id
+       emptyStory.by.fullname = theUser.fullname
+       emptyStory.by.imgUrl = theUser.imgUrl
        return  emptyStory
     },
     storiesToShow(state) {
@@ -90,6 +90,18 @@ export const store = new Vuex.Store({
       state.stories = stories;
     },
 
+    setStory(state, payload) {
+      console.log('on store on mutex befor update state.stories',payload)
+
+      let t = JSON.parse(JSON.stringify(payload.updatedStory))
+      console.log('on store on mutex middle update state.stories',t)
+      state.stories.push(t);
+      // let e = [...state.stories]
+      // console.log('on store on mutex after update state.stories',e)
+    },
+
+
+
     //   var storyRemoveLike = state.stories.filter(story => {
     //     return (story._id===storyId)
     //   })
@@ -106,12 +118,18 @@ export const store = new Vuex.Store({
 
   },
   actions: {
+      removeStory(context, payload){
+        console.log('remove in store',payload.storyToRemoveId)
+        storyService.remove(storyToRemoveId)
+        .then(updatedStory => {
+          context.commit({ type: 'updateStories', updatedStory });
+        })
+      },
      addNewStory(context, payload){
       console.log('payload in store',payload.newStory)
-      
       storyService.save(payload.newStory)
       .then(updatedStory => {
-        context.commit({ type: 'updateStories', updatedStory });
+        context.commit({ type: 'setStory', updatedStory });
       })
      .catch(err => {
       console.log('Store: Cannot update like to comment in  stories', err);
@@ -246,10 +264,9 @@ export const store = new Vuex.Store({
         })
     },
     loadStories({ commit, state }) {
-      // storyService.query(state.filter || undefined)
       storyService.query(state.filter || undefined)
         .then(stories => {
-        //  console.log('in store - load stories from local storage', stories)
+          console.log('in store - load stories from local storage', stories)
           commit({ type: 'setStories', stories });
         })
         .catch(err => {

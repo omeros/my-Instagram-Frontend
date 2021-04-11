@@ -96,6 +96,8 @@ function _saveLocalUser(user) {
     return user
 }
 
+
+// if the program have an 'undefined' value for the user in sessionStorage, the program does not load
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem('loggedinUser') || 'null')
 }

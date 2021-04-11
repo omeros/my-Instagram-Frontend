@@ -30,10 +30,15 @@
     justify-content: start;
 }
 .image-container-new-story{
-    min-width: 600px;
+    // max-width: 550px;
+    // max-width:100vh;
+    width : 600px;
+    max-height:600px ;
+    //  height:1;
+
 
 }
-.image{
+.image-new-story{
  
     //width: 600px;
 }
@@ -43,18 +48,22 @@
     width: 300px;
     font-size: large;
 }
-
+// input[type='file'] {
+//     background-image: url('https://res.cloudinary.com/omerphoto/image/upload/v1617824183/iconfinder_file_add_48761_tfhfua.png');
+//     background-position: 7px 7px;
+//     background-repeat: no-repeat;
+// }
 
 .file-btn{
+    // background-image: url('https://res.cloudinary.com/omerphoto/image/upload/v1617824183/iconfinder_file_add_48761_tfhfua.png') no-repeat scroll 7px 7px;
     border-radius: 10px;
     border:1px solid rgb(27, 14, 14);
     width: 95px;
     height: 25px;
     background-color: rgb(237, 208, 243);
-    box-shadow: 5px 5px 5px 10px  #888888be;
+    box-shadow: 5px 5px 5px 5px  #888888be;
     opacity: 0.8;
-    color: rgb(17, 17, 17);
-  
+    color: rgb(17, 17, 17); 
 
 }
 .upload{
@@ -78,7 +87,7 @@
     margin: 10px;
 }
 .line2{
-    width: 400px;
+    width: 370px;
     border-top: 1px solid rgba(var(--ce3,239,239,239),1);
     border-bottom: 1px solid rgba(var(--ce3,239,239,239),1);
     // border-top: 15px solid black
@@ -91,18 +100,18 @@
     // justify-content: flex-start;
 }
 
-// .post-details-header-preview{
+.post-details-header-preview{
     
-//     padding: 16px;
-//     display: flex;
-//     justify-content : space-between;
-//      flex-direction: row;
-//     -webkit-box-pack: justify;
-//     //  max-width: 335px;
-//     width :335px;
-//     height: 64px;
-//     border-bottom: 1px solid rgba(var(--ce3,239,239,239),1);
-// }
+    padding: 16px;
+    display: flex;
+    justify-content : space-between;
+     flex-direction: row;
+    -webkit-box-pack: justify;
+    //  max-width: 335px;
+    width :335px;
+    height: 64px;
+    border-bottom: 1px solid rgba(var(--ce3,239,239,239),1);
+}
 
 // .screen-preview{
 //     display: flex;

@@ -1,11 +1,11 @@
 <template>
    
-   <div class="modal-header2 flex "  v-bind:class="{left: myImage }">
+   <div class="modal-header2 flex "  v-bind:class="{left: myImage }" @click.stop="stayOpen()">
 
           <div class="image-container-new-story">
-              <img  class="image" v-if="myImage" :src="myImage" width="" height="">
-
+              <img  class="image-new-story" v-if="myImage" :src="myImage" width="" height="">
               <div class="flex">
+                 <!-- <img  class="input-img"  src="https://res.cloudinary.com/omerphoto/image/upload/v1617824183/iconfinder_file_add_48761_tfhfua.png" width="" height=""> -->
                 <input v-if="!myImage"  class="file-btn round"  type="file" accept="image/*" @change="uploadImage($event)" id="file-input">
               </div>
           </div>
@@ -27,7 +27,7 @@
 
 
                     <div class="line2"></div>
-                    <commentInput  :storyId="emptyStory._id"    @addComment=addComment   @openSmiley=openSmiley   @closeSmiley=closeSmiley  />
+                    <commentInput  :storyId="test"    @addComment=addComment   @openSmiley=openSmiley   @closeSmiley=closeSmiley  />
                     <div class="line2"></div>
                 </div>
               
@@ -42,7 +42,10 @@
 </template>
 
 <script>
+import { eventBus } from "@/services/event-bus.service.js";
 import commentInput from "@/cmps/comment-input.vue";
+import storyService from "@/services/story.service.js";
+
 export default {
   props:["emptyStory"],
      data() {
@@ -50,15 +53,27 @@ export default {
                 txt :  null,
                 myImage :  null,
                 isSmilyModal : false,
+                test : '123'
         }
       },
    created() {
-     console.log('emptyStory on new story modal',this.emptyStory)
+     console.log('on created ,emptyStory on new story modal',this.emptyStory)
+     
+   },
+   mounted() {
+     console.log('on mounted ,emptyStory on new story modal',this.emptyStory)
    },
   methods: {
+      stayOpen(){
+     eventBus.$emit('doNotCloseTheNewStoryModal')
+    },
         addComment(commentStory){
-        this.emptyStory.txt=commentStory.txt
-        this.emptyStory.imgUrl= this.myImage
+         this.emptyStory.txt=commentStory.txt
+         this.emptyStory.imgUrl= this.myImage
+          
+        console.log('befor  in  new story modal',this.emptyStory)
+        this.emptyStory._id =''
+       console.log('after   in  new story modal',this.emptyStory)
         this.$store.dispatch({ type: 'addNewStory', newStory: this.emptyStory })
         // this.componentKey += 1;
         // this.$forceUpdate(); 
@@ -74,6 +89,7 @@ export default {
             const reader = new FileReader();
             reader.readAsDataURL(image);
             reader.onload = e =>{
+              console.log('loaded file',e)
                 this.myImage = e.target.result;
                 //console.log('somethinggg',this.myImage);
             };

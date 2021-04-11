@@ -20,6 +20,7 @@ export default {
   },
 
   created() {
+    console.log('in comment input', this.storyId)
     eventBus.$on("addIcon", (smile) => {
       this.addIconToComment(smile);
     });
@@ -34,7 +35,7 @@ export default {
     addComment() {
       var commentStory = {
         txt: this.txt,
-        storyId: this.storyId,
+      //  storyId: this.storyId,
       };
       this.$emit("addComment", commentStory);
       this.txt = null;

@@ -1,37 +1,35 @@
 <template>
-  <section class="main-details app-center "  v-if="user"  @click.stop="closeModal()" >
-
-
-
-    <div class="profile"  >
+  <section
+    class="main-details app-center"
+    v-if="user"
+    @click.stop="closeModal()"
+  >
+    <div class="profile">
       <div class="img-container">
         <img :src="user.imgUrl" class="details-img" />
       </div>
 
       <div class="details-container">
+        <div class="profile-description-top">
+          <h2 class="profile-description-top-username">{{ user.username }}</h2>
+        </div>
 
-          <div class="profile-description-top">
-            <h2 class="profile-description-top-username"> {{ user.username }} </h2>
-          </div>
-
-      <div class="followers-num">
-
+        <div class="followers-num">
           <span class="profile-count">
             <span class="profile-count-num"> {{ numPosts }}</span>
             posts
           </span>
 
           <span class="profile-count-others">
-            <span  class="profile-count-num"> {{ followersNum }}</span>
-        followers
+            <span class="profile-count-num"> {{ followersNum }}</span>
+            followers
           </span>
 
           <span class="profile-count-others">
-            <span  class="profile-count-num"> {{ followingNum }}</span>
-        following
+            <span class="profile-count-num"> {{ followingNum }}</span>
+            following
           </span>
-      
-      </div>
+        </div>
 
         <div class="profile-description-bio">
           <h3>{{ user.fullname }}</h3>
@@ -41,19 +39,18 @@
         <!-- <div>
           <p>{{ user.reateAt }}</p>
         </div> -->
-
       </div>
-
-
-     </div>
-
-     
-       <div class="profile-posts"   >
-            <div class="profile-posts-item"   v-for="story in stories" :key="story._id">
-            <img :src="story.imgUrl" class="details-stories-img"  @click.stop="openModal(story._id)"/>
-        </div>
     </div>
-        <div class="details-story-modal hide" v-bind:class="{show: isModal }">
+
+    <div class="profile-posts"  v-if="stories">
+      <div class="profile-posts-item" v-for="story in stories" :key="story._id"  >
+        <img :src="story.imgUrl"  class="details-stories-img" @click.stop="openModal(story._id)" />
+      </div>
+    </div>
+    <div class="details-story-modal" v-if="isModal">
+      <storyPreviewModalContainer :story="storyToShow" :smiles="smiles" />
+    </div>
+    <!-- <div class="details-story-modal hide" v-bind:class="{show: isModal }">
           <div  class=" modal-content ">
               <div class="story-modal-img-container">
                 <img v-if="isModal" :src="storyToShow.imgUrl" class="img-modal"/>
@@ -62,16 +59,15 @@
                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. eeeeeeeeeeeeeeeeeeeeeeeee
               </div>
           </div>
-         </div>
-
-
-
-
+         </div> -->
   </section>
 </template>
 
 <script>
 import { eventBus } from "@/services/event-bus.service.js";
+import { storyService } from "../services/story.service.js";
+import storyPreviewModal from "@/cmps/story-preview-modal.vue";
+import storyPreviewModalContainer from "@/cmps/story-preview-modal-container";
 export default {
   name: "user-details",
   data() {
@@ -79,19 +75,24 @@ export default {
       userId: null,
       user: null,
       stories: null,
-      isModal : false,
-      storyToShow : null
+      isModal: false,
+      storyToShow: null,
+      smiles: [],
     };
   },
   async created() {
-
+    this.smiles = storyService.getSmiles();
   },
-   watch: {
-
+  watch: {},
+  created() {
+    eventBus.$on("closeDetailsModal", () => {
+      this.closeModal();
+    });
+    eventBus.$on("doNotCloseTheModal", () => {
+      this.stayOpen();
+    });
+    //  eventBus.$on('mmmmm',this.ttt())
   },
-   created() {
-   
-   },
   mounted() {
     this.userId = this.$route.params.id;
     this.user = this.$store.getters.getUserById(this.userId);
@@ -99,30 +100,34 @@ export default {
     console.log("stories on user-details", storiesToShow);
     this.stories = storiesToShow;
   },
-    methods: {
-      openModal(storyId){
-          var storyToShow = this.stories.filter(story=>{
-              if(story._id===storyId){
-              return story
-            }
-          })
-          console.log('open modal in user-details')
-        // eventBus.$emit('xxx')
-
-
-          // this.isModal = !this.isModal
-          // console.log('the story to sow : ',storyToShow[0])
-          // console.log('isModal : ',  this.isModal)
-          // this.storyToShow=storyToShow[0]
-   
+  methods: {
+    stayOpen() {
+      this.isModal = true;
     },
-      closeModal(){
-     // this.isModal = !this.isModal
-           console.log('close modal in user details  ')
-      },
-    
+    openModal(storyId) {
+      var storyToShow = this.stories.filter((story) => {
+        if (story._id === storyId) {
+          return story;
+        }
+      });
+      console.log("open modal in user-details");
+      // eventBus.$emit('xxx')
+      this.isModal = !this.isModal;
+      console.log("the story to sow : ", storyToShow[0]);
+      console.log("isModal : ", this.isModal);
+      this.storyToShow = storyToShow[0];
     },
+    closeModal() {
+      this.isModal = false;
+      console.log("close modal in user details  ");
+      eventBus.$emit("closeAddStoryModal");
+    },
+  },
   computed: {
+
+    // test(){
+    //    return this.state.stories
+    // },
     followersNum() {
       return this.user.followers.length;
     },
@@ -139,6 +144,10 @@ export default {
     // userId() {
     //   return this.$route.params.id;
     // },
+  },
+  components: {
+    storyPreviewModal,
+    storyPreviewModalContainer,
   },
 };
 </script>

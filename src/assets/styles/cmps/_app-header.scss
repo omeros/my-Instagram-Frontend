@@ -43,27 +43,33 @@ header {
     }
     nav {
         // background-color: $clr4;
-        padding: 0 0 0 50px;
+        padding: 0 50px 0 50px;
+        
     }
     nav a:not(:first-child) {
         // border-top: 1px solid $clr2;
         // padding: 0 5px;
         margin: 10px;
+      
     }
     nav .active {
         color: $clr2;
     }
+    .wew{
+       padding-left:16px ;
+    }
 
     .user-logo{
+        cursor: pointer;
         width: 22px;
         height: 22px;
         border-radius: 50%;
+        // padding-left: 16px;
     }
     .pressed{
         opacity: 0.3;
     }
     .h1-header{
-       
         cursor: pointer;
         font-family: Cookie,cursive;
         margin: 0;
@@ -89,9 +95,11 @@ header {
         // display: inline;
         margin: 0;
     }
-    .header-links{
-
-        display: inline;
+    .header-links2{
+        // display: inline;
+        width: 600px;
+        padding-inline-start:16px;
+        padding-inline-end:16px;
     }
     .nav-bar{
        // position: relative;
@@ -140,5 +148,19 @@ header {
       }
       .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
         opacity: 0;
+      }
+      .user-modal-container{
+          position: absolute;
+          top: 50px;
+          right: 300px;
+          width :230px;
+          height: 194px;
+          background-color: rgb(255, 255, 255);
+          z-index: 999;
+          border-radius: 6px;
+          
+      }
+      .tete{
+          padding-left: 10px;
       }
 }

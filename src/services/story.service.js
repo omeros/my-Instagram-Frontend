@@ -35,12 +35,11 @@ function getById(id) {
 }
 
 function remove(id) {
-
   return storageService.remove(KEY, id)
 }
 
 function save(story) {
-
+  console.log(' befor save in storage',story)
   const savedStory = (story._id) ? storageService.put(KEY, story) : storageService.post(KEY, story)
 
   return savedStory;
@@ -52,7 +51,7 @@ function getEmptystory(){
     imgUrl: '',
     createdAt: '',
     by : {
-      _id: utilService.makeId ,
+      _id: '',
       fullname: "",
       imgUrl: ""
     },
@@ -66,7 +65,7 @@ function getEmptystory(){
         id:  utilService.makeId,
         by: {
           _id: "",
-          fullname: "Bob",
+          fullname: "popo",
           imgUrl: ""
         },
         txt: "",
