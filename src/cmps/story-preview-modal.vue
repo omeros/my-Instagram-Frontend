@@ -9,9 +9,12 @@
                                     <router-link :to="`/user/${ story.by._id}`"  > {{ story.by.fullname }} </router-link>
                                 </span>
                             </div>
-                            <button class="post-details-header-btn-preview opacity"  @click="deletPost()">
+                            <button class="post-details-header-btn-preview opacity"  @click="openDeletPost()">
                                 <svg height="16" viewBox="0 0 48 48" width="16"><circle clip-rule="evenodd" cx="8" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="24" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="40" cy="24" fill-rule="evenodd" r="4.5"></circle></svg>
                             </button>
+                        </div>
+                        <div v-if="isDeletePost">
+                            <deleteModal  @removepost=removepost />
                         </div>
         <div class="main-comments-preview">
                 <div class="story-actions-preview">
@@ -58,6 +61,7 @@
 import storyComment from "@/cmps/story-comment.vue";
 import actionBar from "@/cmps/action-bar.vue";
 import commentInput from "@/cmps/comment-input.vue";
+import deleteModal from "@/cmps/delete-modal.vue";
 import smileyMoldal from "@/cmps/smiley-modal.vue";
 import { eventBus } from "@/services/event-bus.service.js";
 
@@ -73,6 +77,7 @@ export default {
         isSmilyModal : false,
         istest : false,
         componentKey : 0,
+        isDeletePost : false
     
     };
   },
@@ -95,7 +100,12 @@ export default {
   },
   methods: {
 
-
+    removepost(){
+        console.log('remove the post from father')
+        this.isDeletePost=!this.isDeletePost
+     //    this.$store.dispatch({ type: 'removeStory', storyId: this.story._id })
+          this.$emit("removepost")
+    },
     // addComment(commentStory){
     //     this.emptyStory.txt=commentStory.txt
     //     this.emptyStory.imgUrl= this.myImage
@@ -103,8 +113,9 @@ export default {
     //     // this.componentKey += 1;
     //     // this.$forceUpdate(); 
     // },
-    deletPost(){
-       console.log('delete post id : ',this.story._id)
+    openDeletPost(){
+      this.isDeletePost = !this.isDeletePost
+      console.log('delete post id : ',this.story._id)
 
 
     },
@@ -174,7 +185,8 @@ export default {
     storyComment,
     actionBar,
     commentInput,
-    smileyMoldal
+    smileyMoldal,
+    deleteModal
   },
 }
 </script>

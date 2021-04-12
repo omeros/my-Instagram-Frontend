@@ -1,6 +1,6 @@
 <template>
        <section  >
-         <storyPreviewModalContainer v-if="selectedStory"  :story="selectedStory" :smiles="smiliesToShow" v-on:click="close" />
+         <storyPreviewModalContainer v-if="selectedStory"  :story="selectedStory" :smiles="smiliesToShow" v-on:click="close" @removepost=removepost  />
          <div @click.stop="closeModal()">
               <div class="app-center">
                   <story-list :stories="storiesToShow" @storyToModal=storyToModal />
@@ -44,6 +44,9 @@ export default {
 
   },
      methods: {
+       removepost(){
+
+       },
        close(){
              console.log('close the function !!')
        },

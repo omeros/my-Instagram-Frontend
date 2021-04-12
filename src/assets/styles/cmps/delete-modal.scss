@@ -1,0 +1,18 @@
+.delete-modal-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0px;
+    position:absolute ;
+    background-color: rgba(192, 223, 160, 0.774);
+    top:-10px;
+    right: -30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 6px;
+}
+.delete-post-btn{
+    border-radius: 10px;
+    background-color: rgba(78, 116, 150, 0.877);
+    padding-inline-end: 10px;
+}

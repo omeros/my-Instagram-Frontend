@@ -48,7 +48,7 @@
       </div>
     </div>
     <div class="details-story-modal" v-if="isModal">
-      <storyPreviewModalContainer :story="storyToShow" :smiles="smiles" />
+      <storyPreviewModalContainer :story="storyToShow" :smiles="smiles" @removepost=removepost />
     </div>
     <!-- <div class="details-story-modal hide" v-bind:class="{show: isModal }">
           <div  class=" modal-content ">
@@ -85,10 +85,12 @@ export default {
   },
   watch: {},
   created() {
-    eventBus.$on("closeDetailsModal", () => {
+      const storiesToShow = this.$store.getters.getStoryByUserId(this.userId);
+      this.stories = storiesToShow;
+      eventBus.$on("closeDetailsModal", () => {
       this.closeModal();
     });
-    eventBus.$on("doNotCloseTheModal", () => {
+      eventBus.$on("doNotCloseTheModal", () => {
       this.stayOpen();
     });
     //  eventBus.$on('mmmmm',this.ttt())
@@ -101,6 +103,12 @@ export default {
     this.stories = storiesToShow;
   },
   methods: {
+    removepost(){
+        console.log('remove post on user-datails')
+        this.$store.dispatch({ type: 'removeStory', storyToRemoveId: this.storyToShow._id })
+         this.isModal = false;
+
+    },
     stayOpen() {
       this.isModal = true;
     },
@@ -112,10 +120,10 @@ export default {
       });
       console.log("open modal in user-details");
       // eventBus.$emit('xxx')
-      this.isModal = !this.isModal;
       console.log("the story to sow : ", storyToShow[0]);
       console.log("isModal : ", this.isModal);
       this.storyToShow = storyToShow[0];
+      this.isModal = true;
     },
     closeModal() {
       this.isModal = false;

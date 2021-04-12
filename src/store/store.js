@@ -18,6 +18,8 @@ export const store = new Vuex.Store({
     editChanges: null,
     isCommentLikedBefor : false
   },
+
+  //********** getters ********************************************/
   getters: {
     //  isCommentLiked  : (state) => (details) =>
     // {
@@ -81,6 +83,8 @@ export const store = new Vuex.Store({
       return storyToEdit
     },
   },
+
+  //********************************** Mutations *******************************************/
   mutations: {
     filterByChanged(state, payload) {
       console.log('filterByChanged is running', payload.strFilter.name)
@@ -99,9 +103,11 @@ export const store = new Vuex.Store({
       // let e = [...state.stories]
       // console.log('on store on mutex after update state.stories',e)
     },
-
-
-
+    removeStory(state, payload){
+      console.log('story to remove in mutation store',payload)
+      const idx = state.stories.findIndex(p => p._id === payload.storyToRemoveId)
+      state.stories.splice(idx, 1, );
+    },
     //   var storyRemoveLike = state.stories.filter(story => {
     //     return (story._id===storyId)
     //   })
@@ -109,37 +115,35 @@ export const store = new Vuex.Store({
       const idx = state.stories.findIndex(p => p._id === payload.updatedStory._id)
       state.stories.splice(idx, 1, payload.updatedStory);
   },
-  commentLikedBefor(state,payload) {
+    commentLikedBefor(state,payload) {
     this.state.isCommentLikedBefor = true
   },
-  commentNotLikedBefor(state,payload) {
+    commentNotLikedBefor(state,payload) {
     this.state.isCommentLikedBefor = true
   },
 
   },
+
+  // ************************ Acitions  ***************************************//
   actions: {
-      removeStory(context, payload){
-        console.log('remove in store',payload.storyToRemoveId)
+      removeStory(context, {storyToRemoveId}){
+      //  console.log('story to remove in action store',payload.storyToRemoveId)
         storyService.remove(storyToRemoveId)
-        .then(updatedStory => {
-          context.commit({ type: 'updateStories', updatedStory });
+        .then(() => {
+          context.commit({ type: 'removeStory',storyToRemoveId });
         })
       },
      addNewStory(context, payload){
-      console.log('payload in store',payload.newStory)
-      storyService.save(payload.newStory)
-      .then(updatedStory => {
-        context.commit({ type: 'setStory', updatedStory });
+      //  console.log('payload in store',payload.newStory)
+        storyService.save(payload.newStory)
+        .then(updatedStory => {
+          context.commit({ type: 'setStory', updatedStory });
+        })
+      .catch(err => {
+       // console.log('Store: Cannot update like to comment in  stories', err);
+        throw new Error('Cannot update like to comment in  stories');
       })
-     .catch(err => {
-      console.log('Store: Cannot update like to comment in  stories', err);
-      throw new Error('Cannot update like to comment in  stories');
-    })
-
-
-
-      
-     },
+    },
 
     addLikeToComment(context, payload){
       var storyId = payload.theDetails.storyId
@@ -266,11 +270,11 @@ export const store = new Vuex.Store({
     loadStories({ commit, state }) {
       storyService.query(state.filter || undefined)
         .then(stories => {
-          console.log('in store - load stories from local storage', stories)
+      //    console.log('in store - load stories from local storage', stories)
           commit({ type: 'setStories', stories });
         })
         .catch(err => {
-          console.log('Store: Cannot load stories', err);
+     //     console.log('Store: Cannot load stories', err);
           throw new Error('Cannot load stories');
         })
     },

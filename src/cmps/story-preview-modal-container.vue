@@ -7,7 +7,7 @@
                   <img :src="story.imgUrl" class="story-preview-img-modal"/>
                 </div>
                 <div class="story-preview-post-modal"> 
-                  <storyPreviewModal :story="story" :smiles="smiles" />
+                  <storyPreviewModal :story="story" :smiles="smiles" @removepost=removepost />
                 </div>
             </div>
           </div>
@@ -24,6 +24,9 @@ export default {
  methods: {
    stayOpen(){
      eventBus.$emit('doNotCloseTheModal')
+    },
+        removepost(){
+          this.$emit("removepost")
     },
   },
   components: {
