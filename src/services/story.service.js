@@ -19,15 +19,41 @@ export const storyService = {
 }
 
 function query(filterBy) {
-  if (!filterBy) localStorage.setItem(KEY, JSON.stringify(gStories))
-  else {
-    const stories = gStories.filter(story => {
-      return (story.tags.includes(filterBy.name) && (filterBy.rating === story.rating) 
-      ) 
-    })
-    localStorage.setItem(KEY, JSON.stringify(stories))
+  // if (!filterBy) localStorage.setItem(KEY, JSON.stringify(gStories))
+  // else {
+  //   const stories = gStories.filter(story => {
+  //     return (story.tags.includes(filterBy.name) && (filterBy.rating === story.rating) 
+  //     ) 
+  //   })
+  //   localStorage.setItem(KEY, JSON.stringify(stories))
+  // }
+  if (!filterBy){
+    const stories =  storageService.query(KEY);
+     if (!stories || undefined ){
+      localStorage.setItem(KEY, JSON.stringify(gStories))
+      return gStories
+     }else{
+       return stories
+     }
+  }else{
+      const tempStories =  storageService.query(KEY);
+      if (!tempStories || undefined  ){
+          const stories = gStories.filter(story => {
+          return (story.tags.includes(filterBy.name) && (filterBy.rating === story.rating) 
+          ) 
+      })
+     return stories
+    }else{
+        const stories = tempStories.filter(story => {
+          return (story.tags.includes(filterBy.name) && (filterBy.rating === story.rating) 
+        ) 
+      })
+      return stories
+    }
   }
-  return storageService.query(KEY);
+
+ 
+
 }
 
 function getById(id) {
@@ -61,31 +87,7 @@ function getEmptystory(){
       name: ""
     },
     comments: [
-      {
-        id:  utilService.makeId,
-        by: {
-          _id: "",
-          fullname: "popo",
-          imgUrl: ""
-        },
-        txt: "",
-        likedBy: [ 
-          {
-            _id:  utilService.makeId,
-            fullname: "",
-            imgUrl: ""
-          }
-        ]
-      },
-      {
-        id:  utilService.makeId,
-        by: {
-          _id:  utilService.makeId,
-          fullname: "",
-          imgUrl: ""
-        },
-        txt: ""
-      }
+
     ],
     likedBy: [
       {

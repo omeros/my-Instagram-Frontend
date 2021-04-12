@@ -31,7 +31,6 @@
                     <div class="line2"></div>
                 </div>
               
-   
 
           <!-- <button >   <img  class="save-btn" v-if="myImage" src="https://res.cloudinary.com/omerphoto/image/upload/v1617099828/save_q9xvig.png" width="20" height="20">
           </button>  
@@ -65,16 +64,16 @@ export default {
    },
   methods: {
       stayOpen(){
-     eventBus.$emit('doNotCloseTheNewStoryModal')
-    },
-        addComment(commentStory){
-         this.emptyStory.txt=commentStory.txt
-         this.emptyStory.imgUrl= this.myImage
-          
+         eventBus.$emit('doNotCloseTheNewStoryModal')
+      },
+        addComment(commentStory){      
+        this.emptyStory.txt=commentStory.txt
+        this.emptyStory.imgUrl= this.myImage  
         console.log('befor  in  new story modal',this.emptyStory)
         this.emptyStory._id =''
-       console.log('after   in  new story modal',this.emptyStory)
+        console.log('after   in  new story modal',this.emptyStory)
         this.$store.dispatch({ type: 'addNewStory', newStory: this.emptyStory })
+        this.$emit('afterPost')
         // this.componentKey += 1;
         // this.$forceUpdate(); 
     },

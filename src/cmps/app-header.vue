@@ -53,7 +53,7 @@
         <transition name="fade">
                 <div class="modal-container " v-if="open">
                 <!-- <div class="modal-container hide" > -->
-                        <new-story-modal :emptyStory="emptyStory" />
+                        <new-story-modal :emptyStory="emptyStory"  @afterPost=afterPost />
                 </div>
           </transition>
             <transition name="fade" >
@@ -98,6 +98,9 @@ export default {
     },
   },
      methods: {
+       afterPost(){
+           this.open=false
+       },
           stayOpen(){
        this.open = true
       },

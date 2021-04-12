@@ -66,7 +66,7 @@
     
 
 
-          <div class="story-row" >
+          <div class="story-row" v-if="story.comments.length>1" >
             <div class="comment">
               <div>
                 <span class="story-name"> {{ story.comments[0].by.fullname }} </span>
@@ -138,6 +138,10 @@ export default {
        smiles :[]
     };
   },
+  created(){
+           console.log(' story in story-preview',this.story)
+
+  },
   mounted() {
     this.smiles = storyService.getSmiles()
   },
@@ -158,20 +162,20 @@ export default {
     var smile = this.smiles.filter(smile => {
       return (smile._idx===id)
     })
-     console.log('emoji in story-preview',smile[0].emoji) 
+    // console.log('emoji in story-preview',smile[0].emoji) 
      this.txt += String.fromCodePoint(smile[0].emoji); 
     },
-        openSmily(){
-            this.isSmilyModal = !this.isSmilyModal;
-        },
-        closeSmily(){
-            this.isSmilyModal  = false;
-        },
-          openModal(){
-            console.log('fhsjkfhksjdfn')
-           this.$emit("storyToModal", this.story);
-         },
-      closeModal(){
+    openSmily(){
+        this.isSmilyModal = !this.isSmilyModal;
+    },
+    closeSmily(){
+        this.isSmilyModal  = false;
+    },
+    openModal(){
+    //    console.log('fhsjkfhksjdfn')
+        this.$emit("storyToModal", this.story);
+    },
+    closeModal(){
         this.isModal = false
     },
     removeComment(id) {
@@ -185,9 +189,9 @@ export default {
     addLikeToComment(id,commentIdx){ 
       if(!this.isCommntLiked[commentIdx]){
         this.isCommntLiked[commentIdx]=true
-      }else{
-         this.isCommntLiked[commentIdx]=false
-      }
+    }else{
+        this.isCommntLiked[commentIdx]=false
+    }
         var details = {
           storyId :id,
           commentIdx :commentIdx
@@ -198,9 +202,11 @@ export default {
     addLike(id){
      // console.log('thd id in story-preview',id)
       if(!this.isLiked){
+         console.log('true in story-preview')
         this.$store.dispatch({ type: 'setLikeToStory', storyId: id })
         this.isLiked = !this.isLiked
       }else{
+           console.log('false in story-preview')
         this.$store.dispatch({ type: 'removeLikeFromStory', storyId: id })
         this.isLiked = !this.isLiked
       }
