@@ -70,9 +70,7 @@
     margin: 0px 16px 0px 0px;
 }
 
-.story-actions-preview{
 
-}
 .screen-preview{
     max-width :335px;
     display: flex;
@@ -110,10 +108,9 @@
 }
 .user-comment-preview{
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    width: 303px;
-   
+    padding: 5px;
+    width: inherit;
 }
 .user-txt-preview{
     font-family: Arial, Helvetica, sans-serif; 
@@ -144,7 +141,7 @@
     display: flex;
     justify-content : space-between;
 }
-.post-actions-btn-like-preview{
+.post-actions-btn-like-first-preview{
     background-color: #fff;
 }
 
@@ -214,11 +211,15 @@
     text-align: left;
     outline: none;
  }
+ .user-name{
+    color: #262626;
+ }
  .light{
     font-family: Arial, Helvetica, sans-serif; 
     font-size: 13px;
     color: #262626;
     padding-right: 3px; 
+    font-weight: 300;
  }
  .heavy{
     font-family: Arial, Helvetica, sans-serif; 
