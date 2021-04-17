@@ -74,6 +74,7 @@
 
 }
 .screen-preview{
+    max-width :335px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,19 +113,23 @@
     flex-direction: row;
     justify-content: space-between;
     width: 303px;
+   
 }
 .user-txt-preview{
     font-family: Arial, Helvetica, sans-serif; 
     font-size: 13px;
     color: #262626;
     padding-right: 3px;
- 
+    
+}
+.story-row-preview{
+    height: 335px;
+    
 }
 .comment-preview{
     // display: flex;
     // justify-content : space-between;
     overflow:hidden;
-    //height: auto;
 }
 .txt-weight{
     font-weight: 600;
