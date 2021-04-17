@@ -5,7 +5,7 @@
 
       <div class="post-details">
         <div class="post-details-header">
-            <div class="acreen-preview">
+            <div class="screen-preview">
               <router-link :to="`/user/${ story.by._id}`" > <img :src="story.by.imgUrl" class="story-details-img opacity" /></router-link>
                 <span class="post-details-router-name opacity">
                 <router-link :to="`/user/${ story.by._id}`"  > {{ story.by.fullname }} </router-link>
@@ -53,40 +53,40 @@
                
           <div class="story-actions"></div>
               <div>
-               <div class="acreen">
+               <div class="screen">
                 <span class="story-name"> {{ story.by.fullname }}  </span>   
                  {{ story.txt }}
               </div>
             </div>
 
 
-            <a class="view-comments"  tabindex="0"  @click.stop="openModal()">View all <span>{{story.comments.length}}</span> comments</a>
+            <a class="view-comments"  v-if="story.comments.length>2" tabindex="0"  @click.stop="openModal()">View all <span>{{story.comments.length}}</span> comments</a>
             <!-- <button  @click.stop="openModal(story._id)">  View all <span>{{story.comments.length}}</span> comment    </button> -->
         
     
 
 
           <div class="story-row" v-if="story.comments.length>1" >
-            <div class="comment">
-              <div>
-                <span class="story-name"> {{ story.comments[0].by.fullname }} </span>
-                <span> {{  story.comments[0].txt }} </span>
-              </div>
-                  <button class="post-actions-btn-like opacity" @click="addLikeToComment(story._id,0)">
-                          <svg v-if="isCommntLiked[0]" height="24" viewBox="0 0 48 48" width="24" class="like-comment likeAnimation"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                          <svg  v-else  height="24" viewBox="0 0 48 48" width="24" class="nolike-comment"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                  </button>
-            </div>
-            <div class="comment">
+              <div class="comment">
                 <div>
-                  <span class="story-name"> {{ story.comments[1].by.fullname }} </span>
-                  <span> {{  story.comments[1].txt }} </span>
+                  <span class="story-name"> {{ story.comments[0].by.fullname }} </span>
+                  <span> {{  story.comments[0].txt }} </span>
                 </div>
-                  <button class="post-actions-btn-like opacity" @click="addLikeToComment(story._id,1)">
-                          <svg v-if="isCommntLiked[1]" height="24" viewBox="0 0 48 48" width="24" class="like-comment likeAnimation"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                          <svg  v-else  height="24" viewBox="0 0 48 48" width="24" class="nolike-comment"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                  </button>
-            </div>
+                    <button class="post-actions-btn-like opacity" @click="addLikeToComment(story._id,0)">
+                            <svg v-if="isCommntLiked[0]" height="24" viewBox="0 0 48 48" width="24" class="like-comment likeAnimation"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
+                            <svg  v-else  height="24" viewBox="0 0 48 48" width="24" class="nolike-comment"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
+                    </button>
+              </div>
+              <div class="comment">
+                  <div>
+                    <span class="story-name"> {{ story.comments[1].by.fullname }} </span>
+                    <span> {{  story.comments[1].txt }} </span>
+                  </div>
+                    <button class="post-actions-btn-like opacity" @click="addLikeToComment(story._id,1)">
+                            <svg v-if="isCommntLiked[1]" height="24" viewBox="0 0 48 48" width="24" class="like-comment likeAnimation"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
+                            <svg  v-else  height="24" viewBox="0 0 48 48" width="24" class="nolike-comment"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
+                    </button>
+              </div>
           </div>
           
    
@@ -123,6 +123,7 @@
 </template>
 
 <script>
+import { eventBus } from "@/services/event-bus.service.js";
 import { storyService } from "../services/story.service.js";
 export default {
   name: "story-preview",
@@ -139,25 +140,58 @@ export default {
     };
   },
   created(){
-           console.log(' story in story-preview',this.story)
+         console.log('story.likedBy.length in story preview',this.story.likedBy.length)
+         //  console.log(' story in story-preview',this.story)
+       
+              this.smiles = storyService.getSmiles()
+        eventBus.$on('openModalFromActionBar', (id) => {
+          this.ifThisIsTheModal(id)
+        })
+        eventBus.$on('openModalFromCommentInput', (commentStory) => {
+          this.addCommentToStory(commentStory)
+      })
 
   },
   mounted() {
-    this.smiles = storyService.getSmiles()
+    //console.log('story.likedBy.length in story preview',this.story.likedBy.length)
+  
+      
+
   },
+ destroyed(){
+  this.smiles = storyService.getSmiles()
+        eventBus.$off('openModalFromActionBar', (id) => {
+          this.ifThisIsTheModal(id)
+        })
+        eventBus.$off('openModalFromCommentInput', (commentStory) => {
+          this.addCommentToStory(commentStory)
+      })   
+   },
+
   computed: {
     getDetails(){
       return  {
         story : this.story,
         icons : this.icons
       }
-  
-    },
-    likeCounts(id){
-     var num 
-    },
+      },
   },
   methods: {
+    addCommentToStory(commentStory){
+      if(this.story._id===commentStory.storyId){
+         // console.log('yesssssssssssssssssssssssssssssssssssss')
+          this.txt=commentStory.txt
+          this.addComment(commentStory.storyId)
+      }
+    },
+    ifThisIsTheModal(id){
+      if(this.story._id===id){
+       //     console.log('the bus evemt from actionbar in  story-preview from bus',id)
+            this.openModal()
+     //       this.addLikeFromModal(id)
+        }
+
+    },
     addIcon(id){
     var smile = this.smiles.filter(smile => {
       return (smile._idx===id)
@@ -172,7 +206,6 @@ export default {
         this.isSmilyModal  = false;
     },
     openModal(){
-    //    console.log('fhsjkfhksjdfn')
         this.$emit("storyToModal", this.story);
     },
     closeModal(){
@@ -200,18 +233,29 @@ export default {
 
     },
     addLike(id){
-     // console.log('thd id in story-preview',id)
+      console.log('add like in  story-preview')
       if(!this.isLiked){
-         console.log('true in story-preview')
-        this.$store.dispatch({ type: 'setLikeToStory', storyId: id })
+        this.$store.dispatch({ type: 'setLikeToStory', storyId: id })    // <================ to change back
         this.isLiked = !this.isLiked
-      }else{
-           console.log('false in story-preview')
-        this.$store.dispatch({ type: 'removeLikeFromStory', storyId: id })
+        }else{
+        this.$store.dispatch({ type: 'removeLikeFromStory', storyId: id })//  <=================  to change back
         this.isLiked = !this.isLiked
       }
-
     },
+
+    addLikeFromModal(id){
+      console.log('add like in  story-preview')
+      if(!this.isLiked){
+        this.$store.dispatch({ type: 'setLikeToStory', storyId: id })    // <================ to change back
+        this.isLiked = !this.isLiked
+        this.openModal()
+      }else{
+        this.$store.dispatch({ type: 'removeLikeFromStory', storyId: id })//  <=================  to change back
+          this.isLiked = !this.isLiked
+          this.openModal()
+      }
+    },
+
     addComment(id){
         var commentStory ={
           txt : this.txt,
@@ -220,6 +264,7 @@ export default {
         this.$store.dispatch({ type: 'addCommentToStory', comment: commentStory })
         this.txt = null;
         this.closeSmily()
+          this.openModal()
     }
 
   },

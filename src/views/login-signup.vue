@@ -64,7 +64,7 @@ export default {
     return {
       userId : null,
       msg: "",
-      loginCred: {username: 'user1', password: '123'},
+      loginCred: {username: 'victoria_o', password: '1234'},
       signupCred: {username: '', password: '', fullname: ''},
     };
   },

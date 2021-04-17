@@ -388,9 +388,9 @@
         "by": {
           "_id": "u105",
           "fullname": " malina scarlett",
-          "imgUrl": "hhttps://res.cloudinary.com/omerphoto/image/upload/v1616845537/Faces/malina1_nzt848.jpg"
+          "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1616845537/Faces/malina1_nzt848.jpg"
         },
-        "txt": "good one!",
+        "txt": "from  malina!",
         "likedBy": [
           {
             "_id": "u105",
@@ -406,7 +406,7 @@
           "fullname": "Dob",
           "imgUrl": "http://coding-academy.org/books-photos/12.jpg"
         },
-        "txt": "not good!"
+        "txt": "Amazing Place"
       }
     ],
     "likedBy": [

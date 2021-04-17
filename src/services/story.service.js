@@ -1,13 +1,16 @@
 import { utilService } from "./util.service.js";
 // import axios from 'axios'
 import { storageService } from "./async-storage.service.js";
+import {httpService} from './http.service'
+
+
+
 const gStories = require('../data/story.json');
 const KEY = 'storyDB';
 const gSmiles = require('../data/smiley.json');
 
 
-// const GIG_URL = 'http://localhost:3030/api/gig/'
-// _createToys();
+
 
 export const storyService = {
   query,
@@ -19,56 +22,65 @@ export const storyService = {
 }
 
 function query(filterBy) {
-  // if (!filterBy) localStorage.setItem(KEY, JSON.stringify(gStories))
-  // else {
-  //   const stories = gStories.filter(story => {
-  //     return (story.tags.includes(filterBy.name) && (filterBy.rating === story.rating) 
-  //     ) 
-  //   })
-  //   localStorage.setItem(KEY, JSON.stringify(stories))
+   var queryStr = (!filterBy) ? '' : `?name=${filterBy.name}&sort=anaAref`
+   return  httpService.get(`story${queryStr}`)
+
+
+
+  // if (!filterBy){
+  //   const stories =  storageService.query(KEY);
+  //   console.log(' on story service,',stories)
+  //   if (!stories || !stories.length ){
+  //     console.log(' on story service,',stories)
+  //     localStorage.setItem(KEY, JSON.stringify(gStories))
+  //     return storageService.query(KEY);
+  //   }else{
+  //     return stories
+  //   }
+  // }else{
+  //     const tempStories =  storageService.query(KEY);
+  //     if (!tempStories || undefined  ){
+  //         const stories = gStories.filter(story => {
+  //         return (story.tags.includes(filterBy.name) && (filterBy.rating === story.rating) 
+  //         ) 
+  //     })
+  //    return stories
+  //   }else{
+  //       const stories = tempStories.filter(story => {
+  //         return (story.tags.includes(filterBy.name) && (filterBy.rating === story.rating) 
+  //       ) 
+  //     })
+  //     return stories
+  //   }
   // }
-  if (!filterBy){
-    const stories =  storageService.query(KEY);
-     if (!stories || undefined ){
-      localStorage.setItem(KEY, JSON.stringify(gStories))
-      return gStories
-     }else{
-       return stories
-     }
-  }else{
-      const tempStories =  storageService.query(KEY);
-      if (!tempStories || undefined  ){
-          const stories = gStories.filter(story => {
-          return (story.tags.includes(filterBy.name) && (filterBy.rating === story.rating) 
-          ) 
-      })
-     return stories
-    }else{
-        const stories = tempStories.filter(story => {
-          return (story.tags.includes(filterBy.name) && (filterBy.rating === story.rating) 
-        ) 
-      })
-      return stories
-    }
-  }
 
  
 
 }
 
 function getById(id) {
-  return storageService.get(KEY, id)
+  // return storageService.get(KEY, id)
+  return  httpService.get(`story/${id}`)
+
 }
 
 function remove(id) {
-  return storageService.remove(KEY, id)
+ //return storageService.remove(KEY, id)
+  return httpService.delete(`story/${id}`)
 }
 
 function save(story) {
-  console.log(' befor save in storage',story)
-  const savedStory = (story._id) ? storageService.put(KEY, story) : storageService.post(KEY, story)
+ // console.log(' befor save in storage',story)
+  // const savedStory = (story._id) ? storageService.put(KEY, story) : storageService.post(KEY, story)
+  if (story._id) {
+ //   console.log('update story at  strory.sevice')
+    return  httpService.put(`story/${story._id}`,story)             // update a story
+} else {
+    console.log('add new story at story.service', story)
+    return httpService.post(`story/`,story)                     // addad a  new story
+}
 
-  return savedStory;
+  // return savedStory;
 }
 
 function getEmptystory(){

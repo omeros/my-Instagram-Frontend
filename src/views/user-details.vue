@@ -35,10 +35,6 @@
           <h3>{{ user.fullname }}</h3>
           <p>{{ user.bio }}</p>
         </div>
-
-        <!-- <div>
-          <p>{{ user.reateAt }}</p>
-        </div> -->
       </div>
     </div>
 
@@ -48,18 +44,8 @@
       </div>
     </div>
     <div class="details-story-modal" v-if="isModal">
-      <storyPreviewModalContainer :story="storyToShow" :smiles="smiles" @removepost=removepost />
+      <storyPreviewModalContainer :story="storyToShowFromComputed" :smiles="smiles" @removepost=removepost />
     </div>
-    <!-- <div class="details-story-modal hide" v-bind:class="{show: isModal }">
-          <div  class=" modal-content ">
-              <div class="story-modal-img-container">
-                <img v-if="isModal" :src="storyToShow.imgUrl" class="img-modal"/>
-              </div>
-              <div class="post-modal"> 
-                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. eeeeeeeeeeeeeeeeeeeeeeeee
-              </div>
-          </div>
-         </div> -->
   </section>
 </template>
 
@@ -78,6 +64,8 @@ export default {
       isModal: false,
       storyToShow: null,
       smiles: [],
+      txt : '',
+      isLiked : false,
     };
   },
   async created() {
@@ -85,8 +73,10 @@ export default {
   },
   watch: {},
   created() {
-      const storiesToShow = this.$store.getters.getStoryByUserId(this.userId);
-      this.stories = storiesToShow;
+      this.userId = this.$route.params.id;
+      this.user = this.$store.getters.getUserById(this.userId);
+      this.stories =  this.$store.getters.getStoryByUserId(this.userId);
+      console.log('stories on user details created ',  this.stories)
       eventBus.$on("closeDetailsModal", () => {
       this.closeModal();
     });
@@ -94,19 +84,82 @@ export default {
       this.stayOpen();
     });
     //  eventBus.$on('mmmmm',this.ttt())
+        eventBus.$on('openModalFromCommentInput', (commentStory) => {
+        this.addComment(commentStory)
+    })
+    eventBus.$on('openModalFromActionBar', (id) => {
+        console.log(' openModalFromActionBar on listener on user details')
+            this.addLike(id)
+    })
+    eventBus.$on('mytest', (id) => {
+            this.justOpenTheModal(id)
+   })
   },
   mounted() {
-    this.userId = this.$route.params.id;
-    this.user = this.$store.getters.getUserById(this.userId);
-    const storiesToShow = this.$store.getters.getStoryByUserId(this.userId);
-    console.log("stories on user-details", storiesToShow);
-    this.stories = storiesToShow;
+    // this.userId = this.$route.params.id;
+    // this.user = this.$store.getters.getUserById(this.userId);
+    // const storiesToShow = this.$store.getters.getStoryByUserId(this.userId);
+    // console.log("stories on user-details", storiesToShow);
+   // this.stories = storiesToShow;
+
+  
   },
+   destroyed(){
+    eventBus.$off('openModalFromCommentInput', (commentStory) => {
+        this.addComment(commentStory)
+    })
+    eventBus.$off('openModalFromActionBar', (id) => {
+            this.addLike(id)
+    })
+    eventBus.$off('mytest', (id) => {
+            this.justOpenTheModal(id)
+   })
+        eventBus.$off("closeDetailsModal", () => {
+      this.closeModal();
+    });
+      eventBus.$off("doNotCloseTheModal", () => {
+      this.stayOpen();
+    });
+   },
   methods: {
+        addLike(id){
+            console.log('add like in user details')
+            this.isLiked ?   this.$store.dispatch({ type: 'removeLikeFromStory', storyId: id }) :  this.$store.dispatch({ type: 'setLikeToStory', storyId: id })  
+            this.isLiked  = !this.isLiked 
+          //    this.$store.dispatch({ type: 'removeLikeFromStory', storyId: id })  <=================  to change back
+          //  this.$store.dispatch({ type: 'setLikeToStory', storyId: id })
+            //var x = this.isLikedComputed// = !this.isLiked
+           // this.storyToShow = this.$store.getters.getStoryByUserId(this.userId);
+            console.log('add like in user details,   this.storyToShow',this.storyToShow)
+          //  this.isModal=false
+           // this.openModal(id)
+
+
+    },
+      addCommentToStory(commentStory){
+        // if(this.storyToShow._id===commentStory.storyId){
+        //     console.log('user detailsssssssssssssssssssssssssssssssssss')
+        //     this.txt=commentStory.txt
+        //     this.addComment(commentStory.storyId)
+        // }
+    },
+      addComment(commentStory){
+        console.log('comment in user details',commentStory)
+        // var commentStory ={
+        //   txt : this.txt,
+        //   storyId : id,
+        // } 
+        this.$store.dispatch({ type: 'addCommentToStory', comment: commentStory })
+        //this.txt = null;
+        // this.closeSmily()
+        this.stories  = this.$store.getters.getStoryByUserId(this.userId);
+       // this.openModal(commentStory.storyId)
+    },
+
     removepost(){
-        console.log('remove post on user-datails')
+  //      console.log('remove post on user-datails')
         this.$store.dispatch({ type: 'removeStory', storyToRemoveId: this.storyToShow._id })
-         this.isModal = false;
+        this.isModal = false;
 
     },
     stayOpen() {
@@ -118,24 +171,27 @@ export default {
           return story;
         }
       });
-      console.log("open modal in user-details");
-      // eventBus.$emit('xxx')
-      console.log("the story to sow : ", storyToShow[0]);
-      console.log("isModal : ", this.isModal);
+    //  console.log("open modal in user-details");
+    //  console.log("the story to show : ", storyToShow[0]);
+    //  console.log("isModal : ", this.isModal);
       this.storyToShow = storyToShow[0];
       this.isModal = true;
     },
     closeModal() {
       this.isModal = false;
-      console.log("close modal in user details  ");
+   //  console.log("close modal in user details  ");
       eventBus.$emit("closeAddStoryModal");
     },
   },
   computed: {
-
-    // test(){
-    //    return this.state.stories
-    // },
+    isLikedComputed(){
+            this.isLiked = !this.isLiked
+    },
+    storyToShowFromComputed(){
+    // console.log(" conputed in user details:  this.stories.likedBy.length ",this.stories.likedBy.length);
+     console.log(" conputed in user details:  this.storyToShow.likedBy.length ",this.storyToShow.likedBy.length);
+        return this.storyToShow
+    },
     followersNum() {
       return this.user.followers.length;
     },

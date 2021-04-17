@@ -42,7 +42,7 @@
  
     //width: 600px;
 }
-.my-input{
+.my-input{ 
     border-radius:10px;
     height: 40px;
     width: 300px;
@@ -56,6 +56,7 @@
 
 .file-btn{
     // background-image: url('https://res.cloudinary.com/omerphoto/image/upload/v1617824183/iconfinder_file_add_48761_tfhfua.png') no-repeat scroll 7px 7px;
+    display: none;
     border-radius: 10px;
     border:1px solid rgb(27, 14, 14);
     width: 95px;
@@ -111,6 +112,9 @@
     width :335px;
     height: 64px;
     border-bottom: 1px solid rgba(var(--ce3,239,239,239),1);
+}
+.input-img{
+    cursor: pointer;
 }
 
 // .screen-preview{

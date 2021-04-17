@@ -9,6 +9,7 @@
 </template>
 
 <script>
+
 import { eventBus } from "@/services/event-bus.service.js";
 export default {
   props: ["storyId"],
@@ -20,7 +21,7 @@ export default {
   },
 
   created() {
-    console.log('in comment input', this.storyId)
+    //console.log('in comment input', this.storyId)
     eventBus.$on("addIcon", (smile) => {
       this.addIconToComment(smile);
     });
@@ -35,11 +36,13 @@ export default {
     addComment() {
       var commentStory = {
         txt: this.txt,
-      //  storyId: this.storyId,
+        storyId: this.storyId,
       };
-      this.$emit("addComment", commentStory);
+      //this.$emit("addComment", commentStory);
       this.txt = null;
       this.closeSmiley();
+     // const id = this.storyId
+      eventBus.$emit('openModalFromCommentInput',commentStory)
     },
     addIconToComment(smile) {
       var x = smile;

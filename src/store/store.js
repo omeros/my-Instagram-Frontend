@@ -65,6 +65,8 @@ export const store = new Vuex.Store({
 
     getStoryByUserId: (state) => (id) => {
       var storyToFind = []
+     // console.log("stories for  user-details in store",  state.stories);
+
       state.stories.find(story => {
         if (story.by._id === id) {
           storyToFind.push(story);
@@ -97,9 +99,9 @@ export const store = new Vuex.Store({
     setStory(state, payload) {
       console.log('on store on mutex befor update state.stories',payload)
 
-      let t = JSON.parse(JSON.stringify(payload.updatedStory))
-      console.log('on store on mutex middle update state.stories',t)
-      state.stories.push(t);
+      const storyUpdated = JSON.parse(JSON.stringify(payload.updatedStory))
+      console.log('on store on mutex middle update state.stories',storyUpdated)
+      state.stories.push(storyUpdated);
       // let e = [...state.stories]
       // console.log('on store on mutex after update state.stories',e)
     },
@@ -112,12 +114,14 @@ export const store = new Vuex.Store({
     //     return (story._id===storyId)
     //   })
     updateStories(state,payload) {
+    //  console.log('payload.updatedStory in store',payload.updatedStory)
       const idx = state.stories.findIndex(p => p._id === payload.updatedStory._id)
       state.stories.splice(idx, 1, payload.updatedStory);
+      console.log(' state.stories in store', state.stories)
   },
     commentLikedBefor(state,payload) {
     this.state.isCommentLikedBefor = true
-  },
+  }, 
     commentNotLikedBefor(state,payload) {
     this.state.isCommentLikedBefor = true
   },
@@ -154,7 +158,7 @@ export const store = new Vuex.Store({
         fullname: theUser.fullname,
         imgUrl: theUser.imgUrl
       }
-      console.log('payload.details.',payload.theDetails)
+      //console.log('payload.details.',payload.theDetails)
         storyService.getById(storyId)
         .then(storyCommentToLike => {
          // console.log('storyCommentToLike',storyCommentToLike)
@@ -164,7 +168,7 @@ export const store = new Vuex.Store({
        if(user._id===userDetails._id){
         const isItTheUser = (element) => element._id===user._id;
           var idx = storyCommentToLike.comments[commentIdx].likedBy.findIndex(isItTheUser)
-          console.log('the id of the comment array to splice ',idx)
+       //   console.log('the id of the comment array to splice ',idx)
           storyCommentToLike.comments[commentIdx].likedBy.splice(idx,1)
           // context.commit({ type: 'commentLikedBefor' });
           // this.state.isCommentLikedBefor = true
@@ -172,9 +176,9 @@ export const store = new Vuex.Store({
          }
       })
 
-      console.log(' after filter the comment equal to id of the user',isLikedBefor)
+     // console.log(' after filter the comment equal to id of the user',isLikedBefor)
        if(isLikedBefor.length===0){
-        console.log(' a new liker')
+    //    console.log(' a new liker')
         // context.commit({ type: 'commentNotLikedBefor' });
         // this.state.isCommentLikedBefor = false
         storyCommentToLike.comments[commentIdx].likedBy.push(userDetails)
@@ -198,7 +202,7 @@ export const store = new Vuex.Store({
       var theloggedInUser = userStore.state.loggedinUser
         storyService.getById(storyId)
         .then(storyRemoveLike => {
-          console.log('Store: storyRemoveLike',storyRemoveLike)
+        //  console.log('Store: storyRemoveLike',storyRemoveLike)
           const idx = storyRemoveLike.likedBy.findIndex(user => user._id === theloggedInUser._id)
           storyRemoveLike.likedBy.splice(idx, 1);
           
@@ -218,6 +222,7 @@ export const store = new Vuex.Store({
       // storyRemoveLike[0].likedBy.pop();
     },
     setLikeToStory(context, payload) {
+      console.log('setLikeToStory in store');
       var storyId = payload.storyId
       var theUser = userStore.state.loggedinUser
 
@@ -228,10 +233,19 @@ export const store = new Vuex.Store({
             fullname: theUser.fullname,
             imgUrl: theUser.imgUrl
           }
-          storyToLike.likedBy.push(userDetails)
+             const  isLikedBefor = storyToLike.likedBy.some(user=>{
+               return (userDetails._id===user._id)
+             })
+             if(!isLikedBefor){
+                 storyToLike.likedBy.push(userDetails)
+             }else {
+              const idx = storyToLike.likedBy.findIndex(user => user._id === userDetails._id)
+              storyToLike.likedBy.splice(idx, 1);
+             }
+         // storyToLike.likedBy.push(userDetails)
           storyService.save(storyToLike)
           .then(updatedStory => {
-            console.log('Store:updatedStory',updatedStory)
+         //   console.log('Store:updatedStory after like  from DB',updatedStory)
             context.commit({ type: 'updateStories', updatedStory });
           })
         })
@@ -241,24 +255,29 @@ export const store = new Vuex.Store({
         })
     },
     addCommentToStory(context, payload) {
-      console.log('add comment in store :', payload)
+      //console.log('add comment in store :',  payload.comment.txt)
       var storyId = payload.comment.storyId
       var commentTxt = payload.comment.txt
       var theUser = userStore.state.loggedinUser
        storyService.getById(storyId)
         .then(storyToComment => {
-            var commentToAdd = {
-            id: utilService.makeId(),
-            by: {
-              _id: theUser._id,
-              fullname: theUser.fullname,
-              imgUrl: theUser.imgUrl
-            },
-            txt: commentTxt
-          }
+            const _commentToAdd = 
+            {
+              id: utilService.makeId(),
+              by: {
+                _id: theUser._id,
+                fullname: theUser.fullname,
+                imgUrl: theUser.imgUrl,
+              },
+              txt: commentTxt,
+              likedBy : []
+            }
+          const commentToAdd = JSON.parse(JSON.stringify(_commentToAdd))
           storyToComment.comments.push(commentToAdd)
+        //  console.log('add comment in store  before save:',  storyToComment)
           storyService.save(storyToComment)
-            .then(updatedStory => {
+          .then(updatedStory => {
+              console.log('add comment in store :',  updatedStory)
               context.commit({ type: 'updateStories', updatedStory });
             })
         })
@@ -267,10 +286,10 @@ export const store = new Vuex.Store({
           throw new Error('Cannot update comment in  stories');
         })
     },
-    loadStories({ commit, state }) {
+    loadStories({ commit, state }) {                           // <================================= load from DB
       storyService.query(state.filter || undefined)
         .then(stories => {
-      //    console.log('in store - load stories from local storage', stories)
+         console.log('in store - load stories from DB storage', stories)
           commit({ type: 'setStories', stories });
         })
         .catch(err => {

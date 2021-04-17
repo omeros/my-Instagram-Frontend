@@ -7,7 +7,7 @@
     font-family: Arial,sans-serif;
     line-height: 1.8;
     color: #262626;
-    height: 100%;
+    //height: inherit;
     
     
 }
@@ -29,8 +29,25 @@
     border-bottom: 1px solid rgba(var(--ce3,239,239,239),1);
 }
 
-.main-comments-preview{
+.main-comments-preview  {
+    // padding: 16px;
+    // max-height: 100%;
+    // overflow: auto;
+    margin-bottom: auto;
     padding: 16px;
+    max-height: 350px;
+     overflow: auto;
+    
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    
+}
+::-webkit-scrollbar {
+    overflow: auto;
+}
+
+.mytest{
+    // overflow: auto;
 }
 .user-actions-preview{
     padding: 16px;
@@ -54,7 +71,7 @@
 }
 
 .story-actions-preview{
-    
+
 }
 .screen-preview{
     display: flex;
@@ -104,8 +121,10 @@
  
 }
 .comment-preview{
-    display: flex;
-    justify-content : space-between;
+    // display: flex;
+    // justify-content : space-between;
+    overflow:hidden;
+    //height: auto;
 }
 .txt-weight{
     font-weight: 600;

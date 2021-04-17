@@ -22,37 +22,20 @@ export const userService = {
 }
 
 window.userService = userService
-// Note: due to async, must run one by one...
-// userService.signup({fullname: 'Puki Norma', username: 'user1', password:'123',score: 100, isAdmin: false})
-// userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 100, isAdmin: true})
-// userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 100})
 
-// function getUsers() {
-//     return storageService.query('user')
-//     // return httpService.get(`user`)
-// }
 
-function getUsers(filterBy) {
-    if (!filterBy) localStorage.setItem(KEY, JSON.stringify(gUsers))
-    else {
-      const users = gUsers.filter(user => {
-        // return (story.tags.includes(filterBy.name) || ((story.tags.includes(filterBy.name)) && (story.price >= filterBy.price.minPrice && story.price <= filterBy.price.maxPrice) &&
-        //   (filterBy.rating === story.rating) && (filterBy.level === story.creator.level))
-        return (user.tags.includes(filterBy.name) && (filterBy.rating === user.rating) 
-        ) 
-      })
-      localStorage.setItem(KEY, JSON.stringify(users))
-    }
-    return storageService.query(KEY);
-  }
+function getUsers() {
+  // return storageService.query('user')
+  return httpService.get(`user`)
+}
 
 function getById(userId) {
-    return storageService.get(KEY, userId)
-    // return httpService.get(`user/${userId}`)
+    // return storageService.get(KEY, userId)
+    return httpService.get(`user/${userId}`)
 }
 function remove(userId) {
-    return storageService.remove(KEY, userId)
-    // return httpService.delete(`user/${userId}`)
+    // return storageService.remove(KEY, userId)
+    return httpService.delete(`user/${userId}`)
 }
 
 async function update(user) {
@@ -70,12 +53,13 @@ async function increaseScore(by = SCORE_FOR_REVIEW) {
 }
 
 async function login(userCred) {
-    const users = await storageService.query(KEY)
-    const user = users.find(user => user.username === userCred.username)
-    return _saveLocalUser(user)
+    // const users = await storageService.query(KEY)
+    // const user = users.find(user => user.username === userCred.username)
+    // return _saveLocalUser(user)
 
-    // const user = await httpService.post('auth/login', userCred)
-    // if (user) return _saveLocalUser(user)
+    //console.log('vvvvvvvvvvvvvvvv',userCred)
+    const user = await httpService.post('auth/login', userCred)
+    if (user) return _saveLocalUser(user)
 }
 async function signup(userCred) {
     var newUser = getEmpthyUser();
@@ -83,13 +67,13 @@ async function signup(userCred) {
     newUser.username = userCred.username
     newUser.password = userCred.password
 
-    const user = await storageService.post(KEY, newUser)
-    // const user = await httpService.post('auth/signup', userCred)
+   // const user = await storageService.post(KEY, newUser)
+    const user = await httpService.post('auth/signup', userCred)
     return _saveLocalUser(user)
 }
 async function logout() {
-    sessionStorage.clear()
-    // return await httpService.post('auth/logout')
+    // sessionStorage.clear()
+    return await httpService.post('auth/logout')
 }
 function _saveLocalUser(user) {
     sessionStorage.setItem('loggedinUser', JSON.stringify(user))

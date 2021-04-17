@@ -1,10 +1,23 @@
 .comment-input-row{                            
-    position: relative;
+    
     padding: 0 16px;
     display: flex;
     align-items: center;
-    min-height: 56px;
+    height: 56px;
     // border-top: outset  ;
+    
+    
+    
+    }
+    .comment-input-preview{
+        width: 100%;
+        border: 0;
+        resize: none;
+        color: #8e8e8e;
+        background: transparent;
+        padding:12px ;
+      
+    
     }
 
     .comment-smiley-btn{

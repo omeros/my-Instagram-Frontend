@@ -37,18 +37,14 @@ export default {
       computed: {
       },
   methods: {
-
-    
     addLikeToComment(){ 
-
-     var details = {
+      var details = {
           storyId :  this.story._id,
           commentIdx : this.index
         }
-       this.$store.dispatch({ type: 'addLikeToComment', theDetails : details })
-       this.isLiked = !this.isLiked ;
-       console.log(' is liked  , and details : ',details)
-      
+      this.$store.dispatch({ type: 'addLikeToComment', theDetails : details })
+      this.isLiked = !this.isLiked ;
+      console.log(' is liked  , and details : ',details)
    },
   },
 }
