@@ -18,7 +18,7 @@
             <nav>
               <div class="header-links">
                   <button class="pluse-img-btn" @click.stop="openModal()">
-                    <img  class="pluse-img opacity"  src="https://res.cloudinary.com/omerphoto/image/upload/v1617069437/pluse1_lmstmi.gif"  alt="profile pic" />
+                    <img  class="pluse-img opacity"  src="https://res.cloudinary.com/omerphoto/image/upload/v1618759085/plus6_cess9i.png"  alt="profile pic" />
                   </button>
 
                 <router-link to="/">
@@ -45,7 +45,7 @@
       </div>
           <transition name="fade">
                 <div class="modal-container " v-if="open">
-                        <new-story-modal :emptyStory="emptyStory"  @afterPost=afterPost />
+                        <new-story-modal :emptyStory="emptyStory"  @afterPost=afterPost  :smiles="smiliesToShow" />
                 </div>
           </transition>
             <transition name="fade" >
@@ -84,6 +84,10 @@ export default {
 
 
   computed: {
+    smiliesToShow(){
+       const smiley = this.$store.getters.smiley
+       return smiley
+   },
     loggedInUser() {
   //    console.log(" loggedinUser in app-head", this.$store.getters.loggedinUser);
       return this.$store.getters.loggedinUser;
@@ -111,12 +115,12 @@ export default {
           this.instagramPressed = !this.instagramPressed;     
                     setTimeout(()=>{
                     this.instagramPressed = !this.instagramPressed; 
-                             }, 1000);  
-       },
-          setFilter(filterBy) {
+      }, 1000);  
+      },
+       setFilter(filterBy) {
             console.log("set filter is running", filterBy);
             this.$store.commit({ type: "filterByChanged", strFilter: filterBy });
-          },
+      },
 
           goHome() {
         console.log("instanbul pressed");

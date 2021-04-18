@@ -70,7 +70,7 @@ export default {
         return this.selectedStory
       },
       smiliesToShow(){
-        const smiley =   this.$store.getters.smiley
+        const smiley = this.$store.getters.smiley
         console.log('smily in appppppppppppppp from aaaaaaaaaaaaaaaa',  smiley)
         return smiley
       },

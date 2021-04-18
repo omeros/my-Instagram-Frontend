@@ -23,8 +23,8 @@
                         <div class="post-details-header-preview">
                             <div class="screen-preview">
                                 <router-link :to="`/user/${ emptyStory.by._id}`" > <img :src="emptyStory.by.imgUrl" class="story-details-img-preview opacity" /></router-link>
-                                <span class="post-details-router-name-preview opacity">
-                                    <router-link :to="`/user/${ emptyStory.by._id}`"  > {{ emptyStory.by.fullname }} </router-link>
+                                <span >
+                                    <router-link :to="`/user/${ emptyStory.by._id}`"  class="post-details-router-name-preview opacity" > {{ emptyStory.by.fullname }} </router-link>
                                 </span>
                             </div>
                             <button class="post-details-header-btn-preview opacity">
@@ -36,8 +36,12 @@
 
 
                     <div class="line2"></div>
-                    <commentInput  :storyId="test"    @addComment=addComment   @openSmiley=openSmiley   @closeSmiley=closeSmiley  />
+                        <commentInput  :storyId="test"    @addComment=addComment   @openSmiley=openSmiley   @closeSmiley=closeSmiley  />
                     <div class="line2"></div>
+                    <div class="smily-modal-new-story  " v-if="isSmilyModal">
+                        <smileyMoldal   :smiles="smiles"  @smileyToShow=addIcon />
+                    </div>
+
                 </div>
               
 
@@ -55,10 +59,11 @@ import { uploadImg2 } from "@/services/img-upload2.service.js";
 import { uploadImg } from "@/services/img-upload.service.js";
 import { eventBus } from "@/services/event-bus.service.js";
 import commentInput from "@/cmps/comment-input.vue";
+import smileyMoldal from "@/cmps/smiley-modal.vue";
 import storyService from "@/services/story.service.js";
 
 export default {
-  props:["emptyStory"],
+  props:["emptyStory","smiles"],
      data() {
         return {
                 txt :  null,
@@ -77,6 +82,10 @@ export default {
      console.log('on mounted ,emptyStory on new story modal',this.emptyStory)
    },
   methods: {
+    addIcon(smile){
+      eventBus.$emit('addIcon',smile)
+      this.smile = smile; 
+    },
       stayOpen(){
          eventBus.$emit('doNotCloseTheNewStoryModal')
       },
@@ -125,6 +134,7 @@ export default {
 
   components:{
     commentInput,
+    smileyMoldal,
   },
 }
 </script>

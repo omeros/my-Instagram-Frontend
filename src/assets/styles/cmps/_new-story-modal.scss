@@ -97,6 +97,7 @@
 .comment-new-story{
     height: 600px;
     width: 350px;
+    border-left-style: outset;
     // display: flex;
     // justify-content: flex-start;
 }
@@ -130,8 +131,9 @@
 //     margin: 0px 16px 0px 0px;
 // }
 
-// .post-details-router-name-preview{
-//     color: #262626;
+.post-details-router-name-preview{
+    color: #262626;
+}
 //     background-color: #fff;
 //     font-weight: 600;
 //     text-align: left;
@@ -147,3 +149,15 @@
 //     outline: none;
 //     font-size: 13px;
 // }
+.smily-modal-new-story{
+    background-color: rgb(255, 255, 245);
+    max-width: 350px;
+    max-height: 500px;
+    position: absolute;
+    margin-top:   0;
+    top:  125px;
+    right: 1;
+    //  right: 0;
+    z-index: 999;
+    border-radius: 15px 0px 0 15px ;
+}

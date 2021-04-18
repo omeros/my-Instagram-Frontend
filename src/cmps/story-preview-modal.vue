@@ -49,7 +49,7 @@
                         <actionBar :story="getStory" />
                         <div class="position-modal">
                                   <!-- smily-modal  -->
-                                <div class="smily-modal-preview  " v-if="isSmilyModal">
+                                <div class="smily-modal-preview" v-if="isSmilyModal">
                                   <smileyMoldal   :smiles="smiles"  @smileyToShow=addIcon />
                                 </div>
                         </div>

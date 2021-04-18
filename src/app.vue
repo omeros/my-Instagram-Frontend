@@ -2,7 +2,6 @@
   <div id="app">
     <div id="nav" @click.stop="closeModal()">
       <app-header />
-      <!-- <storyChat :userId="myId" v-if="loggedinUser" /> -->
       <router-view />
       <app-footer />
     </div>
@@ -12,7 +11,6 @@
 
 
 <script>
-import storyChat from '@/cmps/story-chat.vue';
 import { eventBus } from "@/services/event-bus.service.js";
 import appHeader from "@/cmps/app-header";
 import appFooter from "@/cmps/app-footer";
@@ -49,8 +47,7 @@ export default {
   components: {
     appHeader,
     appFooter,
-    storyChat
-  },
+    },
 };
 </script>
 
