@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="details-story-modal" v-if="isModal">
-      <storyPreviewModalContainer :story="storyToShowFromComputed" :smiles="smiles" @removepost=removepost />
+      <storyPreviewModalContainer :story="storyToShowFromComputed" :smiles="smiliesToShow" @removepost=removepost />
     </div>
   </section>
 </template>
@@ -63,13 +63,11 @@ export default {
       stories: null,
       isModal: false,
       storyToShow: null,
-      smiles: [],
       txt : '',
       isLiked : false,
     };
   },
   async created() {
-    this.smiles = storyService.getSmiles();
   },
   watch: {},
   created() {
@@ -184,6 +182,9 @@ export default {
     },
   },
   computed: {
+      smiliesToShow (){
+        return this.$store.getters.smiley
+    },
     isLikedComputed(){
             this.isLiked = !this.isLiked
     },

@@ -18,7 +18,9 @@ export const storyService = {
   remove,
   save,
   getEmptystory,
-  getSmiles
+  getSmiles,
+  querySmiley
+
 }
 
 function query(filterBy) {
@@ -118,10 +120,17 @@ function getEmptystory(){
 
 }
 
+function querySmiley(){
+  return  httpService.get(`smiley`)
+}
+
 
 function getSmiles(){
-  gSmiles.forEach(smile=>{
-   smile._idx = utilService.makeId()
-  })
-  return gSmiles
+  return querySmiley()
 }
+// function getSmiles(){
+//   gSmiles.forEach(smile=>{
+//    smile._idx = utilService.makeId()
+//   })
+//   return gSmiles
+// }

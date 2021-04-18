@@ -3,7 +3,7 @@
     <div class="story-list-container">
       <div  class="story-container" v-for="story in stories" :key="story._id">
         <!-- <story-preview :story="story" >   <router-view /> </story-preview> -->
-        <story-preview :story="story"  @storyToModal=storyToModal >   </story-preview>
+        <story-preview :story="story"  @storyToModal=storyToModal :smiles="smiles" >   </story-preview>
      </div>
     </div>
   </section>
@@ -14,6 +14,9 @@ import storyPreview from "@/cmps/story-preview.vue";
 export default {
   props: {
     stories: {
+      type: Array,
+    },
+    smiles: {
       type: Array,
     },
   },

@@ -16,3 +16,46 @@
 //  grid-template-rows: 1fr 1fr 1fr;
 
 }
+.absolute-pos{
+   position: absolute;
+   top: 100px;
+
+   .fixed-pos{
+       // position: absolute;
+    //    position: -webkit-sticky;
+       position: fixed;
+       right: 10px;
+       padding-left: 0px;
+       font-size: 20px;
+    
+    }
+}
+.btn-absolute-pos{
+   position: absolute;
+   top: 100px;
+
+   .btn-absolute-pos{
+       // position: absolute;
+    //    position: -webkit-sticky;
+       position: fixed;
+       right: 10px;
+       padding-left: 0px;
+       font-size: 20px;
+    }
+}
+
+.open-chat{
+    cursor: pointer;
+    font-size:17px ;
+}
+
+.fade-enter-active{
+    transition: opacity .9s;
+} 
+.fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
+

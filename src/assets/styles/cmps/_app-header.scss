@@ -4,18 +4,16 @@ header {
 
     // display: flex;
     // justify-content: space-between;
-     height: 54px;
-     border-bottom:1px solid $clr2; 
-   
+    height: 54px;
+    border-bottom:1px solid $clr2; 
 
     // from asi
     // background: gainsboro;
     padding: 0 20px;
-   
 .inner-header{
-     display: flex;
-     justify-content: space-between;
-     -webkit-box-pack: justify;
+    display: flex;
+    justify-content: space-between;
+    -webkit-box-pack: justify;
 
 }
 .home-logo{
@@ -42,6 +40,7 @@ header {
         }
     }
     nav {
+        width: auto;
         // background-color: $clr4;
         padding: 0 50px 0 50px;
         
@@ -64,7 +63,7 @@ header {
         width: 22px;
         height: 22px;
         border-radius: 50%;
-        // padding-left: 16px;
+        //padding-left: 16px;
     }
     .pressed{
         opacity: 0.3;
@@ -144,7 +143,7 @@ header {
     }
 
     .fade-enter-active, .fade-leave-active {
-        transition: opacity .1s;
+        transition: opacity .2s;
       }
       .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
         opacity: 0;

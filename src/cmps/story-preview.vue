@@ -8,7 +8,7 @@
             <div class="screen-preview">
               <router-link :to="`/user/${ story.by._id}`" > <img :src="story.by.imgUrl" class="story-details-img opacity" /></router-link>
                 <span class="post-details-router-name opacity">
-                <router-link :to="`/user/${ story.by._id}`"  > {{ story.by.fullname }} </router-link>
+                <router-link :to="`/user/${ story.by._id}`" class="story-name" > {{ story.by.fullname }} </router-link>
               </span>
           </div>
           <button class="post-details-header-btn opacity">
@@ -127,7 +127,7 @@ import { eventBus } from "@/services/event-bus.service.js";
 import { storyService } from "../services/story.service.js";
 export default {
   name: "story-preview",
-  props: ["story"],
+  props: ["story","smiles"],
   data() {
     return {
       isActive: false,
@@ -136,14 +136,13 @@ export default {
       isCommntLiked : [],
        isModal : false,
        isSmilyModal : false,
-       smiles :[]
     };
   },
   created(){
          console.log('story.likedBy.length in story preview',this.story.likedBy.length)
          //  console.log(' story in story-preview',this.story)
        
-              this.smiles = storyService.getSmiles()
+            //  this.smiles = storyService.getSmiles()
         eventBus.$on('openModalFromActionBar', (id) => {
           this.ifThisIsTheModal(id)
         })
@@ -159,7 +158,7 @@ export default {
 
   },
  destroyed(){
-  this.smiles = storyService.getSmiles()
+ // this.smiles = storyService.getSmiles()
         eventBus.$off('openModalFromActionBar', (id) => {
           this.ifThisIsTheModal(id)
         })

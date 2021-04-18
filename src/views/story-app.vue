@@ -1,15 +1,30 @@
 <template>
-       <section  >
-         <storyPreviewModalContainer v-if="selectedStory"   :story="selectedStoryFromComputed" :smiles="smiliesToShow" v-on:click="close" @removepost=removepost  />
-         <div @click.stop="closeModal()">
+  <section  >
+
+  <transition name="fade">
+      <div class="absolute-pos" v-if="loggedinUser&&isChat" >
+          <div  class="fixed-pos"  >
+            <storyChat :userId="myId" />
+          </div>
+      </div>
+  </transition>
+    <div class="btn-absolute-pos" >
+      <div  class="btn-absolute-pos">
+        <button  class="open-chat" @click.stop="openChat()" v-if="!isChat"> Open Chat </button>
+        <button  class="open-chat" @click.stop="openChat()" v-if="isChat"> Close Chat </button>
+      </div>
+    </div>
+        <storyPreviewModalContainer v-if="selectedStory"   :story="selectedStoryFromComputed" :smiles="smiliesToShow" v-on:click="close" @removepost=removepost  />
+        <div @click.stop="closeModal()">
               <div class="app-center" v-if="storiesToShow">
-                  <story-list :stories="storiesToShow" @storyToModal=storyToModal />
+                  <story-list :stories="storiesToShow" @storyToModal=storyToModal :smiles="smiliesToShow"/>
               </div>
-         </div>
-        </section>
+        </div>
+  </section>
 </template>
 
 <script>
+import storyChat from "@/cmps/story-chat.vue";
 import { eventBus } from "@/services/event-bus.service.js";
 import { storyService } from "../services/story.service.js";
 import storyList from "@/cmps/story-list";
@@ -19,11 +34,13 @@ export default {
       data() {
 
     return {
+      isChat : false,
       filterBy: null,
+      loggedinUser : this.$store.getters.loggedinUser,
       // storiesToEdit : storyService.getEmptystory(),
       // storiesToEdit : this.$store.getters.getEmptyStory,
       selectedStory : null,
-      smiliesToShow : storyService.getSmiles(),
+     // smiliesToShow :  null , // this.$store.getters.smiley,
       isLiked : false
   // this.emptyStory =  this.$store.getters.getEmptyStory
      
@@ -31,6 +48,7 @@ export default {
     };
   },
   created() {
+ //this.getSmilies()
    // console.log("story app loaded!!!");
   //   this.$store.dispatch({ type: "loadStories" });
   //         eventBus.$on('openModalFromActionBar', (id) => {
@@ -45,19 +63,36 @@ export default {
   },
 
     computed: {
+    myId(){
+        return  this.loggedinUser._id
+    },
       selectedStoryFromComputed(){
-         return this.selectedStory
+        return this.selectedStory
+      },
+      smiliesToShow(){
+        const smiley =   this.$store.getters.smiley
+        console.log('smily in appppppppppppppp from aaaaaaaaaaaaaaaa',  smiley)
+        return smiley
       },
     storiesToShow() {
       const storiesToShow = this.$store.getters.storiesToShow;
       // const storiesToShow = this.$store.getters.getStories;
-      //console.log("stories on story App", storiesToShow);
+      console.log("stories on story App", storiesToShow);
       return storiesToShow;
     },
 
   },
-     methods: {
-       
+    methods: {
+      openChat(){
+         this.isChat = !this.isChat
+      },
+      async getSmilies(){
+        var smiley =  await this.$store.getters.smiley
+        console.log('smily in appppppppppppppp from aaaaaaaaaaaaaaaa',  smiley)
+        this.smiliesToShow= smiley
+      //  console.log('smily in appppppppppppppp from bbbbbbbbbbbbbbbbbbb',  this.smiliesToShow)
+      },
+  
     // addLikeFromActionBar(id){
     //   console.log('add like in  story-preview')
     //   if(!this.isLiked){
@@ -88,9 +123,9 @@ export default {
      },
     components: {
     storyList,
-    // storyFilter,
+    storyChat,
     storyService,
-    storyPreviewModalContainer
+    storyPreviewModalContainer,
   },
 }
 </script>

@@ -4,9 +4,11 @@ button {
     // color:rgb(12, 14, 12);
     // padding: 5px 10px;
     // margin: 5px;
+    border: none;
+    outline:none;
 
     cursor: pointer; 
-    border: 0;
+    // border: 0;
     background: none; 
     padding: 0;
 }
