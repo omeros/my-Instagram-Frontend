@@ -37,11 +37,17 @@ body {
     
 }
 
-@media (min-width: 600px){
-.post-details {
-    border: 1px solid #dbdbdb;
-    background-color: #fff;
-    margin-bottom: 60px;
+@media (max-width: 600px){
+    .post-details {
+       padding-right: 0px;
+        // max-width: 450px;
+        width:60%;
+        padding-left: 55px;
+        // overflow: hidden;
+        border-radius: 3px;
+        font-size: 13px;
+        box-sizing: border-box;   
+        -webkit-box-sizing: border-box;    //from asi    
 }
 }
 

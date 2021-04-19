@@ -16,6 +16,14 @@ html {
 body {
     font-size: rem(18px);
     margin: 0;
+    width: 1550px;
+}
+@media screen and (max-width: 600px) {
+    body {
+        font-size: rem(18px);
+        // margin: 0;
+        width: 150%;
+    }
 }
 
 h1, h2, h3, h4, h5, h6 {

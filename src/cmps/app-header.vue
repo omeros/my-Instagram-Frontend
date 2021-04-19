@@ -1,7 +1,7 @@
 <template>
   <header class="">
          
-    <div class="app-center inner-header2">
+    <div class="app-center2 inner-header2">
       <div class="nav-bar main-header-inner">
        
               <div class="logo-container ">

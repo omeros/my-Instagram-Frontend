@@ -1,4 +1,13 @@
+
+.app-center2{
+    margin: 0 auto;
+    max-width: 980px;
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+}
 header {
+    width: 100%;
     // background-color: $clr5;
     // padding: 10px;
 
@@ -9,7 +18,7 @@ header {
 
     // from asi
     // background: gainsboro;
-    padding: 0 20px;
+    padding: 0px;
 .inner-header{
     display: flex;
     justify-content: space-between;
@@ -20,12 +29,13 @@ header {
     padding: 16px;
     //  padding-top: 60px;
 }
-.search-container{
-    position: relative;
-    padding: 10px 50px 20px 180px;
-    width:199px ;
-    // height: 28px;
-}
+// .search-container{
+//     position: relative;
+//     padding: 10px 50px 20px 180px;
+//     width:199px ;
+//     display: inline;
+//     // height: 28px;
+// }
     .loggedin-user {
         // background-color: $clr1;
         // padding: 2px 8px;
@@ -108,12 +118,12 @@ header {
         align-items: center; // from asi
         -webkit-box-pack: flex;  // from asi
     }
-    .logo-container{
-        display: flex;
-        width:636px ;
-        padding-left: 180px;
-        padding-right: 100px;
-    }
+    // .logo-container{
+    //     display: flex;
+    //     width:636px ;
+    //     padding-left: 180px;
+    //     padding-right: 100px;
+    // }
     .hart{
       color: rgb(31, 13, 128);
     }
@@ -135,7 +145,7 @@ header {
     }
     .t{
        
-        padding: 10px;
+        // padding: 10px;
     }
     .modal-container{
         // position: absolute;
@@ -147,19 +157,79 @@ header {
       }
       .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
         opacity: 0;
-      }
-      .user-modal-container{
-          position: absolute;
-          top: 50px;
-          right: 300px;
-          width :230px;
-          height: 194px;
-          background-color: rgb(255, 255, 255);
-          z-index: 999;
-          border-radius: 6px;
+    }
+    .user-modal-container{
+        position: absolute;
+        top: 50px;
+        right: 300px;
+        width :230px;
+        height: 194px;
+        background-color: rgb(255, 255, 255);
+        z-index: 999;
+        border-radius: 6px;
           
-      }
-      .tete{
-          padding-left: 10px;
-      }
+    }
+    .tete{
+        padding-left: 10px;
+    }
+}
+
+
+@media screen and (min-width: 1100px) {
+    .search-container{
+        position: relative;
+        padding: 10px 50px 20px 180px;
+        width:199px ;
+        display: inline;
+        // height: 28px;
+    }
+}
+@media screen and (min-width: 1100px) {
+    .logo-container{
+        display: flex;
+        width:636px ;
+        padding-left: 18px;
+        padding-right: 10px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .search-container{
+        display: none;
+    }
+}
+@media screen and (max-width: 900px) {
+    .app-center2{
+        // max-width: 100%;
+        // display: flex;
+        // flex-direction: center;
+        // align-items: center;
+    }
+    
+    
+    header{
+        nav {
+            max-width: 100%;
+            // background-color: $clr4;
+            padding: 0px 0px 0px 0px ;
+            
+        }
+        .header-links{
+            // display: inline;
+            width: 100%;
+            padding: 0px 0px 0px 12px ;
+ 
+        }
+        .home-logo{
+            padding: 0px;
+            //  padding-top: 60px;
+        }
+        .logo-container{
+            display: flex;
+            align-items: flex-start;
+            max-height: 100%;
+            max-width: 50%;
+            padding-left: 20px;
+        }
+    }
 }

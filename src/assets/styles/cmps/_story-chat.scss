@@ -24,16 +24,7 @@
 }
 
 
-@media screen and (max-width: 992px) {
-    .story-chat-container{
-        position: -webkit-sticky;
-        position: sticky;
-        top: 600px;
-        right: 0px;
-        padding-left: 100px;
-        font-size: 20px;
-    }
-  }
+
   .ul-chat{
     overflow: auto;
     height: 350px;
