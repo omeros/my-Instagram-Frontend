@@ -38,7 +38,7 @@ export default {
         txt: this.txt,
         storyId: this.storyId,
       };
-      //this.$emit("addComment", commentStory);
+      this.$emit("addComment", commentStory);
       this.txt = null;
       this.closeSmiley();
      // const id = this.storyId

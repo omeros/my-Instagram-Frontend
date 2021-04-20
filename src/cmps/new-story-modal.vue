@@ -69,7 +69,7 @@ export default {
                 txt :  null,
                 myImage :  null,
                 isSmilyModal : false,
-                test : '123',
+                test : '',
                 isLoading: false
 
         }
@@ -86,21 +86,22 @@ export default {
       eventBus.$emit('addIcon',smile)
       this.smile = smile; 
     },
-      stayOpen(){
+    stayOpen(){
          eventBus.$emit('doNotCloseTheNewStoryModal')
       },
-        addComment(commentStory){      
+    addComment(commentStory){     
+      console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx') 
         this.emptyStory.txt=commentStory.txt
         this.emptyStory.imgUrl= this.myImage  
         console.log('befor  in  new story modal',this.emptyStory)
         this.emptyStory._id =''
-        console.log('after   in  new story modal',this.emptyStory)
+        console.log('after   in  new story modallllllllllllllllllllllllllllllllllllll',this.emptyStory)
         this.$store.dispatch({ type: 'addNewStory', newStory: this.emptyStory })
         this.$emit('afterPost')
         // this.componentKey += 1;
         // this.$forceUpdate(); 
     },
-        openSmiley(){
+    openSmiley(){
       this.isSmilyModal = !this.isSmilyModal;
     },
     closeSmiley(){

@@ -40,10 +40,11 @@
     
     border-top: 1px solid #e8e8e8;
     border-bottom: 1px solid #e8e8e8;
+
     
 }
 ::-webkit-scrollbar {
-    // overflow: auto;
+    overflow: auto;
 }
 
 .mytest{
@@ -123,10 +124,14 @@
     height: 335px;
     
 }
+// ::-webkit-scrollbar {
+//     overflow: auto;
+// }
 .comment-preview{
+ 
     // display: flex;
     // justify-content : space-between;
-    overflow:hidden;
+    overflow:auto;
 }
 .txt-weight{
     font-weight: 600;

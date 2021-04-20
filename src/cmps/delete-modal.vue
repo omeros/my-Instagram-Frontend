@@ -1,7 +1,7 @@
 <template>
   <div class="delete-modal-container">
 
-  <button class="delete-post-btn" @click.stop="removePost()" > delete story </button> 
+  <button class="delete-post-btn" @click.stop="removePost()" > Delete Story </button> 
   </div>
 </template>
 

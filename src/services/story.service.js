@@ -72,8 +72,7 @@ function remove(id) {
 }
 
 function save(story) {
- // console.log(' befor save in storage',story)
-  // const savedStory = (story._id) ? storageService.put(KEY, story) : storageService.post(KEY, story)
+  console.log(' before sent to DB',story)
   if (story._id) {
  //   console.log('update story at  strory.sevice')
     return  httpService.put(`story/${story._id}`,story)             // update a story
@@ -82,7 +81,7 @@ function save(story) {
     return httpService.post(`story/`,story)                     // addad a  new story
 }
 
-  // return savedStory;
+  return savedStory;
 }
 
 function getEmptystory(){

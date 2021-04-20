@@ -263,7 +263,7 @@ export const store = new Vuex.Store({
           throw new Error('Cannot update like in  stories');
         })
     },
-    addCommentToStory(context, payload) {
+    addCommentToStory(context, payload) {                  //<================================
       //console.log('add comment in store :',  payload.comment.txt)
       var storyId = payload.comment.storyId
       var commentTxt = payload.comment.txt
