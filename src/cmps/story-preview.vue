@@ -143,9 +143,9 @@ export default {
          //  console.log(' story in story-preview',this.story)
        
             //  this.smiles = storyService.getSmiles()
-        eventBus.$on('openModalFromActionBar', (id) => {
-          this.ifThisIsTheModal(id)
-        })
+        // eventBus.$on('openModalFromActionBar', (id) => {
+        //   this.ifThisIsTheModal(id)
+        // })
         eventBus.$on('openModalFromCommentInput', (commentStory) => {
           this.addCommentToStory(commentStory)
       })
@@ -159,9 +159,9 @@ export default {
   },
  destroyed(){
  // this.smiles = storyService.getSmiles()
-        eventBus.$off('openModalFromActionBar', (id) => {
-          this.ifThisIsTheModal(id)
-        })
+        // eventBus.$off('openModalFromActionBar', (id) => {
+        //   this.ifThisIsTheModal(id)
+        // })
         eventBus.$off('openModalFromCommentInput', (commentStory) => {
           this.addCommentToStory(commentStory)
       })   
@@ -186,8 +186,10 @@ export default {
     ifThisIsTheModal(id){
       if(this.story._id===id){
        //     console.log('the bus evemt from actionbar in  story-preview from bus',id)
-            this.openModal()
-     //       this.addLikeFromModal(id)
+      
+           this.addLike(id)
+           //this.addLikeFromModal(id)
+           // this.openModal()
         }
 
     },

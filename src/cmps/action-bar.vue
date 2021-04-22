@@ -58,6 +58,7 @@ export default {
       //   this.isLiked = !this.isLiked
       // }
       eventBus.$emit('openModalFromActionBar',id)
+      //eventBus.$emit('bla',id)
 
         console.log('addLike in action bar  after emmited',this.story.likedBy.length)
     },

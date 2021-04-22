@@ -51,15 +51,15 @@ export default {
  //this.getSmilies()
    // console.log("story app loaded!!!");
   //   this.$store.dispatch({ type: "loadStories" });
-  //         eventBus.$on('openModalFromActionBar', (id) => {
-  //         this.addLikeFromActionBar(id)
-  // })
+          eventBus.$on(' ', (id) => {
+          this.addLikeFromActionBar(id)
+  })
   },
    destroyed(){
   // this.smiles = storyService.getSmiles()
-  //       eventBus.$off('openModalFromActionBar', (id) => {
-  //       this.addLikeFromActionBar(id)
-  // })
+        eventBus.$off('openModalFromActionBar', (id) => {
+        this.addLikeFromActionBar(id)
+  })
   },
 
     computed: {
@@ -93,18 +93,19 @@ export default {
       //  console.log('smily in appppppppppppppp from bbbbbbbbbbbbbbbbbbb',  this.smiliesToShow)
       },
   
-    // addLikeFromActionBar(id){
-    //   console.log('add like in  story-preview')
-    //   if(!this.isLiked){
-    //     this.$store.dispatch({ type: 'setLikeToStory', storyId: id })    // <================ to change back
-    //     this.isLiked = !this.isLiked
-    //    // this.openModal()
-    //   }else{
-    //     this.$store.dispatch({ type: 'removeLikeFromStory', storyId: id })//  <=================  to change back
-    //       this.isLiked = !this.isLiked
-    //     //  this.openModal()
-    //   }
-    // },
+    addLikeFromActionBar(id){
+      console.log('add like in  story-preview')
+   //   if(!this.isLiked){
+        this.$store.dispatch({ type: 'setLikeToStory', storyId: id })    // <================ to change back
+     //  this.isLiked = !this.isLiked
+    //  }
+       // this.openModal()
+      // }else{
+      //   this.$store.dispatch({ type: 'removeLikeFromStory', storyId: id })//  <=================  to change back
+      //     this.isLiked = !this.isLiked
+      //   //  this.openModal()
+      // }
+    },
        removepost(){
 
        },
