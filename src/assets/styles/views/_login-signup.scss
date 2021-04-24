@@ -1,6 +1,7 @@
 .login-layout{
    // margin: 0 auto;
    // max-width: 980px;
+   height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,14 +43,15 @@
     color:  $clr4;
 }
 .logout-btn{
-    padding-top: 10px;
     font-size: large;
     color:  $clr3; 
+    padding-bottom: 200px;
 }
 .login-h3{
-    padding-top: 10px;
     font-size: large;
     color:  $clr8; 
+    padding-bottom: 5px;
+   
 }
 .login-user-name{
     color:  $clr7; 

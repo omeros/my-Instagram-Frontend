@@ -11,8 +11,7 @@ export const userStore = {
             "password": "$2b$10$P2ha9WUeOn1jH.jQo/EvbOMBNipzSUSE25c/ramUHhJfo4dCdyjom",
             "fullname": " Dear Guest ",
             "bio" : "Public Figure",
-            // "imgUrl": "http://dreamstop.com/wp-content/uploads/2013/11/guest-dreams.jpg",
-            "imgUrl": "https://occ-0-1722-92.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABbQgh0Gw8hj41VO30oyXp6nws7p1u2FfxE-_OwzfS2W6m3dWQ2Y6LY6WbKyJgwpI6cPzSlYOJZWrvJ7MTNodAzIPtUD9yAO0Z_Kt.png?r=aeb",
+            "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1617906128/Faces/image_2_c1wjed.jpg",
             "createdAt": 123543452,
             "following": [ 
             ],

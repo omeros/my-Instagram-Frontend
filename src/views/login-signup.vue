@@ -11,7 +11,7 @@
           </div>
           <div v-else>
             <h2>Choose User To Login</h2>
-          <div v-if="!loggedinUser"   class="login-warning">  you need to Login/Sign up first !      </div>
+          <div v-if="!loggedinUser"   class="login-warning">  You Need to Login First !      </div>
             <form @submit.prevent="doLogin">
               <select class="login-input" v-model="loginCred.username">
                 <option value="">Select User</option>
