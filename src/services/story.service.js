@@ -4,7 +4,6 @@ import { storageService } from "./async-storage.service.js";
 import {httpService} from './http.service'
 
 
-
 const gStories = require('../data/story.json');
 const KEY = 'storyDB';
 const gSmiles = require('../data/smiley.json');

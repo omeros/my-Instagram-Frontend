@@ -1,3 +1,56 @@
+.login-layout{
+   // margin: 0 auto;
+   // max-width: 980px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .login-container{
+        padding-right: 200px;
+        display: flex;
+        flex-direction: column;
+
+        .login-input{
+            border-radius: 8px;
+            outline:none;
+            height: 35px;
+            padding: 6px 10px 6px 12px!important;
+            width: 200px;
+        }
+    }
+}
+.input-padding{
+ padding-top: 10px;
+}
+
+.login-btn{
+    padding-top: 10px;
+    font-size: large;
+    padding-bottom: 50px;
+    color:  $clr3; 
+}
+.signup-btn{
+    padding-top: 10px;
+    font-size: large;
+    color:  $clr3; 
+}
 .login-warning{
-    color:  $clr1; 
+    color:  $clr3; 
+}
+.faild-login{
+    font-size: larger;
+    font-weight: 300px;
+    color:  $clr4;
+}
+.logout-btn{
+    padding-top: 10px;
+    font-size: large;
+    color:  $clr3; 
+}
+.login-h3{
+    padding-top: 10px;
+    font-size: large;
+    color:  $clr8; 
+}
+.login-user-name{
+    color:  $clr7; 
 }

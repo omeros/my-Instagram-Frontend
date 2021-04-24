@@ -1,44 +1,26 @@
 .main-details{
-  overflow: visible;
-
-    // display: grid;
-    // justify-content: center;
-    // grid-template-columns:  400px 400px 200px ; /*Make the grid smaller than the container*/
-    // grid-template-rows: 400px 200px 200px ;
-
+    overflow: visible;
     display: flex;
     flex-direction:  column;
+    align-items: center;
     // flex-wrap: wrap;
     grid-gap: 0px;
-    padding: 10px;
+    padding: 10px 10px 10px 0px;
     height: 100vh;
   
 
-    // display: grid;
-    // grid-template-columns: 50px 50px 50px; 
-    // grid-column :150px 150px 150px;
-    // grid-row: 150px 150px 150px;
-  
-    // grid-column: 2;
+
 
 }
 .profile{
   width: 100%;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
   border-bottom:1px solid $clr2; ;
-  padding: 0 16px;
+  padding: 0px 100px 0px 0px;
   box-sizing: border-box;
 }
 
-// .main-details > div {
-//     background-color: rgba(249, 253, 249, 0.8);
-//     text-align: center;
-//     padding: 20px 0;
-  
-  
-  
-//   }
 .img-container{
   padding-top: 30px;
   // max-width: 330px;
@@ -49,13 +31,6 @@
     border-radius: 150%;
     height:150px ;
     width:150px;
-    // height:60% ;
-    // width: 55%;
-
-    // margin-right: 15%;    from asi
-    // margin-top: 5%;
-
-    // overflow: hidden;
   }
 
 
@@ -63,28 +38,20 @@
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 600;
-  padding: 20px;
+  padding: 20px 180px 20px 20px;
 }
 
 
   // POSTS
   .profile-posts{
-    // display: flex;
-    // flex-direction: row;
-    // flex-wrap: wrap ;
-    // grid-gap: 40px;
-    // margin-left: 20px;
-
-  
-
     grid-template-columns: repeat(3,1fr);
     display: grid;
     // grid-gap: 20px 30px ;    from asi
-    grid-template-rows: (3,1fr);
-     
+    //grid-template-rows: (3,1fr);
+    padding-right: 200px;
     // from asi
     grid-gap: 30px;
-    width: 100%;
+    width: 70%;
   }
 
   .profile-posts-item{
@@ -100,6 +67,8 @@
     display: inline;
     padding-top: 100%;
     background: green;
+    height: 100%;
+    width: 100%;
   }
 
   .details-stories-img{
@@ -119,18 +88,6 @@
   
 
   .details-container{
-    // display: flex;
-    // flex-direction: column;
-    // text-align: left;             from asi
-    // padding: 10px;
-
-
-    // display: grid;
-    // grid-template-columns:  100px 100px 100px ;
-    // grid-template-rows: 100px 100px 100px ;
-    // grid-gap: 10px;
-
-
     // from asi
     display: flex;
     -webkit-box-orient: vertical;
@@ -138,8 +95,8 @@
     -ms-flex-direction: column;
     flex-direction: column;
     text-align: left;
-    padding: 10px;
-    padding-left: 200px;
+    padding: 10px 100px 10px 110px;
+   
   }
 
   .profile-description-top{
@@ -152,7 +109,7 @@
 
     padding: 10px 0 15px;
     font-size: 20px;
-         font-family: 'Times New Roman', Times, serif;
+        font-family: 'Times New Roman', Times, serif;
         display: block;
         font-size: 1.5em;
         margin-block-start: 0.83em;
@@ -232,19 +189,26 @@
   }
 
  @media screen and (max-width: 600px) {
+   .profile{
+    // padding-left: 20x;
+   // display: -webkit-box;
+   display: flex;
+    justify-content: center;
+    padding: 0px 0px 0px 120px;
+  }
 
   .profile-posts{
     grid-template-columns: repeat(2,1fr);
     display: grid;
     grid-template-rows: (3,1fr);
     grid-gap: 10px;
-    width: 70%;
-    padding-right: 160px;
-    height: 100%;
+    width: 85%;
+    padding-right: 180px;
+   
  }
 
 .details-img{
-  padding-top: 10px;
+  padding-top: 0px;
   border-radius: 150%;
   height: 70px ;
   width: 70px;
@@ -259,8 +223,9 @@
   -ms-flex-direction: column;
   flex-direction: column;
   text-align: left;
-  padding: 3px;
-  font-size: small;
+  padding: 3px 3px 3px 15px;
+  
+  font-size: x-small;
 }
 
 
@@ -278,7 +243,7 @@
 }
 
 .profile-description-top{
-  padding: 15px 0 1px 60px;
+  padding: 15px 0 1px 20px;
   font-size: 15px;
   width: 510px;
   height:  69px;
@@ -288,6 +253,25 @@
   display: flex;
   flex-direction: row;
   padding-top: 0;
+}
+.profile-description-bio{
+  font-size: 10px;
+}
+
+.p-mobile{
+  font-size: 13px;
+}
+.profile-description-top-username{
+  font-size: 15px;
+}
+.profile-count{
+  font-size: 10px;
+}
+.profile-count-others{
+  font-size: 10px;
+}
+.profile-tabs-tab{
+  padding-left: 0px
 }
 
 }

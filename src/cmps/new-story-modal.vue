@@ -2,9 +2,10 @@
    
    <div class="modal-header2 flex "  v-bind:class="{left: myImage }" @click.stop="stayOpen()">
 
+        <div class="img-side">
           <div class="image-container-new-story">
               <img  class="image-new-story" v-if="myImage" :src="myImage" width="" height="">
-              <div class="flex">
+              <div class="img-flex">
                     <label v-if="!isLoading&&!myImage" for="imgUploader"  @drop.prevent="handleFile" @dragover.prevent="dragOver"  @dragleave="isDragOver = false"  >
                         <img  class="input-img"  src="https://res.cloudinary.com/omerphoto/image/upload/v1618335628/upload3_te8f2v.png">
                     </label>
@@ -18,9 +19,13 @@
                 <input v-if="!myImage"  id="imgUploader" class="file-btn round"  type="file" accept="image/*" @change="uploadImage($event)" >
               </div>
           </div>
-          
-                <div class="comment-new-story"  >
-                        <div class="post-details-header-preview">
+        </div>
+          <div class="post-side">
+                <div class="column-direction"  >
+
+              
+                  <div class="post-details-header-preview">
+
                             <div class="screen-preview">
                                 <router-link :to="`/user/${ emptyStory.by._id}`" > <img :src="emptyStory.by.imgUrl" class="story-details-img-preview opacity" /></router-link>
                                 <span >
@@ -31,19 +36,23 @@
                                 <svg height="16" viewBox="0 0 48 48" width="16"><circle clip-rule="evenodd" cx="8" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="24" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="40" cy="24" fill-rule="evenodd" r="4.5"></circle></svg>
                             </button>
                         </div>
+                  </div>
 
 
 
 
                     <div class="line2"></div>
+                    <div class="comment-input-cmp">
                         <commentInput  :storyId="test"    @addComment=addComment   @openSmiley=openSmiley   @closeSmiley=closeSmiley  />
-                    <div class="line2"></div>
+                    </div>
+                    <div class="line3"></div>
                     <div class="smily-modal-new-story  " v-if="isSmilyModal">
                         <smileyMoldal   :smiles="smiles"  @smileyToShow=addIcon />
                     </div>
 
                 </div>
               
+          </div>
 
           <!-- <button >   <img  class="save-btn" v-if="myImage" src="https://res.cloudinary.com/omerphoto/image/upload/v1617099828/save_q9xvig.png" width="20" height="20">
           </button>  
@@ -90,12 +99,12 @@ export default {
          eventBus.$emit('doNotCloseTheNewStoryModal')
       },
     addComment(commentStory){     
-      console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx') 
+     // console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx') 
         this.emptyStory.txt=commentStory.txt
         this.emptyStory.imgUrl= this.myImage  
         console.log('befor  in  new story modal',this.emptyStory)
         this.emptyStory._id =''
-        console.log('after   in  new story modallllllllllllllllllllllllllllllllllllll',this.emptyStory)
+      //  console.log('after   in  new story modallllllllllllllllllllllllllllllllllllll',this.emptyStory)
         this.$store.dispatch({ type: 'addNewStory', newStory: this.emptyStory })
         this.$emit('afterPost')
         // this.componentKey += 1;

@@ -1,9 +1,5 @@
 <template>
-  <section
-    class="main-details app-center"
-    v-if="user"
-    @click.stop="closeModal()"
-  >
+  <section class="main-details " v-if="user" @click.stop="closeModal()" >
     <div class="profile">
       <div class="img-container">
         <img :src="user.imgUrl" class="details-img" />
@@ -32,8 +28,8 @@
         </div>
 
         <div class="profile-description-bio">
-          <h3>{{ user.fullname }}</h3>
-          <p>{{ user.bio }}</p>
+          <h3 class="h3-mobile">{{ user.fullname }}</h3>
+          <p class="p-mobile">{{ user.bio }}</p>
         </div>
       </div>
     </div>

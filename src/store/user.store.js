@@ -6,7 +6,20 @@ import { socketService, SOCKET_EMIT_USER_WATCH, SOCKET_EVENT_USER_UPDATED } from
 
 export const userStore = {
     state: {
-        loggedinUser:  userService.getLoggedinUser() || 'abc',
+        loggedinUser:  userService.getLoggedinUser() || {
+            "username": "🎀 Guest 🎀",
+            "password": "$2b$10$P2ha9WUeOn1jH.jQo/EvbOMBNipzSUSE25c/ramUHhJfo4dCdyjom",
+            "fullname": " Dear Guest ",
+            "bio" : "Public Figure",
+            // "imgUrl": "http://dreamstop.com/wp-content/uploads/2013/11/guest-dreams.jpg",
+            "imgUrl": "https://occ-0-1722-92.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABbQgh0Gw8hj41VO30oyXp6nws7p1u2FfxE-_OwzfS2W6m3dWQ2Y6LY6WbKyJgwpI6cPzSlYOJZWrvJ7MTNodAzIPtUD9yAO0Z_Kt.png?r=aeb",
+            "createdAt": 123543452,
+            "following": [ 
+            ],
+            "followers": [
+            ],
+            "savedPostIds": []
+        },
         users: [],
         watchedUser: null,
 
@@ -100,7 +113,7 @@ export const userStore = {
         async loadUsers({ commit, state }) {
             try {
                 const users = await userService.getUsers(state.filter || undefined);
-          //      console.log('in user store - load users from local storage', users)
+                console.log('in user store - load users from local storage', users)
                 commit({ type: 'setUsers', users })
             } catch (err) {
                 console.log('userStore: Error in loadUsers', err)

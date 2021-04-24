@@ -10,11 +10,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    // display:  grid;
-    // justify-content: center;
-    // grid-template-columns: 1fr 1fr 1fr ;
-//  grid-template-rows: 1fr 1fr 1fr;
-
 }
 .absolute-pos{
    position: absolute;
@@ -24,7 +19,7 @@
        // position: absolute;
     //    position: -webkit-sticky;
        position: fixed;
-       right: 10px;
+       right: 70px;
        padding-left: 0px;
        font-size: 20px;
     

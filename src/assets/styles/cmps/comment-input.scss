@@ -16,8 +16,6 @@
         color: #8e8e8e;
         background: transparent;
         padding:12px ;
-      
-    
     }
 
     .comment-smiley-btn{
@@ -38,3 +36,34 @@
     .istxt{
         opacity: 0.9;
     }
+
+    @media (max-width: 600px){
+    .add-comment-btn{
+        font-size: 7px;
+    }
+    .comment-input-row{
+        padding: 0px 3px 0px 5px;
+        font-size: small;
+        flex-direction: row;
+    }
+
+    .comment-input-preview{
+        width: 100%;
+        border: 0;
+        resize: none;
+        color: #8e8e8e;
+        background: transparent;
+        padding-right: 1px ;
+        font-size: 8px;
+    }
+    // #storyId{
+    //     font-size: 8px;
+    // }
+    .comment-smiley-btn{
+        padding-right: 3px; 
+    }
+  
+    .comment-input-preview{
+        padding: 2px;
+    }
+}
