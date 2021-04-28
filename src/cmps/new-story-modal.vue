@@ -7,7 +7,7 @@
               <img  class="image-new-story" v-if="myImage" :src="myImage" width="" height="">
               <div class="img-flex">
                     <label v-if="!isLoading&&!myImage" for="imgUploader"  @drop.prevent="handleFile" @dragover.prevent="dragOver"  @dragleave="isDragOver = false"  >
-                        <img  class="input-img"  src="https://res.cloudinary.com/omerphoto/image/upload/v1618335628/upload3_te8f2v.png">
+                        <img  class="input-img1"  src="https://res.cloudinary.com/omerphoto/image/upload/v1618335628/upload3_te8f2v.png">
                     </label>
 
                       <img   v-if="isLoading" class=""  src="https://motiongraphicsphoebe.files.wordpress.com/2018/10/animated-loading-c397-1.gif">
@@ -37,7 +37,7 @@
                             </button>
                         </div>
                   </div>
-
+                        
 
 
 
@@ -98,6 +98,7 @@ export default {
     stayOpen(){
          eventBus.$emit('doNotCloseTheNewStoryModal')
       },
+      
     addComment(commentStory){     
      // console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx') 
         this.emptyStory.txt=commentStory.txt
@@ -110,6 +111,8 @@ export default {
         // this.componentKey += 1;
         // this.$forceUpdate(); 
     },
+
+    
     openSmiley(){
       this.isSmilyModal = !this.isSmilyModal;
     },

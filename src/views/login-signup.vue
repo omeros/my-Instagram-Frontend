@@ -27,12 +27,12 @@
             </form>
             <!-- <p class="mute">user1 or admin, pass:123 </p> -->
             <form @submit.prevent="doSignup">
-              <h2>Or Signup First</h2>
+              <h2>Or Sign Up First</h2>
               <div class="input-padding"> <input  class="login-input"  type="text" v-model="signupCred.fullname" placeholder="Your full name" />  </div>
               <div  class="input-padding" > <input class="login-input"    type="text"  v-model="signupCred.password"  placeholder="Password"  />  </div>
               <div class="input-padding"> <input class="login-input"  type="text"  v-model="signupCred.username"  placeholder="Username" />  </div>
             
-              <button class="signup-btn">Signup Now</button>
+              <button class="signup-btn">Sign Up Now</button>
             </form>
           </div>
           <hr />

@@ -12,7 +12,7 @@
     border-radius: 10px;
   }
 
-
+ 
 .left{
     display: flex;
     align-items: center;
@@ -25,15 +25,18 @@
 }
 .image-container-new-story{
     width: fill;
+    height: 450px;
+   
     display: flex;
     align-items: center;
     justify-content: center;
-    height: inherit ;
+
     .img-flex{
-        height: inherit;  
+        height: 50%;  
     }
 }
 .image-new-story{
+
 }
 .my-input{ 
     border-radius:10px;
@@ -77,6 +80,7 @@
     border-bottom: 1px solid rgba(var(--ce3,239,239,239),1); 
 }
 .post-side{
+    height: 100%;
     flex-grow: 0.2;
     border-left-style: outset;
 }
@@ -178,9 +182,9 @@
         width: 115px;
         // border: 1px solid rgba(var(--ce3,239,239,239),1); 
     }
-    .input-img{
-        width: 50px;
-        height: 50px;
+    .input-img1{
+        // width: 10px;
+        // height: 10px;
     }
     .story-details-img-preview{
         width: 15px;
