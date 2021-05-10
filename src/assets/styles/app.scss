@@ -7,7 +7,7 @@
     color: #262626;
     margin: 0;
     background-color: #18181a;
-    min-height: 100vh;
+    min-height: 150vh;
     padding-bottom: 100px;
    
 }
@@ -17,3 +17,55 @@
         padding: 0px 0px  0px 0px  ;
 }
 
+.absolute-pos{
+    position: absolute;
+    top: 100px;
+ 
+    .fixed-pos{
+        // position: absolute;
+     //    position: -webkit-sticky;
+        position: fixed;
+        right: 70px;
+        padding-left: 0px;
+        font-size: 20px;
+     
+     }
+ }
+ .btn-absolute-pos{
+    position: absolute;
+    top: 100px;
+ 
+    .btn-absolute-pos{
+        // position: absolute;
+     //    position: -webkit-sticky;
+        position: fixed;
+        right: 10px;
+        padding-left: 0px;
+        font-size: 20px;
+     }
+ }
+
+ @media screen and (max-width: 950px) {
+    .open-chat{
+        display: none;
+    }
+    .absolute-pos{
+        display: none;
+    }
+
+  }
+
+.open-chat{
+    cursor: pointer;
+    font-size:17px ;
+}
+
+.fade-enter-active{
+    transition: opacity .9s;
+} 
+.fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }

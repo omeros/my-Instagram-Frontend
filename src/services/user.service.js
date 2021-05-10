@@ -18,7 +18,8 @@ export const userService = {
     update,
     getLoggedinUser,
     increaseScore,
-    getEmpthyUser
+    getEmpthyUser,
+   
 }
 
 window.userService = userService
@@ -84,6 +85,24 @@ function _saveLocalUser(user) {
 // if the program have an 'undefined' value for the user in sessionStorage, the program does not load
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem('loggedinUser') || 'null')
+}
+
+function getGuest(){
+   const  guest = {
+             "_id" : "70981b985a3a1a1820e6bb4b",
+            "username": "🎀 Guest 🎀",
+            "password": "$2b$10$P2ha9WUeOn1jH.jQo/EvbOMBNipzSUSE25c/ramUHhJfo4dCdyjom",
+            "fullname": "Guest ",
+            "bio" : "Public Figure",
+            "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1620580104/Instagram/user11_fihlnd.jpg",
+            "createdAt": 123543452,
+            "following": [ 
+            ],
+            "followers": [
+            ],
+            "savedPostIds": []
+       }
+    return guest
 }
 
 function getEmpthyUser(){

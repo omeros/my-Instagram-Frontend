@@ -12,7 +12,7 @@
 
         <div class="followers-num">
           <span class="profile-count">
-            <span class="profile-count-num"> {{ numPosts }}</span>
+            <span class="profile-count-num" v-if="stories"> {{ numPosts }}</span>
             posts
           </span>
 
@@ -81,10 +81,11 @@ export default {
         eventBus.$on('openModalFromCommentInput', (commentStory) => {
         this.addComment(commentStory)
     })
-    eventBus.$on('openModalFromActionBar', (id) => {
-        console.log(' openModalFromActionBar on listener on user details')
-            this.addLike(id)
-    })
+    // eventBus.$on('openModalFromActionBar', (id) => {
+    //     console.log(' openModalFromActionBar  on user details')
+    //         this.addLike(id)
+    // })
+    eventBus.$on('openModalFromActionBar', this.addLike)
     eventBus.$on('mytest', (id) => {
             this.justOpenTheModal(id)
    })
@@ -98,13 +99,17 @@ export default {
 
   
   },
+  beforeDestroy (){
+  //  eventBus.$off('openModalFromActionBar',   (id) => {
+  //           this.addLike(id)
+  //   })
+   eventBus.$off('openModalFromActionBar', this.addLike)
+  },
    destroyed(){
-    eventBus.$off('openModalFromCommentInput', (commentStory) => {
-        this.addComment(commentStory)
-    })
-    eventBus.$off('openModalFromActionBar', (id) => {
-            this.addLike(id)
-    })
+    //eventBus.$off('openModalFromCommentInput')
+    // eventBus.$off('openModalFromActionBar', (id) => {
+    //         this.addLike(id)
+    // })
     eventBus.$off('mytest', (id) => {
             this.justOpenTheModal(id)
    })
@@ -124,7 +129,7 @@ export default {
           //  this.$store.dispatch({ type: 'setLikeToStory', storyId: id })
             //var x = this.isLikedComputed// = !this.isLiked
            // this.storyToShow = this.$store.getters.getStoryByUserId(this.userId);
-            console.log('add like in user details,   this.storyToShow',this.storyToShow)
+      //      console.log('add like in user details,   this.storyToShow',this.storyToShow)
           //  this.isModal=false
            // this.openModal(id)
 
@@ -186,7 +191,7 @@ export default {
     },
     storyToShowFromComputed(){
     // console.log(" conputed in user details:  this.stories.likedBy.length ",this.stories.likedBy.length);
-     console.log(" conputed in user details:  this.storyToShow.likedBy.length ",this.storyToShow.likedBy.length);
+    // console.log(" conputed in user details:  this.storyToShow.likedBy.length ",this.storyToShow.likedBy.length);
         return this.storyToShow
     },
     followersNum() {
@@ -196,7 +201,7 @@ export default {
       return this.user.following.length;
     },
     numPosts() {
-      return 0;
+      return this.stories.length;
     },
 
     // userLogIn() {

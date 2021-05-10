@@ -122,7 +122,10 @@
     border-radius: 15px 0px 0 15px ;
 }
 
-
+.input-img1{
+    height: 60%;
+    cursor: pointer;
+}
 @media (max-width: 600px){
     .modal-header2{
         border-radius: 0px;
@@ -138,11 +141,10 @@
     }
 
     .img-side{
-       height: inherit ;
-       width: 200px;
+        height: inherit ;
+        width: 200px;
     }
-    .image-container-new-story{
-     
+    .image-container-new-story{  
         display: flex;
         align-items: center;
         justify-content: center;
@@ -154,11 +156,10 @@
         }
     }
 
-    
     .post-side{
     //   flex-grow: 1;
-      width: 150px;
-      height: inherit;
+        width: 150px;
+        height: inherit;
     }
     .column-direction{
         width: fit-content;

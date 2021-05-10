@@ -6,19 +6,7 @@ import { socketService, SOCKET_EMIT_USER_WATCH, SOCKET_EVENT_USER_UPDATED } from
 
 export const userStore = {
     state: {
-        loggedinUser:  userService.getLoggedinUser() || {
-            "username": "🎀 Guest 🎀",
-            "password": "$2b$10$P2ha9WUeOn1jH.jQo/EvbOMBNipzSUSE25c/ramUHhJfo4dCdyjom",
-            "fullname": " Dear Guest ",
-            "bio" : "Public Figure",
-            "imgUrl": "https://res.cloudinary.com/omerphoto/image/upload/v1617906128/Faces/image_2_c1wjed.jpg",
-            "createdAt": 123543452,
-            "following": [ 
-            ],
-            "followers": [
-            ],
-            "savedPostIds": []
-        },
+        loggedinUser:  userService.getLoggedinUser() ||  null,
         users: [],
         watchedUser: null,
 
@@ -81,7 +69,7 @@ export const userStore = {
         async login({ commit }, { userCred }) {
             try {
                 const user = await userService.login(userCred);
-          //      console.log('in user store, user returned from service', user)
+               console.log(' user log in m in user store,  ')
                 commit({ type: 'setLoggedinUser', user })
                 return user;
             } catch (err) {

@@ -14,16 +14,10 @@
           <div v-if="!loggedinUser"   class="login-warning">  You Need to Login First !      </div>
             <form @submit.prevent="doLogin">
               <select class="login-input" v-model="loginCred.username">
-                <option value="">Select User</option>
+                <!-- <option value="">Select User</option> -->
                 <option v-for="user in users" :key="user._id" :value="user.username">{{user.fullname}}</option>
               </select>
-              <!-- <input type="text" v-model="loginCred.username" placeholder="User name" />
-              <input
-                type="text"
-                v-model="loginCred.password"
-                placeholder="Password"
-              /> -->
-              <button class="login-btn">Login</button>
+            <button class="login-btn">Login</button>
             </form>
             <!-- <p class="mute">user1 or admin, pass:123 </p> -->
             <form @submit.prevent="doSignup">
@@ -31,7 +25,6 @@
               <div class="input-padding"> <input  class="login-input"  type="text" v-model="signupCred.fullname" placeholder="Your full name" />  </div>
               <div  class="input-padding" > <input class="login-input"    type="text"  v-model="signupCred.password"  placeholder="Password"  />  </div>
               <div class="input-padding"> <input class="login-input"  type="text"  v-model="signupCred.username"  placeholder="Username" />  </div>
-            
               <button class="signup-btn">Sign Up Now</button>
             </form>
           </div>
@@ -71,8 +64,13 @@ export default {
       return this.$store.getters.loggedinUser;
     },
   },
-  created() {
-    //this.loadUsers()
+  async created() {
+    // const userToLogin = this.$store.getters.users
+    // this.loginCred.username = userToLogin[3].username ;
+    // console.log('created at login  ',  this.loginCred.username)
+    // this.doLogin()
+
+   
     
   },
   methods: {
@@ -82,6 +80,7 @@ export default {
         return;
       }
       try {
+        console.log('doing login with : ,',this.loginCred)
         await this.$store.dispatch({ type: "login", userCred: this.loginCred });
         this.userId = this.$store.getters.loggedinUser._id
         this.$router.push(`/user/${this.userId}`)

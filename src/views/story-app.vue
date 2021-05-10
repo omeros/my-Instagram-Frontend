@@ -1,19 +1,5 @@
 <template>
   <section  >
-
-  <transition name="fade">
-      <div class="absolute-pos" v-if="loggedinUser&&isChat" >
-          <div  class="fixed-pos"  >
-            <storyChat :userId="myId" />
-          </div>
-      </div>
-  </transition>
-    <div class="btn-absolute-pos" >
-      <div  class="btn-absolute-pos">
-        <button  class="open-chat" @click.stop="openChat()" v-if="!isChat"> Open Chat </button>
-        <button  class="open-chat" @click.stop="openChat()" v-if="isChat"> Close Chat </button>
-      </div>
-    </div>
         <storyPreviewModalContainer v-if="selectedStory"   :story="selectedStoryFromComputed" :smiles="smiliesToShow" v-on:click="close" @removepost=removepost  />
         <div @click.stop="closeModal()">
               <div class="app-center" v-if="storiesToShow">
@@ -34,9 +20,9 @@ export default {
       data() {
 
     return {
-      isChat : false,
+    
       filterBy: null,
-      loggedinUser : this.$store.getters.loggedinUser,
+      loggedinUser : null,
       // storiesToEdit : storyService.getEmptystory(),
       // storiesToEdit : this.$store.getters.getEmptyStory,
       selectedStory : null,
@@ -47,25 +33,27 @@ export default {
    
     };
   },
-  created() {
+ async created() {
  //this.getSmilies()
    // console.log("story app loaded!!!");
   //   this.$store.dispatch({ type: "loadStories" });
-          eventBus.$on(' ', (id) => {
+
+       
+          eventBus.$on('openModalFromActionBar', (id) => {
+          console.log(' openModalFromActionBar  on story App')
           this.addLikeFromActionBar(id)
   })
+
   },
    destroyed(){
   // this.smiles = storyService.getSmiles()
-        eventBus.$off('openModalFromActionBar', (id) => {
-        this.addLikeFromActionBar(id)
-  })
+  //       eventBus.$off('openModalFromActionBar', (id) => {
+  //       this.addLikeFromActionBar(id)
+  // })
   },
 
     computed: {
-    myId(){
-        return  this.loggedinUser._id
-    },
+ 
       selectedStoryFromComputed(){
         return this.selectedStory
       },
@@ -83,9 +71,7 @@ export default {
 
   },
     methods: {
-      openChat(){
-         this.isChat = !this.isChat
-      },
+
       async getSmilies(){
         var smiley =  await this.$store.getters.smiley
         console.log('smily in appppppppppppppp from aaaaaaaaaaaaaaaa',  smiley)
@@ -94,7 +80,7 @@ export default {
       },
   
     addLikeFromActionBar(id){
-      console.log('add like in  story-preview')
+      console.log('addLikeFromActionBar in  story-App')
    //   if(!this.isLiked){
         this.$store.dispatch({ type: 'setLikeToStory', storyId: id })    // <================ to change back
      //  this.isLiked = !this.isLiked
@@ -124,7 +110,6 @@ export default {
      },
     components: {
     storyList,
-    storyChat,
     storyService,
     storyPreviewModalContainer,
   },

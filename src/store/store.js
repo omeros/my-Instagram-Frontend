@@ -70,8 +70,8 @@ export const store = new Vuex.Store({
 
     getStoryByUserId: (state) => (id) => {
       var storyToFind = []
-      // console.log("stories for  user-details in store",  state.stories);
-
+      console.log("stories for  user-details in store",  state.stories);
+      console.log("id to find for  user-details in store",  id);
       state.stories.find(story => {
         if (story.by._id === id) {
           storyToFind.push(story);
@@ -94,28 +94,28 @@ export const store = new Vuex.Store({
   //********************************** Mutations *******************************************/
   mutations: {
     filterByChanged(state, payload) {
-      console.log('filterByChanged is running', payload.strFilter.name)
+   //   console.log('filterByChanged is running', payload.strFilter.name)
       state.filterBy = payload.strFilter.name
     },
     setStories(state, { stories }) {
-      state.stories = stories;
+      state.stories = stories.reverse();
     },
     setSmilies(state, { smilies }) {
-      console.log('smilies setttttttttttttttttttttttt', smilies)
+     // console.log('smilies setttttttttttttttttttttttt', smilies)
       state.smilies = smilies;
     },
 
     setStory(state, payload) {
-      console.log('on store on mutex befor update state.stories', payload)
+    //  console.log('on store on mutex befor update state.stories', payload)
 
       const storyUpdated = JSON.parse(JSON.stringify(payload.updatedStory))
-      console.log('on store on mutex middle update state.stories', storyUpdated)
-      state.stories.push(storyUpdated);
+   //   console.log('on store on mutex middle update state.stories', storyUpdated)
+      state.stories.unshift(storyUpdated);
       // let e = [...state.stories]
       // console.log('on store on mutex after update state.stories',e)
     },
     removeStory(state, payload) {
-      console.log('story to remove in mutation store', payload)
+  //    console.log('story to remove in mutation store', payload)
       const idx = state.stories.findIndex(p => p._id === payload.storyToRemoveId)
       state.stories.splice(idx, 1,);
     },
@@ -126,7 +126,7 @@ export const store = new Vuex.Store({
       //  console.log('payload.updatedStory in store',payload.updatedStory)
       const idx = state.stories.findIndex(p => p._id === payload.updatedStory._id)
       state.stories.splice(idx, 1, payload.updatedStory);
-      console.log(' state.stories in store', state.stories)
+   //   console.log(' state.stories in store', state.stories)
     },
     commentLikedBefor(state, payload) {
       this.state.isCommentLikedBefor = true
