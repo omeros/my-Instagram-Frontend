@@ -8,11 +8,14 @@ export const userStore = {
     state: {
         loggedinUser:  userService.getLoggedinUser() ||  null,
         users: [],
-        watchedUser: null,
+        loggedinUsers: [],
 
     },
     getters: {
         users({ users }) { return users },
+        loggedinUsers({ loggedinUsers }) {
+            return loggedinUsers
+        },
         loggedinUser({ loggedinUser }) {
            // console.log('loggedinUser in user store', loggedinUser)
             return loggedinUser
@@ -50,6 +53,8 @@ export const userStore = {
         // },
         setLoggedinUser(state, { user }) {
             state.loggedinUser = user;
+            const objUser = JSON.parse(JSON.stringify(user))
+            state.loggedinUsers.push(objUser);
         },
         setLoggedinUser(state, { user }) {
             state.loggedinUser = user;
@@ -69,7 +74,7 @@ export const userStore = {
         async login({ commit }, { userCred }) {
             try {
                 const user = await userService.login(userCred);
-               console.log(' user log in m in user store,  ')
+                console.log(' user log in m in user store,  ')
                 commit({ type: 'setLoggedinUser', user })
                 return user;
             } catch (err) {

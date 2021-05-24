@@ -1,5 +1,5 @@
 <template>
-    <section class="main home-page " >
+    <section class="main" >
       <div class="story-father" >
 
       <div class="post-details">

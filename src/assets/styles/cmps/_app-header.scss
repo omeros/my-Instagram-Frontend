@@ -13,7 +13,7 @@ header {
 
     // display: flex;
     // justify-content: space-between;
-    height: 54px;
+    height:60px;
     border-bottom:1px solid $clr2; 
 
     // from asi
@@ -50,8 +50,8 @@ header {
 
     .user-logo{
         cursor: pointer;
-        width: 22px;
-        height: 22px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         padding-left: 0px;
     }
@@ -95,7 +95,7 @@ header {
     // }
 
     .pluse-img-btn{
-      padding-left: 16px;
+      padding-right: 5px;
     }
     .pluse-img{
         width: 25px;
@@ -167,7 +167,7 @@ header {
             max-width: 100%;
             // background-color: $clr4;
             padding: 0px 0px 0px 10px ;
-            
+            height: 60px;
         }
         .header-links{
             // display: inline;

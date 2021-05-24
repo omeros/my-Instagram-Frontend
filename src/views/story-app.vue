@@ -1,5 +1,5 @@
 <template>
-  <section  >
+  <section class="story-app-container" >
         <storyPreviewModalContainer v-if="selectedStory"   :story="selectedStoryFromComputed" :smiles="smiliesToShow" v-on:click="close" @removepost=removepost  />
         <div @click.stop="closeModal()">
               <div class="app-center" v-if="storiesToShow">
@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import storyChat from "@/cmps/story-chat.vue";
 import { eventBus } from "@/services/event-bus.service.js";
 import { storyService } from "../services/story.service.js";
 import storyList from "@/cmps/story-list";
@@ -71,7 +70,6 @@ export default {
 
   },
     methods: {
-
       async getSmilies(){
         var smiley =  await this.$store.getters.smiley
         console.log('smily in appppppppppppppp from aaaaaaaaaaaaaaaa',  smiley)

@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import { socketService } from "@/services/socket.service";
 export default {
   name: "test",
   data() {
@@ -82,7 +83,10 @@ export default {
       try {
         console.log('doing login with : ,',this.loginCred)
         await this.$store.dispatch({ type: "login", userCred: this.loginCred });
-        this.userId = this.$store.getters.loggedinUser._id
+        const loginUser = this.$store.getters.loggedinUser
+        socketService.emit("user-connected-details", loginUser); 
+        //this.userId = this.$store.getters.loggedinUser._id
+        this.userId = loginUser._id
         this.$router.push(`/user/${this.userId}`)
           // this.$router.push('/')
       } catch(err) {

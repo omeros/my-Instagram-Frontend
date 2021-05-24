@@ -9,28 +9,102 @@
     padding-left: 100px;
     font-size: 20px;
 }
+.ul-chat{
+  overflow: auto;
+  height: 320px;
+  border: 1px solid #dbdbdb;
+  border-width:1px; 
+  background-color: rgb(253, 253, 253);
+  width: 300px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 15px;
+  box-shadow: 8px 2px 8px 1px #d8d5d5be;    
+
+}
+.user-container{
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.incoming-user-container{
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.img-incoming-user-chat{
+  width: 15%;
+  border-radius: 100px;
+  padding-left: 5px;
+}
+  
+.txt-incoming-user-chat{
+  background-color: #f0f2f5;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 8px;
+  border-top-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+
+}
+.img-user-chat{
+  width: 15%;
+  border-radius: 100px;
+  padding-right: 5px;
+}
+
+.txt-user-chat{
+  background-color: rgb(0, 132, 255);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+
+  
+}
+.chat-input-container{
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  box-shadow: 5px 5px 8px 3px #d8d5d5be;    
+  background-color: #fff;
+  padding: 10px 10px 10px 10px;
+  width: 100%;
+}
 .chat-input{
-    border-radius: 6px;
+  // box-shadow: 5px 5px 8px 3px #d8d5d5be;    
+  border-radius: 50px;
+  font-size: large;
+  padding: 7px 12px  10px 20px; /// 7 16 9 36
+   width: 280px;
+  border: 1px solid #dbdbdb;
+  outline:2px;
+  height: 40px;
+  background-color: #f0f2f5;
+
+}
+
+.chat-btn:hover{
+  color: rgba(38, 165, 34, 0.479);
 }
 .chat-btn{
     border-radius: 6px;
-    padding: 0;
+    padding-top: 10px;
     border: none;
     background: none;
-    color: rgb(38, 165, 34);
-    /// need this two to hide btn outline
-    border: none;
-    outline:none;
+    font-size: large;
+    font-weight: 800;
+    color: rgba(38, 165, 34, 0.966);
+    border:2px;
+    outline:2px;
+   
 }
 
-
-
-  .ul-chat{
-    overflow: auto;
-    height: 350px;
-    border-style:solid ;
-    border-width:1px; 
-    background-color: rgb(246, 248, 250);
-    width: 300px;
-    border-radius: 6px;
-  }

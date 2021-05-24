@@ -1,24 +1,22 @@
 <template>
   <div class="story-chat-container">
-      <h2>Lets Chat</h2>
-  
-    <!-- <label>
-      <input type="radio" value="Politics" v-model="topic" @change="changeTopic" /> 
-      Politics
-    </label>
-    <label>
-      <input type="radio" value="Love" v-model="topic" @change="changeTopic" /> 
-      
-    </label> -->
-    <ul class="ul-chat">
-      <li v-for="(msg, idx) in msgs" :key="idx">
-        {{ msg.fullname }} : {{ msg.txt }}
-      </li>
-    </ul>
-
-
+    <h2>Lets Chat...</h2>
+    <div class="ul-chat">
+      <div v-for="(msg, idx) in msgs" :key="idx">
+        <div v-if="msg.from._id === loggedinUser._id" class="user-container">
+          <img class="img-user-chat" :src="msg.from.imgUrl" />
+          <span class="txt-user-chat"> {{ msg.txt }} </span>
+        </div>
+        <div v-else class="incoming-user-container">
+          <span class="txt-incoming-user-chat"> {{ msg.txt }} </span>
+          <img class="img-incoming-user-chat" :src="msg.from.imgUrl" />
+        </div>
+      </div>
+    </div>
     <form @submit.prevent="sendMsg">
-      <input class="chat-input" type="text" v-model="msg.txt" @input="userTyping()" />
+      <div class="chat-input-container">
+        <input class="chat-input" type="text" v-model="msg.txt" @input="userTyping()" />
+      </div>
       <button class="chat-btn">Send</button>
     </form>
   </div>
@@ -27,23 +25,27 @@
 <script>
 import { socketService } from "@/services/socket.service";
 export default {
-  name: "toy-chat",
-  props: ["userId"],
+  name: "story-chat",
+  props: [ "toUser", "firstMessages"],
   data() {
     return {
-      // msg: { from: "Me", txt: "" },
-      msg: { fullname: "", _id: "", txt: "" },
+      msg: { txt: "" , toId : "",from : null, newMsg : true, toUsers : null},
       msgs: [],
       topic: "Love",
       myId: null,
+      loggedinUser: null,
+      sendToUserId : null
     };
   },
   created() {
-    this.myId = this.userId;
+   
     console.log("story in story chat ", this.myId);
     socketService.setup();
-    socketService.emit("chat topic", this.topic);
-    socketService.on("testchat", this.addMsg);
+   // socketService.on("msg-chat", this.addMsg);
+    this.loggedinUser = this.$store.getters.loggedinUser;
+   // this.myId = this.loggedinUser._id
+   // this.sendToUserId = this.toUser[0]._id
+
     // socketService.on(this.userId, this.addMsg);
     //socketService.on('chat addMsg', this.addMsg)
   },
@@ -52,10 +54,12 @@ export default {
     socketService.terminate();
   },
   mounted() {
-    this.myId = this.mytoyId;
-    console.log("the user in toy-chat", this.$store.getters.loggedinUser);
+    socketService.on(`${this.loggedinUser._id}`, this.addMsg);
     socketService.on("user-typing", (isTyping) => {
       console.log("user is typing ");
+    });
+    this.firstMessages.forEach(msg => {
+      this.addMsg(msg)
     });
   },
   methods: {
@@ -74,24 +78,50 @@ export default {
       //  })
     },
     addMsg(msg) {
+      console.log('got msg in story chat, and the msg is : ',msg)
       this.msgs.push(msg);
+      this.msg = JSON.parse(JSON.stringify(msg))
+      this.msg.txt = ""
+     
+    //  this.sendToUserId = msg.from._id
+
     },
     sendMsg() {
-      this.msg.fullname = this.$store.getters.loggedinUser.fullname;
-      this.msg._id = this.userId;
-      console.log("the msg :", this.msg);
-      // console.log('the id of myId :  :', this.myId);
-      socketService.emit("chat newMsg", this.msg);
+    
+     console.log('this.msg before sending it before update ',this.msg)
+       // console.log('the id of myId :  :', this.myId);
+       //socketService.emit("chat newMsg", this.msg);
+    //  this.msg.toId = this.sendToUserId;
+
+    if(!this.msg.from) {                           // if the user choosed some users list for sending message
+      this.msg.toUsers = this.toUser             
+      console.log('yes')
+    }else  if(this.msg.from._id !==this.loggedinUser._id){       
+        console.log('no')           
+      //  console.log('this.msg.toUsers  befor:',this.msg.toUsers )                                                // if its a user who got an a massage
+             const userChoosed = this.msg.toUsers.filter((usertoFind)=>{     //  updating the "toUsers" with the sender user, and take out the current user from the list
+                return (usertoFind._id === this.loggedinUser._id)
+              })
+            const indexOfUser =  this.msg.toUsers.indexOf(userChoosed[0])
+            this.msg.toUsers.splice(indexOfUser,1)
+            this.msg.toUsers.push(this.msg.from)
+                 //   console.log('this.msg.toUsers after :',this.msg.toUsers )  
+                  //  console.log('this.msg.from after :',this.msg.from )  
+      } 
+    
+      this.msg.from = this.loggedinUser
+      console.log('this.msg before sending it after update ',this.msg)
+      socketService.emit("dual-chat", this.msg);
+      const newMsg =  JSON.parse(JSON.stringify(this.msg))
+      this.msgs.push(newMsg);
+      this.msg.txt = ""
+      this.$emit('clearChat')
+
       // this.msg = {from: '', txt: ''};
-    },
-    changeTopic() {
-      socketService.emit("chat topic", this.topic);
     },
   },
   computed: {
- 
     // myFunction(){
-
     // },
   },
 };
