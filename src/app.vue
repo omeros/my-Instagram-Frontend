@@ -117,14 +117,16 @@ export default {
   },
   methods: {
       updateLoginUser(loggedinUser){
-      console.log('updateLoginUser on app.vue', loggedinUser)
+      console.log(' loggedinUser on updateLoginUser on app.vue', loggedinUser)
         //    this.$forceUpdate();
       this.loggedinUser = loggedinUser
       socketService.on(`${this.loggedinUser._id}`, this.gotMsg);
       //  console.log(' updateLoginUser this.loggedinUser', this.loggedinUser)
     },
       usersConnections(usersConnections){
-      console.log('usersConnections on Appppppppppppppp',usersConnections)
+      this.loggedinUser = this.$store.getters.loggedinUser;
+      console.log('usersConnections on App on usersConnections',usersConnections)
+      console.log('this.loggedinUser on App.vue on usersConnections ',this.loggedinUser)
 
       const isContainUser =  usersConnections.some((userToFind)=>{
         return (this.loggedinUser._id === userToFind._id)
@@ -134,10 +136,11 @@ export default {
         const userToFind = usersConnections.filter((userToFind)=>{
           return (this.loggedinUser._id === userToFind._id)
       })
-      }
-        const indexToRemove =  usersConnections.findIndex(userToFind[0])
+      console.log('userToFind on app',userToFind)
+        const indexToRemove =  usersConnections.indexOf(userToFind[0])
         usersConnections.splice(indexToRemove,1)
         this.allLoggedinUsers = JSON.parse(JSON.stringify(usersConnections))
+      }
 
     },
     gotMsg(msg){
