@@ -19,7 +19,7 @@
         <div class="main-comments-preview">
           <div class="mytest">
 
-               
+            
                     <div class="user-comment-preview">
                             <!-- <div class="screen-preview"> -->
                               <div class="straight-row">
@@ -36,7 +36,7 @@
                                 </button>
                             <!-- </div> -->
                     </div>
-             
+            
                 <div class="story-row-preview" >
                         <div class="comment-preview" v-for="comment in story.comments" :key="comment.id">
                             <storyComment :story="story" :comment="comment" :smiles="smiles" :index="story.comments.indexOf(comment)" :key="componentKey" />

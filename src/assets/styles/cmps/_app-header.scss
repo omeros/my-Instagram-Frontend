@@ -37,23 +37,33 @@ header {
         padding: 20px;
         //  padding-top: 60px;
     }
-    .third-logo{
-        padding-left: 0px;
+    .pluse-img-btn{
+      padding-right: 16px;
     }
-    .rourthth-logo{
-        padding-left: 15px;
-     }
+    .pluse-img{
+        width: 30px;
+        padding-right: 0px;
+    }
+
     .hart{
-        padding-left: 20px;
-        padding-right: 20px;
-      }
+        padding-top: 13px;
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-bottom: 4px;
+        background-color:#f0f2f5;
+        border-radius: 100%;
+        // height: 80px;
+        margin-bottom: 400px;
+    }
 
     .user-logo{
         cursor: pointer;
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
         border-radius: 50%;
         padding-left: 0px;
+        margin-left: 8px;
+        
     }
     .pressed{
         opacity: 0.3;
@@ -94,13 +104,6 @@ header {
     //     padding-right: 100px;
     // }
 
-    .pluse-img-btn{
-      padding-right: 5px;
-    }
-    .pluse-img{
-        width: 25px;
-        padding-right: 0px;
-    }
 
     .modal-container{
         // position: absolute;
@@ -115,14 +118,15 @@ header {
     }
     .user-modal-container{
         position: absolute;
-        top: 40px;
-        right: 70px;
+        top: 60px;
+        right: 150px;
         width :230px;
         height: 194px;
         background-color: rgb(255, 255, 255);
         z-index: 999;
         border-radius: 6px;
-          
+        box-shadow: 5px 5px 8px 3px #d8d5d5be;    
+
     }
  
 }
@@ -175,6 +179,19 @@ header {
             padding: 0px 0px 0px 12px ;
             
         }
+        .home-logo{
+            padding-left: 15px;
+            padding-right: 15px;
+
+            //  padding-top: 60px;
+        }
+        .pluse-img-btn{
+            padding-left: 14px;
+          }
+          .pluse-img{
+              width: 30px;
+              padding-right: 0px;
+          }
         .logo-container{
             display: flex;
             align-items: center;
@@ -183,31 +200,21 @@ header {
             padding-left: 20px;
             padding-top: 10px;
         }
-        .home-logo{
-            padding-left: 15px;
-            padding-right: 15px;
-
-            //  padding-top: 60px;
-        }
 
         
-    .third-logo{
-        padding-left: 0px;
-    }
-    .rourthth-logo{
-        padding-left: 15px;
-     }
     .hart{
         padding-left: 15px;
         padding-right: 15px;
+        padding-top: 12px;
       }
 
     .user-logo{
         cursor: pointer;
-        width: 22px;
-        height: 22px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         padding-left: 0px;
+        margin-top: 12px;
     }
     
         .user-modal-container{

@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { socketService } from "@/services/socket.service";
 import { eventBus } from "@/services/event-bus.service.js";
 import { storyService } from "../services/story.service.js";
 import storyList from "@/cmps/story-list";
@@ -37,14 +38,22 @@ export default {
    // console.log("story app loaded!!!");
   //   this.$store.dispatch({ type: "loadStories" });
 
-       
+   //     socketService.emit("updateLoginUser",sometxt); 
           eventBus.$on('openModalFromActionBar', (id) => {
-          console.log(' openModalFromActionBar  on story App')
+       //   console.log(' openModalFromActionBar  on story App')
           this.addLikeFromActionBar(id)
   })
+  // const sometxt = 'abc'
+  // socketService.emit("updateLoginUser",sometxt);
 
   },
-   destroyed(){
+  mounted(){
+    // console.log("this.loggedinUser on story app", loggedinUser) 
+   //   const sometxt = 'abc'
+   // const loggedinUser = this.$store.getters.loggedinUser;
+   // socketService.emit("updateLoginUser",loggedinUser);
+  },
+  destroyed(){
   // this.smiles = storyService.getSmiles()
   //       eventBus.$off('openModalFromActionBar', (id) => {
   //       this.addLikeFromActionBar(id)
@@ -58,13 +67,13 @@ export default {
       },
       smiliesToShow(){
         const smiley = this.$store.getters.smiley
-        console.log('smily in appppppppppppppp from aaaaaaaaaaaaaaaa',  smiley)
+    //    console.log('smily in appp ',  smiley)
         return smiley
       },
     storiesToShow() {
       const storiesToShow = this.$store.getters.storiesToShow;
       // const storiesToShow = this.$store.getters.getStories;
-      console.log("stories on story App", storiesToShow);
+    //  console.log("stories on story App", storiesToShow);
       return storiesToShow;
     },
 
@@ -72,7 +81,7 @@ export default {
     methods: {
       async getSmilies(){
         var smiley =  await this.$store.getters.smiley
-        console.log('smily in appppppppppppppp from aaaaaaaaaaaaaaaa',  smiley)
+      //  console.log('smily in appppppppppppppp from aaaaaaaaaaaaaaaa',  smiley)
         this.smiliesToShow= smiley
       //  console.log('smily in appppppppppppppp from bbbbbbbbbbbbbbbbbbb',  this.smiliesToShow)
       },

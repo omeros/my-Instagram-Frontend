@@ -61,7 +61,7 @@ export default {
       return this.$store.getters.users;
     },
     loggedinUser() {
-    console.log('login user in login loguot ', this.$store.getters.loggedinUser);
+ //   console.log('login user in login loguot ', this.$store.getters.loggedinUser);
       return this.$store.getters.loggedinUser;
     },
   },
@@ -81,9 +81,11 @@ export default {
         return;
       }
       try {
-        console.log('doing login with : ,',this.loginCred)
+     //   console.log('doing login with : ,',this.loginCred)
         await this.$store.dispatch({ type: "login", userCred: this.loginCred });
         const loginUser = this.$store.getters.loggedinUser
+        // const loggedinUser = this.$store.getters.loggedinUser;
+         //  socketService.emit("updateLoginUser",loggedinUser);
         socketService.emit("user-connected-details", loginUser); 
         //this.userId = this.$store.getters.loggedinUser._id
         this.userId = loginUser._id

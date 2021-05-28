@@ -24,7 +24,11 @@
  
     display: flex;
     flex-direction: column;
+
   
+    .users-img-for-chat :hover{
+        opacity: 0.5;
+    }
     .users-img-for-chat{
         border-radius: 100px;
         width: 50px;
@@ -76,12 +80,24 @@
     .absolute-pos{
         display: none;
     }
+}
 
-  }
 
+
+.open-chat:hover{
+    opacity: 0.4;
+}
 .open-chat{
     cursor: pointer;
-    font-size:17px ;
+    //font-size:17px ;
+    width: 58px;
+    height: 59px;
+    border-radius: 100%;
+    background: #fcfcfc;
+    outline: #fcfcfc;
+    box-shadow: 5px 5px 8px 3px #d8d5d5be;    
+
+
 }
 
 .fade-enter-active{

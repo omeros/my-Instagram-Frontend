@@ -21,7 +21,7 @@
     padding: 16px;
     display: flex;
     justify-content : space-between;
-     flex-direction: row;
+    flex-direction: row;
     -webkit-box-pack: justify;
     //  max-width: 335px;
     width :335px;
@@ -35,8 +35,8 @@
     // overflow: auto;
     margin-bottom: auto;
     padding: 16px;
-    max-height: 350px;
-     overflow: auto;
+    max-height: 300px;
+    overflow: auto;
     
     border-top: 1px solid #e8e8e8;
     border-bottom: 1px solid #e8e8e8;
@@ -178,15 +178,6 @@
 .position-modal{
   position: absolute;
 }
-
-
-
-
-
-
-
-
-
 
 .post-details-add-comment-preview{                            
     position: relative;

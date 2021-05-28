@@ -70,7 +70,7 @@ export default {
       this.userId = this.$route.params.id;
       this.user = this.$store.getters.getUserById(this.userId);
       this.stories =  this.$store.getters.getStoryByUserId(this.userId);
-      console.log('stories on user details created ',  this.stories)
+    //  console.log('stories on user details created ',  this.stories)
       eventBus.$on("closeDetailsModal", () => {
       this.closeModal();
     });
@@ -122,7 +122,7 @@ export default {
    },
   methods: {
         addLike(id){
-            console.log('add like in user details')
+    //        console.log('add like in user details')
             this.isLiked ?   this.$store.dispatch({ type: 'removeLikeFromStory', storyId: id }) :  this.$store.dispatch({ type: 'setLikeToStory', storyId: id })  
             this.isLiked  = !this.isLiked 
           //    this.$store.dispatch({ type: 'removeLikeFromStory', storyId: id })  <=================  to change back
@@ -143,7 +143,7 @@ export default {
         // }
     },
       addComment(commentStory){
-        console.log('comment in user details',commentStory)
+     //   console.log('comment in user details',commentStory)
         // var commentStory ={
         //   txt : this.txt,
         //   storyId : id,

@@ -124,9 +124,8 @@ export default {
     };
   },
   created(){
-         console.log('story.likedBy.length in story preview',this.story.likedBy.length)
-         //  console.log(' story in story-preview',this.story)
-       
+      //   console.log('story.likedBy.length in story preview',this.story.likedBy.length)
+         //  console.log(' story in story-preview',this.story)      
             //  this.smiles = storyService.getSmiles()
         // eventBus.$on('openModalFromActionBar', (id) => {
         //   this.ifThisIsTheModal(id)
@@ -230,7 +229,7 @@ export default {
     },
 
     addLikeFromModal(id){
-      console.log('add like in  story-preview')
+   //   console.log('add like in  story-preview')
       if(!this.isLiked){
         this.$store.dispatch({ type: 'setLikeToStory', storyId: id })    // <================ to change back
         this.isLiked = !this.isLiked

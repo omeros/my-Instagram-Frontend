@@ -74,7 +74,7 @@ export const userStore = {
         async login({ commit }, { userCred }) {
             try {
                 const user = await userService.login(userCred);
-                console.log(' user log in m in user store,  ')
+            //    console.log(' user log in , in user store,  ')
                 commit({ type: 'setLoggedinUser', user })
                 return user;
             } catch (err) {
@@ -105,7 +105,7 @@ export const userStore = {
         async loadUsers({ commit, state }) {
             try {
                 const users = await userService.getUsers(state.filter || undefined);
-                console.log('in user store - load users from local storage', users)
+           //     console.log('in user store - load users from local storage', users)
                 commit({ type: 'setUsers', users })
             } catch (err) {
                 console.log('userStore: Error in loadUsers', err)

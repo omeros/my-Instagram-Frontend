@@ -70,8 +70,8 @@ export const store = new Vuex.Store({
 
     getStoryByUserId: (state) => (id) => {
       var storyToFind = []
-      console.log("stories for  user-details in store",  state.stories);
-      console.log("id to find for  user-details in store",  id);
+     // console.log("stories for  user-details in store",  state.stories);
+    //  console.log("id to find for  user-details in store",  id);
       state.stories.find(story => {
         if (story.by._id === id) {
           storyToFind.push(story);

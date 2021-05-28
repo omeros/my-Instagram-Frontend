@@ -39,10 +39,12 @@ export default {
   },
   created() {
    
-    console.log("story in story chat ", this.myId);
+    
     socketService.setup();
    // socketService.on("msg-chat", this.addMsg);
     this.loggedinUser = this.$store.getters.loggedinUser;
+  //  console.log("this.loggedinUser  in story chat ", this.loggedinUser);
+   // socketService.on(`${this.loggedinUser._id}`, this.addMsg);
    // this.myId = this.loggedinUser._id
    // this.sendToUserId = this.toUser[0]._id
 
@@ -82,13 +84,13 @@ export default {
       this.msgs.push(msg);
       this.msg = JSON.parse(JSON.stringify(msg))
       this.msg.txt = ""
-     
+    
     //  this.sendToUserId = msg.from._id
 
     },
     sendMsg() {
     
-     console.log('this.msg before sending it before update ',this.msg)
+    console.log('this.msg before sending it before update ',this.msg)
        // console.log('the id of myId :  :', this.myId);
        //socketService.emit("chat newMsg", this.msg);
     //  this.msg.toId = this.sendToUserId;
@@ -110,9 +112,9 @@ export default {
       } 
     
       this.msg.from = this.loggedinUser
-      console.log('this.msg before sending it after update ',this.msg)
-      socketService.emit("dual-chat", this.msg);
       const newMsg =  JSON.parse(JSON.stringify(this.msg))
+      console.log('this.msg before sending it after update ',newMsg)
+      socketService.emit("multi-chat", newMsg);
       this.msgs.push(newMsg);
       this.msg.txt = ""
       this.$emit('clearChat')
