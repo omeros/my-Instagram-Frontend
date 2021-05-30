@@ -80,7 +80,8 @@ export default {
     console.log("this.loggedinUser  in app.vue ", this.loggedinUser);
   //  socketService.on(`${this.loggedinUser._id}`, this.gotMsg);
     socketService.on("updateLoginUser", this.updateLoginUser);
-
+    socketService.on("user-has-disconnect", this.userDisconnect);
+ 
   },
 
   mounted(){
@@ -116,6 +117,19 @@ export default {
     }
   },
   methods: {
+    userDisconnect(user){
+     let isContainUser =   this.allLoggedinUsers.some((userToFind)=>{
+                return (user._id === userToFind._id)
+            })
+        if(isContainUser){
+                let userToRemove = this.allLoggedinUsers.filter((userToFind)=>{
+                    return (user._id === userToFind._id)
+                })
+        let indexToRemove =  this.allLoggedinUsers.indexOf(userToRemove[0])
+                this.allLoggedinUsers.splice(indexToRemove,1)
+      }
+
+    },
       updateLoginUser(loggedinUser){
       console.log(' loggedinUser on updateLoginUser on app.vue', loggedinUser)
         //    this.$forceUpdate();
@@ -123,6 +137,8 @@ export default {
       socketService.on(`${this.loggedinUser._id}`, this.gotMsg);
       //  console.log(' updateLoginUser this.loggedinUser', this.loggedinUser)
     },
+
+      //********************* all the users who are connected to the app - comming from Server ************************** */
       usersConnections(usersConnections){
       this.loggedinUser = this.$store.getters.loggedinUser;
       console.log('usersConnections on App on usersConnections',usersConnections)
@@ -133,19 +149,20 @@ export default {
       })
 
       if(isContainUser){
-        const userToFind = usersConnections.filter((userToFind)=>{
-          return (this.loggedinUser._id === userToFind._id)
+        const userToRemove = usersConnections.filter((user)=>{
+          return (this.loggedinUser._id === user._id)
       })
-      console.log('userToFind on app',userToFind)
-        const indexToRemove =  usersConnections.indexOf(userToFind[0])
+      console.log('userToRemove on app',userToRemove)
+        const indexToRemove =  usersConnections.indexOf(userToRemove[0])
         usersConnections.splice(indexToRemove,1)
         this.allLoggedinUsers = JSON.parse(JSON.stringify(usersConnections))
       }
-
+       console.log('this.allLoggedinUsers',this.allLoggedinUsers)
     },
     gotMsg(msg){
       console.log('got msg on app',msg)
       //this.isMsg = true
+       console.log('this.allLoggedinUsers on app',this.allLoggedinUsers)
       const userChoosed = this.allLoggedinUsers.filter((user)=>{
         return (user._id === msg.from._id)
       })
@@ -168,10 +185,10 @@ export default {
       // this.isMsg = true
     },
     chooseUser(user){
-      const isContainUser = this.allLoggedinUsers.some((userToFind)=>{
+      const isContainUser = this.usersToChatWith.some((userToFind)=>{
           return (user._id === userToFind._id)
       })
-      if(!isContainUser.length){
+      if(!isContainUser){
         this.usersToChatWith.push(user);
       }else{
               const indexOfUser =  this.usersToChatWith.indexOf(user)
@@ -193,16 +210,17 @@ export default {
 
   //  console.log('this.usersToChatWith : ',this.usersToChatWith)
     },
+      // a single user have just connected, and he sent his details to the other users
       addUserDetails(user){
-        // console.log('user from websockets on app : ',user)
+        console.log('user from websockets on app : ',user)
         // console.log('user this.loggedinUser on app :',this.loggedinUser)
        // console.log('addUserDetails  this.loggedinUser on app',this.loggedinUser)
         user.gotMsg = false
         this.loggedinUser = this.$store.getters.loggedinUser;
         if(user._id!==this.loggedinUser._id){
           console.log('yes')
-          const users = userService.saveLocalUsers(user)
-          this.allLoggedinUsers = users
+        //  const users = userService.saveLocalUsers(user) //
+          this.allLoggedinUsers.push( (JSON.parse(JSON.stringify(user))))
         }
       },
     openChat(){
@@ -213,9 +231,7 @@ export default {
             user.sendTo = false 
         })
       }
-   
-        // this.allLoggedinUsers.gotMsg = false
-        // this.allLoggedinUsers.sendTo = false
+
 
      
       },

@@ -98,6 +98,7 @@ export default {
     },
     doLogout() {
       this.$store.dispatch({ type: "logout" });
+       socketService.emit("user-disconnect", this.$store.getters.loggedinUser); 
     },
     async doSignup() {
       console.log('do signup in login-logout')
