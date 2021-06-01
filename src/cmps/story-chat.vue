@@ -29,7 +29,7 @@ export default {
   props: [ "toUser", "firstMessages"],
   data() {
     return {
-      msg: { txt: "" , toId : "",from : null, newMsg : true, toUsers : null},
+      msg: { txt: "" ,from : null, newMsg : true, toUsers : null},
       msgs: [],
       topic: "Love",
       myId: null,
@@ -38,18 +38,8 @@ export default {
     };
   },
   created() {
-   
-    
     socketService.setup();
-   // socketService.on("msg-chat", this.addMsg);
     this.loggedinUser = this.$store.getters.loggedinUser;
-  //  console.log("this.loggedinUser  in story chat ", this.loggedinUser);
-   // socketService.on(`${this.loggedinUser._id}`, this.addMsg);
-   // this.myId = this.loggedinUser._id
-   // this.sendToUserId = this.toUser[0]._id
-
-    // socketService.on(this.userId, this.addMsg);
-    //socketService.on('chat addMsg', this.addMsg)
   },
   destroyed() {
     socketService.off("chat addMsg", this.addMsg);
@@ -89,28 +79,19 @@ export default {
 
     },
     sendMsg() {
-    
     console.log('this.msg before sending it before update ',this.msg)
-       // console.log('the id of myId :  :', this.myId);
-       //socketService.emit("chat newMsg", this.msg);
-    //  this.msg.toId = this.sendToUserId;
-
-    if(!this.msg.from) {                           // if the user choosed some users list for sending message
+    if(!this.msg.from) {                          // if the user choosed some users list for sending message
       this.msg.toUsers = this.toUser             
       console.log('yes')
     }else  if(this.msg.from._id !==this.loggedinUser._id){       
         console.log('no')           
-      //  console.log('this.msg.toUsers  befor:',this.msg.toUsers )                                                // if its a user who got an a massage
-             const userChoosed = this.msg.toUsers.filter((usertoFind)=>{     //  updating the "toUsers" with the sender user, and take out the current user from the list
+        const userChoosed = this.msg.toUsers.filter((usertoFind)=>{     //  updating the "toUsers" with the sender user, and take out the current user from the list
                 return (usertoFind._id === this.loggedinUser._id)
-              })
-            const indexOfUser =  this.msg.toUsers.indexOf(userChoosed[0])
-            this.msg.toUsers.splice(indexOfUser,1)
-            this.msg.toUsers.push(this.msg.from)
-                 //   console.log('this.msg.toUsers after :',this.msg.toUsers )  
-                  //  console.log('this.msg.from after :',this.msg.from )  
+        })
+        const indexOfUser =  this.msg.toUsers.indexOf(userChoosed[0])
+        this.msg.toUsers.splice(indexOfUser,1)
+        this.msg.toUsers.push(this.msg.from)
       } 
-    
       this.msg.from = this.loggedinUser
       const newMsg =  JSON.parse(JSON.stringify(this.msg))
       console.log('this.msg before sending it after update ',newMsg)
@@ -118,13 +99,9 @@ export default {
       this.msgs.push(newMsg);
       this.msg.txt = ""
       this.$emit('clearChat')
-
-      // this.msg = {from: '', txt: ''};
     },
   },
   computed: {
-    // myFunction(){
-    // },
   },
 };
 </script>

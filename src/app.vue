@@ -37,7 +37,6 @@ import { eventBus } from "@/services/event-bus.service.js";
 import appHeader from "@/cmps/app-header";
 import appFooter from "@/cmps/app-footer";
 import {userService} from "@/services/user.service";
-// import { eventBus } from "./services/event-bus.service.js"
 
 export default {
   name: "App",
@@ -49,7 +48,6 @@ export default {
       allLoggedinUsers : [],
       usersToChatWith : [],
       isMsg : false,
-      idFrom : null,
       messages : []
     };
   },
@@ -61,51 +59,30 @@ export default {
     this.loggedinUser = this.$store.getters.loggedinUser;
     if(!this.loggedinUser){
         const userToLogin = this.$store.getters.users
-    //    console.log('userToLoginin story app',userToLogin)
         const loginCred  =  {username: 'Charles.g', password: '1234'}
         loginCred.username = userToLogin[4].username ;
         await this.$store.dispatch({ type: "login", userCred: loginCred });
         this.loggedinUser = this.$store.getters.loggedinUser;
         socketService.emit("user-connected-details", this.loggedinUser); 
-        socketService.on("all-users-connected-details", this.addUserDetails);
+        socketService.on("user-now-connected", this.addUserDetails);
         }else{
         socketService.emit("user-connected-details", this.loggedinUser); 
-        socketService.on("all-users-connected-details", this.addUserDetails);
-    
+        socketService.on("user-now-connected", this.addUserDetails);
     }
-    
     socketService.on("usersConnections", this.usersConnections);
     this.allLoggedinUsers = userService.getLoggedinUsers()
-   // socketService.on("msg-chat", this.gotMsg);
     console.log("this.loggedinUser  in app.vue ", this.loggedinUser);
-  //  socketService.on(`${this.loggedinUser._id}`, this.gotMsg);
     socketService.on("updateLoginUser", this.updateLoginUser);
-    socketService.on("user-has-disconnect", this.userDisconnect);
- 
+    socketService.on("user-has-disconnect", this.usersConnections);
+  },
+    destroyed() {
+    socketService.off(`${this.loggedinUser._id}`, this.addMsg);
   },
 
   mounted(){
     console.log("app.vue was mounted!!!");
-
-  //const users = this.$store.getters.loggedinUsers
-  //this.loggedinUser = this.$store.getters.loggedinUser;
-  //console.log("this.loggedinUser  in story chat ", this.loggedinUser);
- // socketService.on(`${this.loggedinUser._id}`, this.gotMsg);
- // console.log('the users from user stor ',users)
-
-    // const usersConcat =   users.concat(this.allLoggedinUsers)
-    // const allUsers = usersConcat.filter((vale,index) => usersConcat.indexof(value) === index )  // remove duplicate values
-    // this.allLoggedinUsers = allUsers
 },
   computed: {
-
-    test(){
-            let userChoosed = false
-            userChoosed = this.allLoggedinUsers.some((user)=>{
-            return (user._id === this.idFrom)
-      })
-        return userChoosed
-    },
     isMsgComputed(){
       return this.isMsg
     },
@@ -117,25 +94,11 @@ export default {
     }
   },
   methods: {
-    userDisconnect(user){
-     let isContainUser =   this.allLoggedinUsers.some((userToFind)=>{
-                return (user._id === userToFind._id)
-            })
-        if(isContainUser){
-                let userToRemove = this.allLoggedinUsers.filter((userToFind)=>{
-                    return (user._id === userToFind._id)
-                })
-        let indexToRemove =  this.allLoggedinUsers.indexOf(userToRemove[0])
-                this.allLoggedinUsers.splice(indexToRemove,1)
-      }
-
-    },
       updateLoginUser(loggedinUser){
       console.log(' loggedinUser on updateLoginUser on app.vue', loggedinUser)
-        //    this.$forceUpdate();
+      socketService.off(`${this.loggedinUser._id}`, this.addMsg);
       this.loggedinUser = loggedinUser
-      socketService.on(`${this.loggedinUser._id}`, this.gotMsg);
-      //  console.log(' updateLoginUser this.loggedinUser', this.loggedinUser)
+      socketService.on(`${loggedinUser._id}`, this.addMsg);
     },
 
       //********************* all the users who are connected to the app - comming from Server ************************** */
@@ -143,11 +106,9 @@ export default {
       this.loggedinUser = this.$store.getters.loggedinUser;
       console.log('usersConnections on App on usersConnections',usersConnections)
       console.log('this.loggedinUser on App.vue on usersConnections ',this.loggedinUser)
-
       const isContainUser =  usersConnections.some((userToFind)=>{
         return (this.loggedinUser._id === userToFind._id)
       })
-
       if(isContainUser){
         const userToRemove = usersConnections.filter((user)=>{
           return (this.loggedinUser._id === user._id)
@@ -157,32 +118,25 @@ export default {
         usersConnections.splice(indexToRemove,1)
         this.allLoggedinUsers = JSON.parse(JSON.stringify(usersConnections))
       }
-       console.log('this.allLoggedinUsers',this.allLoggedinUsers)
+        console.log('this.allLoggedinUsers',this.allLoggedinUsers)
     },
-    gotMsg(msg){
+    addMsg(msg){
       console.log('got msg on app',msg)
-      //this.isMsg = true
-       console.log('this.allLoggedinUsers on app',this.allLoggedinUsers)
+      console.log('this.allLoggedinUsers on app',this.allLoggedinUsers)
       const userChoosed = this.allLoggedinUsers.filter((user)=>{
         return (user._id === msg.from._id)
       })
-    //  console.log(' user choooooosed : ',userChoosed )
-      // userChoosed[0].newMsg = true
-      // user.newMsg = true
-      this.idFrom = userChoosed[0]._id
       userChoosed[0].gotMsg = true
       userChoosed[0].sendTo = false
             console.log('userChoosed on app',userChoosed)
       if(!this.isChat){
         this.messages.push(msg)
       }
-    //  const messages =  userService.saveChatMessages(msg)
+
       this.$forceUpdate();
     },
     clearChat1(id){
-     // console.log('message  from :',id)
       this.usersToChatWith = []
-      // this.isMsg = true
     },
     chooseUser(user){
       const isContainUser = this.usersToChatWith.some((userToFind)=>{
@@ -195,7 +149,6 @@ export default {
               this.usersToChatWith.splice(indexOfUser,1)
       }
       this.isMsg = false
-      this.idFrom = null 
       const userChoosed = this.allLoggedinUsers.filter((usertoFind)=>{
         return (usertoFind._id === user._id)
       })
@@ -205,21 +158,13 @@ export default {
           userChoosed[0].sendTo = true
       }
       this.$forceUpdate();
-      
-     //this.openChat() 
-
-  //  console.log('this.usersToChatWith : ',this.usersToChatWith)
-    },
+      },
       // a single user have just connected, and he sent his details to the other users
       addUserDetails(user){
-        console.log('user from websockets on app : ',user)
-        // console.log('user this.loggedinUser on app :',this.loggedinUser)
-       // console.log('addUserDetails  this.loggedinUser on app',this.loggedinUser)
         user.gotMsg = false
         this.loggedinUser = this.$store.getters.loggedinUser;
         if(user._id!==this.loggedinUser._id){
           console.log('yes')
-        //  const users = userService.saveLocalUsers(user) //
           this.allLoggedinUsers.push( (JSON.parse(JSON.stringify(user))))
         }
       },
@@ -231,14 +176,10 @@ export default {
             user.sendTo = false 
         })
       }
-
-
-     
-      },
+    },
     closeModal() {
       eventBus.$emit("closeAddStoryModal");
       eventBus.$emit("closeDetailsModal");
-      //  eventBus.$emit('closeModal')
     },
   },
 
