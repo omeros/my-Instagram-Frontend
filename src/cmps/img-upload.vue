@@ -2,7 +2,7 @@
 <div>
   <img  class="image-new-story" v-if="myImage" :src="myImage" width="" height="">
               <div class="flex">
-                    <label v-if="!isLoading&&!myImage" for="imgUploader"  @drop.prevent="handleFile" @dragover.prevent="dragOver"  @dragleave="isDragOver = false" :class="{ drag: isDragOver }" >
+                    <label v-if="!isLoading&&!myImage" for="imgUploader"  @drop.prevent="handleFile" @dragover.prevent="dragOver"  @dragleave="isDragOver = false"  >
                         <img  class="input-img"  src="https://res.cloudinary.com/omerphoto/image/upload/v1618335628/upload3_te8f2v.png">
                     </label>
 
@@ -44,18 +44,20 @@ export default {
 
     async onUploadImg(file) {
       this.isLoading = true;
-      this.isDragOver = false;
-      const res = await uploadImg(file);
-      this.$emit("save", res.url);
+     // this.isDragOver = false;
+      const res = await uploadImg2(file);
+      const uploadedImg = res.url;
+      this.$emit("imgSaved", uploadedImg);
+      //console.log('the img from service : ',uploadedImg)
       this.isLoading = false;
     },
-    async uploadImage(ev) {
-      this.isLoading = true
-      const res = await uploadImg2(ev)
-      this.myImage = res.url
-      console.log('onUploadImg -> res', res)
-      this.isLoading = false
-    },
+    // async uploadImage(ev) {
+    //   this.isLoading = true
+    //   const res = await uploadImg2(ev)
+    //   this.myImage = res.url
+    //   console.log('onUploadImg -> res', res)
+    //   this.isLoading = false
+    // },
   },
 };
 </script>

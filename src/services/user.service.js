@@ -44,10 +44,11 @@ function remove(userId) {
 }
 
 async function update(user) {
-    return storageService.put('user', user)
+   // return storageService.put('user', user)
+    return httpService.put(`user/${user._id}`, user)
     // user = await httpService.put(`user/${user._id}`, user)
     // Handle case in which admin updates other user's details
-    if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
+    //  if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
 }
 
 async function increaseScore(by = SCORE_FOR_REVIEW) {
@@ -133,8 +134,8 @@ function getLoggedinUser() {
 }
 
 function getGuest(){
-   const  guest = {
-             "_id" : "70981b985a3a1a1820e6bb4b",
+    const  guest = {
+            "_id" : "70981b985a3a1a1820e6bb4b",
             "username": "🎀 Guest 🎀",
             "password": "$2b$10$P2ha9WUeOn1jH.jQo/EvbOMBNipzSUSE25c/ramUHhJfo4dCdyjom",
             "fullname": "Guest ",

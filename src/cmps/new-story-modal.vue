@@ -63,7 +63,6 @@
 </template>
 
 <script>
-// import { uploadImg2 } from "@/services/img-upload2.service.js";
 import { uploadImg2 } from "@/services/img-upload2.service.js";
 import { uploadImg } from "@/services/img-upload.service.js";
 import { eventBus } from "@/services/event-bus.service.js";
@@ -83,20 +82,19 @@ export default {
 
         }
       },
-   created() {
-     console.log('on created ,emptyStory on new story modal',this.emptyStory)
-     
-   },
-   mounted() {
-     console.log('on mounted ,emptyStory on new story modal',this.emptyStory)
-   },
+  created() {
+    console.log('on created ,emptyStory on new story modal',this.emptyStory)   
+  },
+  mounted() {
+      console.log('on mounted ,emptyStory on new story modal',this.emptyStory)
+  },
   methods: {
     addIcon(smile){
       eventBus.$emit('addIcon',smile)
       this.smile = smile; 
     },
     stayOpen(){
-         eventBus.$emit('doNotCloseTheNewStoryModal')
+      eventBus.$emit('doNotCloseTheNewStoryModal')
       },
       
     addComment(commentStory){     

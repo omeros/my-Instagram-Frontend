@@ -2,7 +2,8 @@
   <section class="main-details " v-if="user" @click.stop="closeModal()" >
     <div class="profile">
       <div class="img-container">
-        <img :src="user.imgUrl" class="details-img" />
+        <img  v-if="user.imgUrl&&isEdit" :src="user.imgUrl" class="details-img" />
+        <img-upload @imgSaved="imgUserChoosed" v-if="!user.imgUrl|| !isEdit " />
       </div>
 
       <div class="details-container">
@@ -28,10 +29,20 @@
         </div>
 
         <div class="profile-description-bio">
-          <h3 class="h3-mobile">{{ user.fullname }}</h3>
-          <p class="p-mobile">{{ user.bio }}</p>
+          <template v-if="isEdit">
+            <h3 class="h3-mobile">{{ user.fullname }}</h3>
+            <p class="p-mobile" >{{ user.bio }}</p>
+          </template>
+          <div  v-else class="user-details-fill" >
+            <span class="user-fullname-fill-container"><input type="text" class="user-fullname-fill" placeholder="full name" v-model = "user.fullname"> </span>
+            <span class="user-bio-fill-container" > <textarea name="" id=""  class="user-bio-fill" cols="30" rows="10" placeholder="your bio" v-model = " user.bio"></textarea></span>
+              <!-- <input type="text" class="user-bio-fill" placeholder="your bio" v-model = " user.bio"> </span> -->
+          </div>
         </div>
       </div>
+      <button  @click.stop="editUserDetails()">
+        <svg aria-label="Options" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48" width="24"><path clip-rule="evenodd" d="M46.7 20.6l-2.1-1.1c-.4-.2-.7-.5-.8-1-.5-1.6-1.1-3.2-1.9-4.7-.2-.4-.3-.8-.1-1.2l.8-2.3c.2-.5 0-1.1-.4-1.5l-2.9-2.9c-.4-.4-1-.5-1.5-.4l-2.3.8c-.4.1-.8.1-1.2-.1-1.4-.8-3-1.5-4.6-1.9-.4-.1-.8-.4-1-.8l-1.1-2.2c-.3-.5-.8-.8-1.3-.8h-4.1c-.6 0-1.1.3-1.3.8l-1.1 2.2c-.2.4-.5.7-1 .8-1.6.5-3.2 1.1-4.6 1.9-.4.2-.8.3-1.2.1l-2.3-.8c-.5-.2-1.1 0-1.5.4L5.9 8.8c-.4.4-.5 1-.4 1.5l.8 2.3c.1.4.1.8-.1 1.2-.8 1.5-1.5 3-1.9 4.7-.1.4-.4.8-.8 1l-2.1 1.1c-.5.3-.8.8-.8 1.3V26c0 .6.3 1.1.8 1.3l2.1 1.1c.4.2.7.5.8 1 .5 1.6 1.1 3.2 1.9 4.7.2.4.3.8.1 1.2l-.8 2.3c-.2.5 0 1.1.4 1.5L8.8 42c.4.4 1 .5 1.5.4l2.3-.8c.4-.1.8-.1 1.2.1 1.4.8 3 1.5 4.6 1.9.4.1.8.4 1 .8l1.1 2.2c.3.5.8.8 1.3.8h4.1c.6 0 1.1-.3 1.3-.8l1.1-2.2c.2-.4.5-.7 1-.8 1.6-.5 3.2-1.1 4.6-1.9.4-.2.8-.3 1.2-.1l2.3.8c.5.2 1.1 0 1.5-.4l2.9-2.9c.4-.4.5-1 .4-1.5l-.8-2.3c-.1-.4-.1-.8.1-1.2.8-1.5 1.5-3 1.9-4.7.1-.4.4-.8.8-1l2.1-1.1c.5-.3.8-.8.8-1.3v-4.1c.4-.5.1-1.1-.4-1.3zM24 41.5c-9.7 0-17.5-7.8-17.5-17.5S14.3 6.5 24 6.5 41.5 14.3 41.5 24 33.7 41.5 24 41.5z" fill-rule="evenodd"></path></svg>
+      </button>
     </div>
     <span class="profile-tabs-tab"><svg height="12" viewBox="0 0 48 48" class="svg-test" width="12"><path clip-rule="evenodd" d="M45 1.5H3c-.8 0-1.5.7-1.5 1.5v42c0 .8.7 1.5 1.5 1.5h42c.8 0 1.5-.7 1.5-1.5V3c0-.8-.7-1.5-1.5-1.5zm-40.5 3h11v11h-11v-11zm0 14h11v11h-11v-11zm11 25h-11v-11h11v11zm14 0h-11v-11h11v11zm0-14h-11v-11h11v11zm0-14h-11v-11h11v11zm14 28h-11v-11h11v11zm0-14h-11v-11h11v11zm0-14h-11v-11h11v11z" fill-rule="evenodd"></path></svg> Posts </span>
     <div class="profile-posts"  v-if="stories">
@@ -50,6 +61,7 @@ import { eventBus } from "@/services/event-bus.service.js";
 import { storyService } from "../services/story.service.js";
 import storyPreviewModal from "@/cmps/story-preview-modal.vue";
 import storyPreviewModalContainer from "@/cmps/story-preview-modal-container";
+import imgUpload from "@/cmps/img-upload";
 export default {
   name: "user-details",
   data() {
@@ -61,6 +73,7 @@ export default {
       storyToShow: null,
       txt : '',
       isLiked : false,
+      isEdit : true
     };
   },
   async created() {
@@ -68,7 +81,8 @@ export default {
   watch: {},
   created() {
       this.userId = this.$route.params.id;
-      this.user = this.$store.getters.getUserById(this.userId);
+      const objUser = this.$store.getters.getUserById(this.userId);
+      this.user = JSON.parse(JSON.stringify(objUser))
       this.stories =  this.$store.getters.getStoryByUserId(this.userId);
     //  console.log('stories on user details created ',  this.stories)
       eventBus.$on("closeDetailsModal", () => {
@@ -121,7 +135,15 @@ export default {
     });
    },
   methods: {
-        addLike(id){
+    editUserDetails(){
+      this.isEdit = !this.isEdit
+    },
+    imgUserChoosed(uploadedImg){
+      console.log('from no user img upload',uploadedImg )
+      this.user.imgUrl = uploadedImg
+      this.$store.dispatch({ type: 'updateUser', user : this.user }) 
+    },
+    addLike(id){
     //        console.log('add like in user details')
             this.isLiked ?   this.$store.dispatch({ type: 'removeLikeFromStory', storyId: id }) :  this.$store.dispatch({ type: 'setLikeToStory', storyId: id })  
             this.isLiked  = !this.isLiked 
@@ -214,6 +236,7 @@ export default {
   components: {
     storyPreviewModal,
     storyPreviewModalContainer,
+    imgUpload
   },
 };
 </script>

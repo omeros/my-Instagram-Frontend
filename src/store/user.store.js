@@ -52,18 +52,19 @@ export const userStore = {
             
         // },
         setLoggedinUser(state, { user }) {
-            state.loggedinUser = user;
             const objUser = JSON.parse(JSON.stringify(user))
+            state.loggedinUser = objUser;
             state.loggedinUsers.push(objUser);
+            console.log('user in setLoginuser in user store ',user)
         },
-        setLoggedinUser(state, { user }) {
-            state.loggedinUser = user;
-        },
+        // setLoggedinUser(state, { user }) {
+        //     state.loggedinUser = user;
+        // },
         setWatchedUser(state, { user }) {
             state.watchedUser = user;
         },
         setUsers(state, { users }) {
-        //    console.log('in user store  setUsers - load users from local storage', users)
+            //console.log('in user store  setUsers - after update user from local storage', users)
             state.users = users;
         },
         removeUser(state, { userId }) {
@@ -137,8 +138,9 @@ export const userStore = {
         },
         async updateUser({ commit }, { user }) {
             try {
-                user = await userService.update(user);
-                commit({ type: 'setUser', user })
+                const user2 = await userService.update(user);
+                console.log('user2 updateUser ', user2)
+                commit({ type: 'setLoggedinUser', user2 })
             } catch (err) {
                 console.log('userStore: Error in updateUser', err)
                 throw err

@@ -19,7 +19,6 @@
           <button  class="open-chat" @click.stop="openChat()" v-if="!isChat"><i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yc/r/pZnj7-h1xop.png&quot;); background-position: 0px -504px; background-size: 26px 1636px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i> </button>
           <button  class="open-chat" @click.stop="openChat()" v-if="isChat"> <svg width="26px" height="26px" viewBox="-4 -4 24 24"><line x1="2" x2="14" y1="2" y2="14" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"></line><line x1="2" x2="14" y1="14" y2="2" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"></line></svg> </button>
         </div>
-        
       </div>
       <app-header />
       <router-view />
@@ -71,7 +70,7 @@ export default {
     }
     socketService.on("usersConnections", this.usersConnections);
     this.allLoggedinUsers = userService.getLoggedinUsers()
-    console.log("this.loggedinUser  in app.vue ", this.loggedinUser);
+   // console.log("this.loggedinUser  in app.vue ", this.loggedinUser);
     socketService.on("updateLoginUser", this.updateLoginUser);
     socketService.on("user-has-disconnect", this.usersConnections);
   },
@@ -95,7 +94,7 @@ export default {
   },
   methods: {
       updateLoginUser(loggedinUser){
-      console.log(' loggedinUser on updateLoginUser on app.vue', loggedinUser)
+    //  console.log(' loggedinUser on updateLoginUser on app.vue', loggedinUser)
       socketService.off(`${this.loggedinUser._id}`, this.addMsg);
       this.loggedinUser = loggedinUser
       socketService.on(`${loggedinUser._id}`, this.addMsg);
@@ -104,8 +103,8 @@ export default {
       //********************* all the users who are connected to the app - comming from Server ************************** */
       usersConnections(usersConnections){
       this.loggedinUser = this.$store.getters.loggedinUser;
-      console.log('usersConnections on App on usersConnections',usersConnections)
-      console.log('this.loggedinUser on App.vue on usersConnections ',this.loggedinUser)
+   //   console.log('usersConnections on App on usersConnections',usersConnections)
+   //   console.log('this.loggedinUser on App.vue on usersConnections ',this.loggedinUser)
       const isContainUser =  usersConnections.some((userToFind)=>{
         return (this.loggedinUser._id === userToFind._id)
       })
@@ -113,22 +112,22 @@ export default {
         const userToRemove = usersConnections.filter((user)=>{
           return (this.loggedinUser._id === user._id)
       })
-      console.log('userToRemove on app',userToRemove)
+  //    console.log('userToRemove on app',userToRemove)
         const indexToRemove =  usersConnections.indexOf(userToRemove[0])
         usersConnections.splice(indexToRemove,1)
         this.allLoggedinUsers = JSON.parse(JSON.stringify(usersConnections))
       }
-        console.log('this.allLoggedinUsers',this.allLoggedinUsers)
+   //     console.log('this.allLoggedinUsers',this.allLoggedinUsers)
     },
     addMsg(msg){
-      console.log('got msg on app',msg)
-      console.log('this.allLoggedinUsers on app',this.allLoggedinUsers)
+   //   console.log('got msg on app',msg)
+   //   console.log('this.allLoggedinUsers on app',this.allLoggedinUsers)
       const userChoosed = this.allLoggedinUsers.filter((user)=>{
         return (user._id === msg.from._id)
       })
       userChoosed[0].gotMsg = true
       userChoosed[0].sendTo = false
-            console.log('userChoosed on app',userChoosed)
+    //        console.log('userChoosed on app',userChoosed)
       if(!this.isChat){
         this.messages.push(msg)
       }
@@ -159,12 +158,12 @@ export default {
       }
       this.$forceUpdate();
       },
-      // a single user have just connected, and he sent his details to the other users
+      // ********** a single user have just connected, and he sent his details to the other users **************//
       addUserDetails(user){
         user.gotMsg = false
         this.loggedinUser = this.$store.getters.loggedinUser;
         if(user._id!==this.loggedinUser._id){
-          console.log('yes')
+      //    console.log('yes')
           this.allLoggedinUsers.push( (JSON.parse(JSON.stringify(user))))
         }
       },

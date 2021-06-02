@@ -23,7 +23,7 @@
             <form @submit.prevent="doSignup">
               <h2>Or Sign Up First</h2>
               <div class="input-padding"> <input  class="login-input"  type="text" v-model="signupCred.fullname" placeholder="Your full name" />  </div>
-              <div  class="input-padding" > <input class="login-input"    type="text"  v-model="signupCred.password"  placeholder="Password"  />  </div>
+              <div  class="input-padding" > <input class="login-input"    type="password"  v-model="signupCred.password"  placeholder="Password"  />  </div>
               <div class="input-padding"> <input class="login-input"  type="text"  v-model="signupCred.username"  placeholder="Username" />  </div>
               <button class="signup-btn">Sign Up Now</button>
             </form>
@@ -98,7 +98,7 @@ export default {
     },
     doLogout() {
       this.$store.dispatch({ type: "logout" });
-       socketService.emit("user-disconnect", this.$store.getters.loggedinUser); 
+      socketService.emit("user-disconnect", this.$store.getters.loggedinUser); 
     },
     async doSignup() {
       console.log('do signup in login-logout')
@@ -108,7 +108,10 @@ export default {
       }
       await this.$store.dispatch({ type: "signup", userCred: this.signupCred });
       this.userId = this.$store.getters.loggedinUser._id
+      await this.$store.dispatch({ type: "loadStories" });
+      await this.$store.dispatch({ type: "loadUsers" });
       this.$router.push(`/user/${this.userId}`)
+
   
       
     },
