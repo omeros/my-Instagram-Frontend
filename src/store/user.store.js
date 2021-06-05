@@ -52,10 +52,10 @@ export const userStore = {
             
         // },
         setLoggedinUser(state, { user }) {
+          //  console.log('user in setLoginuser in user store ',user)
             const objUser = JSON.parse(JSON.stringify(user))
             state.loggedinUser = objUser;
             state.loggedinUsers.push(objUser);
-            console.log('user in setLoginuser in user store ',user)
         },
         // setLoggedinUser(state, { user }) {
         //     state.loggedinUser = user;
@@ -138,9 +138,9 @@ export const userStore = {
         },
         async updateUser({ commit }, { user }) {
             try {
-                const user2 = await userService.update(user);
-                console.log('user2 updateUser ', user2)
-                commit({ type: 'setLoggedinUser', user2 })
+                const userFromDB = await userService.update(user);
+                console.log('userFromDB after update, on updateUser func ', userFromDB)
+                commit({ type: 'setLoggedinUser', user : userFromDB })
             } catch (err) {
                 console.log('userStore: Error in updateUser', err)
                 throw err

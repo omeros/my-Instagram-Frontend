@@ -6,7 +6,11 @@
                         <img  class="input-img"  src="https://res.cloudinary.com/omerphoto/image/upload/v1618335628/upload3_te8f2v.png">
                     </label>
 
-                      <img   v-if="isLoading" class=""  src="https://motiongraphicsphoebe.files.wordpress.com/2018/10/animated-loading-c397-1.gif">
+
+                      <!-- <img alt=""   v-if="isLoading"  class="input-img" importance="auto" loading="auto" src="https://i.pinimg.com/originals/c7/67/34/c76734f9045eac95df71b9816ac53b08.gif"> -->
+                       <img    v-if="isLoading"  alt="" id="asset_2121936_5635903" class="uploadImg-user-details"  role="presentation" src="https://assets2.ello.co/uploads/asset/attachment/2121936/ello-optimized-71aceb91.gif">
+
+                      <!-- <img   v-if="isLoading" class=""  src="https://motiongraphicsphoebe.files.wordpress.com/2018/10/animated-loading-c397-1.gif"> -->
                       <!-- <img   v-if="isLoading" class="input-img"  src="https://cdn.dribbble.com/users/1186261/screenshots/3718681/_______.gif"> -->
 
                   
