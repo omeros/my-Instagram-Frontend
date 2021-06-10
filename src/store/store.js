@@ -126,7 +126,7 @@ export const store = new Vuex.Store({
       //  console.log('payload.updatedStory in store',payload.updatedStory)
       const idx = state.stories.findIndex(p => p._id === payload.updatedStory._id)
       state.stories.splice(idx, 1, payload.updatedStory);
-   //   console.log(' state.stories in store', state.stories)
+      console.log(' updateStories in store', state.stories)
     },
     commentLikedBefor(state, payload) {
       this.state.isCommentLikedBefor = true

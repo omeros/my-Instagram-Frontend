@@ -5,7 +5,6 @@ import chat from './views/chat.vue'
 import loginSignup from './views/login-signup.vue'
 import storyApp from './views/story-app.vue'
 import userDetails from './views/user-details.vue'
-import  commentsPreview from  '@/cmps/comments-preview.vue'
 // import userFilter from "@/cmps/user-filter.vue";
 // import userApp from './views/user-app.vue'
 
@@ -25,12 +24,6 @@ export const router = new Router({
       path: '/',
       name: 'storyApp',
       component: storyApp,
-      children: [
-        {
-            path: '/:userId',
-            component: commentsPreview
-        },
-      ]
     },
 
     {

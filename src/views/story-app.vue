@@ -26,7 +26,7 @@ export default {
       // storiesToEdit : storyService.getEmptystory(),
       // storiesToEdit : this.$store.getters.getEmptyStory,
       selectedStory : null,
-     // smiliesToShow :  null , // this.$store.getters.smiley,
+    //  smiliesToShow :  null , // this.$store.getters.smiley,
       isLiked : false
   // this.emptyStory =  this.$store.getters.getEmptyStory
      
@@ -34,24 +34,17 @@ export default {
     };
   },
  async created() {
- //this.getSmilies()
-   // console.log("story app loaded!!!");
-  //   this.$store.dispatch({ type: "loadStories" });
-
-   //     socketService.emit("updateLoginUser",sometxt); 
-          eventBus.$on('openModalFromActionBar', (id) => {
-       //   console.log(' openModalFromActionBar  on story App')
-          this.addLikeFromActionBar(id)
-  })
-  // const sometxt = 'abc'
-  // socketService.emit("updateLoginUser",sometxt);
-
+      eventBus.$on('addLikeFromActionBar',  this.addLikeFromActionBar)
+      eventBus.$on('addCommentFromCommentInput', this.addCommentToStory)
+      eventBus.$on('addLikeToComment', this.addLikeToComment)
+   //   this.smiliesToShow   =  this.$store.getters.smiley
   },
   mounted(){
-    // console.log("this.loggedinUser on story app", loggedinUser) 
-   //   const sometxt = 'abc'
-   // const loggedinUser = this.$store.getters.loggedinUser;
-   // socketService.emit("updateLoginUser",loggedinUser);
+  },
+    beforeDestroy (){
+    eventBus.$off('addLikeFromActionBar', this.addLikeFromActionBar)
+    eventBus.$off('addCommentFromCommentInput', this.addCommentToStory)
+    eventBus.$off('addLikeToComment', this.addLikeToComment)
   },
   destroyed(){
   // this.smiles = storyService.getSmiles()
@@ -60,61 +53,58 @@ export default {
   // })
   },
 
-    computed: {
- 
-      selectedStoryFromComputed(){
-        return this.selectedStory
-      },
-      smiliesToShow(){
-        const smiley = this.$store.getters.smiley
+  computed: {
+    selectedStoryFromComputed(){
+      if(this.selectedStory)
+        return  this.$store.getters.getStoryById(this.selectedStory._id)
+  },
+    smiliesToShow(){
+      return this.$store.getters.smiley
     //    console.log('smily in appp ',  smiley)
-        return smiley
+      
       },
     storiesToShow() {
-      const storiesToShow = this.$store.getters.storiesToShow;
+      return   this.$store.getters.storiesToShow;
+      //const storiesToShow = this.$store.getters.storiesToShow;
       // const storiesToShow = this.$store.getters.getStories;
     //  console.log("stories on story App", storiesToShow);
-      return storiesToShow;
+    //  return storiesToShow;
     },
 
   },
     methods: {
-      async getSmilies(){
-        var smiley =  await this.$store.getters.smiley
-      //  console.log('smily in appppppppppppppp from aaaaaaaaaaaaaaaa',  smiley)
-        this.smiliesToShow= smiley
+    async getSmilies(){
+        this.smiliesToShow =  await this.$store.getters.smiley
+        console.log('smily in story-app ',  this.smiliesToShow)
       //  console.log('smily in appppppppppppppp from bbbbbbbbbbbbbbbbbbb',  this.smiliesToShow)
       },
-  
     addLikeFromActionBar(id){
-      console.log('addLikeFromActionBar in  story-App')
-   //   if(!this.isLiked){
-        this.$store.dispatch({ type: 'setLikeToStory', storyId: id })    // <================ to change back
-     //  this.isLiked = !this.isLiked
-    //  }
-       // this.openModal()
-      // }else{
-      //   this.$store.dispatch({ type: 'removeLikeFromStory', storyId: id })//  <=================  to change back
-      //     this.isLiked = !this.isLiked
-      //   //  this.openModal()
-      // }
+      console.log('addLikeFromActionBar in  story-App',id)
+      this.$store.dispatch({ type: 'setLikeToStory', storyId: id })
     },
-       removepost(){
+    addCommentToStory(commentStory){
+      console.log('addCommentToStory in story-app')
+      this.$store.dispatch({ type: 'addCommentToStory', comment: commentStory })
+    },
+    addLikeToComment(details){
+      this.$store.dispatch({ type: 'addLikeToComment', theDetails : details })
+    },
+    removepost(){
 
-       },
-       close(){
-             console.log('close the function !!')
-       },
+    },
+    close(){
+        console.log('close the function !!')
+    },
       storyToModal(story){
-        this.selectedStory = null
+        //this.selectedStory = null
         this.selectedStory = story
-        console.log('the story to modal in atory-app', story)
-       },
-       closeModal(){
-         this.selectedStory = null
-             eventBus.$emit('closeAddStoryModal')
-       }
-     },
+      //  console.log('the story to modal in atory-app', story)
+      },
+        closeModal(){
+          this.selectedStory = null
+            eventBus.$emit('closeAddStoryModal')
+      }
+    },
     components: {
     storyList,
     storyService,

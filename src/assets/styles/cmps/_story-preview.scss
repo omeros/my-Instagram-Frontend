@@ -3,22 +3,11 @@
 }
 .main{
     //position: relative;
-
     margin: 30px 0;
 }
-// body {
-//     font-family: Arial,sans-serif;
-//     line-height: 1.8;
-//     color: #262626;
-//     margin: 0;
-//     background-color: #fafafa;
-// }
-
 .story-father{
     position: relative;
 }
-
-
 .post-details {
     border: 1px solid #dbdbdb;
     background-color: #fff;
@@ -58,11 +47,11 @@
     color: #262626;
 }
 .story-details-img{
-   height: 25px;
-   width: 25px;
-   border-radius: 50%;
-   display: inline;
-   margin: 0px 16px 0px 0px;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline;
+    margin: 0px 16px 0px 0px;
 
 //    padding: 16px;
 
@@ -158,11 +147,11 @@
 
 
 .post-like-btn{
-   color: #262626;
-   background-color: #fff;
-   font-weight: 600;
-   text-align: left;
-   outline: none;
+    color: #262626;
+    background-color: #fff;
+    font-weight: 600;
+    text-align: left;
+    outline: none;
 }
                         
 .story-name{
@@ -171,12 +160,9 @@
     color: #262626;
     font-weight: 600;
     padding-right: 3px;
-  
- 
-}
-                                    // <================ relative
+}                                  
 .post-details-add-comment{                            
-     position: relative;
+    position: relative;
     padding: 0 16px;
     display: flex;
     align-items: center;
@@ -203,10 +189,8 @@ textarea{
     width: 10px;
     outline: none;
     opacity: 0.3;
-
 }
-.post-details-add-comment-btn:hover{
-   
+.post-details-add-comment-btn:hover{  
     // color: #dbe3e9;
 }
 .istxt{
@@ -220,21 +204,17 @@ img{
 .view-comments{
     cursor: pointer;
 }
-
-  .smily-modal{                                        
-                                //         <================================ smily modal ======================
-        // border:5px solid $clr3; 
-     background-color: rgb(255, 255, 245);
-       max-width: 350px;
-       max-height: 500px;
-      position: absolute;
-      bottom:   0;
-       left: 1;
-     //  right: 0;
+.smily-modal{                                        
+    box-shadow: 5px 5px 8px 3px #d8d5d5be;    
+    background-color: rgb(255, 255, 255);
+    max-width: 350px;
+    max-height: 500px;
+    position: absolute;
+    bottom:   0;
+    left: 1;
     z-index: 999;
     bottom: 0;
     border-radius: 15px 0px 0 15px ;
-    
 }
 .most-popular{
     width: 300px;
@@ -242,29 +222,25 @@ img{
     color: rgb(155, 152, 152);
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     padding: 10px;
-  
 }
 .inner-smily-modal{
-      display: flex;
-      flex-direction: row;
- 
-      flex-wrap: wrap;
-      padding-left: 10px;
-      padding-right: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 10px;
+    padding-right: 0;
+    width: 100%;
+    height: 70%;
+}
 
-      width: 100%;
-      height: 70%;
-  }
-
-  .grid{
-      width: 80%;
-      height: 80%;
+.grid{
+    width: 80%;
+    height: 80%;
     display: grid;
     grid-template-columns: 70px  70px 70px 70px;
     grid-template-rows: 60px 60px 60px ;
-    padding: 0;
-    
-  }
+    padding: 0;  
+}
 .smily-btn{
     padding-right: 15px;
     padding-top: 10px;

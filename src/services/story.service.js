@@ -71,7 +71,7 @@ function remove(id) {
 }
 
 function save(story) {
-  console.log(' before sent to DB',story)
+  console.log('at story service before sent to DB',story)
   if (story._id) {
  //   console.log('update story at  strory.sevice')
     return  httpService.put(`story/${story._id}`,story)             // update a story
@@ -102,16 +102,7 @@ function getEmptystory(){
 
     ],
     likedBy: [
-      {
-        _id:  utilService.makeId,
-        fullname: "",
-        imgUrl: ""
-      },
-      {
-        _id:  utilService.makeId,
-        fullname: "",
-        imgUrl:""
-      }
+
     ],
     tags: ["", ""]
   }

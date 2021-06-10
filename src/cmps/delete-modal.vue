@@ -1,7 +1,7 @@
 <template>
   <div class="delete-modal-container">
 
-  <button class="delete-post-btn" @click.stop="removePost()" > Delete Story </button> 
+  <button class="delete-post-btn" @click.self="removePost()" > Delete Story </button> 
   </div>
 </template>
 
@@ -10,7 +10,7 @@ export default {
 
   methods: {
       removePost(){
-         this.$emit("removepost")
+        this.$emit("removepost")
       }
   }
 }

@@ -47,9 +47,6 @@
     overflow: auto;
 }
 
-.mytest{
-    // overflow: auto;
-}
 .user-actions-preview{
     padding: 16px;
 }
@@ -160,9 +157,10 @@
 }
 
 .smily-modal-preview{                                        
-    //         <================================ smily modal ======================
-    // border:5px solid $clr3; 
-    background-color: rgb(255, 255, 245);
+    // background-color: #f0f2f5;
+    background-color: #f8fafc;
+    box-shadow: 5px 5px 8px 3px #d8d5d5be;    
+
     max-width: 350px;
     max-height: 500px;
     position: absolute;

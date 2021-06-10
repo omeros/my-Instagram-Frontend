@@ -54,7 +54,7 @@
             <a class="view-comments"  v-if="story.comments.length>2" tabindex="0"  @click.stop="openModal()">View all <span>{{story.comments.length}}</span> comments</a>
             <!-- <button  @click.stop="openModal(story._id)">  View all <span>{{story.comments.length}}</span> comment    </button> -->
     
-          <div class="story-row" v-if="story.comments.length>1" >
+          <div class="story-row" v-if="story.comments.length>0" >
               <div class="comment">
                 <div>
                   <span class="story-name"> {{ story.comments[0].by.fullname }} </span>
@@ -65,7 +65,7 @@
                             <svg  v-else  height="24" viewBox="0 0 48 48" width="24" class="nolike-comment"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
                     </button>
               </div>
-              <div class="comment">
+              <div class="comment"  v-if="story.comments.length>1" >
                   <div>
                     <span class="story-name"> {{ story.comments[1].by.fullname }} </span>
                     <span> {{  story.comments[1].txt }} </span>
@@ -82,8 +82,8 @@
             <div class="inner-smily-modal">
                 <div class="most-popular"> Most Popular </div>
                   <div class="grid">
-                    <div  class="smily-img " v-for="s in smiles" :key="s._idx">
-                      <img  :src="s.url"  @click="addIcon(s._idx)">
+                    <div  class="smily-img " v-for="s in smiles" :key="s._id">
+                      <img  :src="s.url"  @click="addIcon(s._id)">
                   </div>
                 </div>
             </div>
@@ -119,37 +119,17 @@ export default {
       isLiked : false,
       txt : '',
       isCommntLiked : [],
-       isModal : false,
-       isSmilyModal : false,
+      isModal : false,
+      isSmilyModal : false,
     };
   },
   created(){
-      //   console.log('story.likedBy.length in story preview',this.story.likedBy.length)
-         //  console.log(' story in story-preview',this.story)      
-            //  this.smiles = storyService.getSmiles()
-        // eventBus.$on('openModalFromActionBar', (id) => {
-        //   this.ifThisIsTheModal(id)
-        // })
-        eventBus.$on('openModalFromCommentInput', (commentStory) => {
-          this.addCommentToStory(commentStory)
-      })
-
+    console.log('smiles in story-preview',this.smiles)
   },
-  mounted() {
-    //console.log('story.likedBy.length in story preview',this.story.likedBy.length)
-  
-      
-
+  mounted() { 
   },
- destroyed(){
- // this.smiles = storyService.getSmiles()
-        // eventBus.$off('openModalFromActionBar', (id) => {
-        //   this.ifThisIsTheModal(id)
-        // })
-        eventBus.$off('openModalFromCommentInput', (commentStory) => {
-          this.addCommentToStory(commentStory)
-      })   
-   },
+  destroyed(){ 
+  },
 
   computed: {
     getDetails(){
@@ -171,18 +151,18 @@ export default {
       if(this.story._id===id){
        //     console.log('the bus evemt from actionbar in  story-preview from bus',id)
       
-           this.addLike(id)
+            this.addLike(id)
            //this.addLikeFromModal(id)
            // this.openModal()
         }
 
     },
     addIcon(id){
-    var smile = this.smiles.filter(smile => {
-      return (smile._idx===id)
+    const smile = this.smiles.filter(smile => {
+      return (smile._id===id)
     })
-    // console.log('emoji in story-preview',smile[0].emoji) 
-     this.txt += String.fromCodePoint(smile[0].emoji); 
+      console.log('emoji in story-preview',smile[0].emoji) 
+      this.txt += String.fromCodePoint(smile[0].emoji); 
     },
     openSmily(){
         this.isSmilyModal = !this.isSmilyModal;

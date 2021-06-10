@@ -37,30 +37,15 @@ export default {
      },
     created() {
       console.log('created in action bar',this.story.likedBy.length)
-            //  eventBus.$on('teaddLikeToActionbarst', () => {
-            //  this.changeLikeBtn()
-            //  })
     },
     mounted(){
-          console.log('mounted in action bar',this.story.likedBy.length)
+     //     console.log('mounted in action bar')
     },
 
   methods: {
-   addLike(id){
-     console.log('addLike in action bar befor emmited ',this.story.likedBy.length)
-      // if(!this.isLiked){
-        //       console.log('true in action bar')
-      //   this.$store.dispatch({ type: 'setLikeToStory', storyId: id })
-      this.isLiked = !this.isLiked
-      // }else{
-        //     console.log('false in action bar')
-      //   this.$store.dispatch({ type: 'removeLikeFromStory', storyId: id })
-      //   this.isLiked = !this.isLiked
-      // }
-      eventBus.$emit('openModalFromActionBar',id)
-      //eventBus.$emit('bla',id)
-
-        console.log('addLike in action bar  after emmited',this.story.likedBy.length)
+    addLike(id){
+     // console.log('addLike in action bar befor emmited ',this.story.likedBy.length)
+      eventBus.$emit('addLikeFromActionBar',id)
     },
   },
       computed: {
@@ -68,13 +53,13 @@ export default {
           return  this.story.likedBy.length
         },
         isLikedComputed(){
-           return this.isLiked 
-        }
-    //  changeLikeBtn(){
-    //       this.isLiked = !this.isLiked
-    //  },
-
-      },
+          const loggedinUser = this.$store.getters.loggedinUser;
+                const isContainUser = this.story.likedBy.some((userToFind)=>{
+                return (loggedinUser._id === userToFind._id)
+          })
+          return isContainUser
+      }
+  },
 
 }
 </script>

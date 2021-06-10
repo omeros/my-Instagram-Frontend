@@ -1,6 +1,6 @@
 <template>
   <!-- <div class="abc" > -->
-  <div class="abc" @click.stop="stayOpen()">
+  <div class="abc">
     <div class="story-preview-modal">
       <div class="story-preview-modal-content">
         <div v-if="story" class="story-preview-modal-img-container">
@@ -25,9 +25,6 @@ export default {
   props: ["story", "smiles"],
 
   methods: {
-    stayOpen() {
-      eventBus.$emit("doNotCloseTheModal");
-    },
     removepost() {
       this.$emit("removepost");
     },

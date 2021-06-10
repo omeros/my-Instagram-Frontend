@@ -17,9 +17,7 @@
                             <deleteModal  @removepost=removepost />
                         </div>
         <div class="main-comments-preview">
-          <div class="mytest">
-
-            
+          <div class="">
                     <div class="user-comment-preview">
                             <!-- <div class="screen-preview"> -->
                               <div class="straight-row">
@@ -56,7 +54,7 @@
           <!--------- separate-line ----------->
           <div class="line"></div>
           <!------------ post-row ---------------->
-          <commentInput :storyId="story._id"  @addComment=addComment  @openSmiley=openSmiley   @closeSmiley=closeSmiley  />        
+          <commentInput :storyId="story._id"   @openSmiley=openSmiley   @closeSmiley=closeSmiley  />        
       </div>
  
     </section>
@@ -82,16 +80,10 @@ export default {
         isSmilyModal : false,
         istest : false,
         componentKey : 0,
-        isDeletePost : false
-    
+        isDeletePost : false    
     };
   },
     created() {
-          //   eventBus.$on('test', () => {
-     //        console.log('update commponent',this.story)
-          //   this.componentKey += 1;
-          // })
-     // console.log('smiles in story-modal-modal',this.smile)
     },
     computed: {
       getStory(){
@@ -104,32 +96,20 @@ export default {
         })
         return isLikedBefor
     },
-
   },
   methods: {
     removepost(){
-     //   console.log('remove the post from father')
         this.isDeletePost=!this.isDeletePost
-     //    this.$store.dispatch({ type: 'removeStory', storyId: this.story._id })
-          this.$emit("removepost")
+        this.$emit("removepost")
     },
-    // addComment(commentStory){
-    //     this.emptyStory.txt=commentStory.txt
-    //     this.emptyStory.imgUrl= this.myImage
-    //     this.$store.dispatch({ type: 'addNewStory', newStory: this.emptyStory })
-    //     // this.componentKey += 1;
-    //     // this.$forceUpdate(); 
-    // },
     openDeletPost(){
-      this.isDeletePost = !this.isDeletePost
-     // console.log('delete post id : ',this.story._id)
+      this.isDeletePost = true
     },
     closeDeletPost(){
-      this.isDeletePost = !this.isDeletePost
-     // console.log('delete post id : ',this.story._id)
+      this.isDeletePost = false
     },
 
-     addIcon(smile){
+    addIcon(smile){
       eventBus.$emit('addIcon',smile)
       this.smile = smile; 
     },
@@ -157,34 +137,7 @@ export default {
           commentIdx : commentIdx
         }
       this.$store.dispatch({ type: 'addLikeToComment', theDetails : details })
-  },
-    addLike(id){
-       // this.$store.dispatch({ type: 'setLikeToStory', storyId: id })
-      //  this.isLiked = !this.isLiked  
     },
-    addComment(commentStory){
-        // var commentStory ={
-        //   txt : this.txt,
-        //   storyId : id,
-        // } 
-        console.log('the story to comment in story preview modal',commentStory)
-        this.$store.dispatch({ type: 'addCommentToStory', comment: commentStory })
-        // this.componentKey += 1;
-        // this.$forceUpdate();
-     
-    },
-    isCommentLikedfunc(commentIdx)
-    {
-      var theloggedInUser =  this.$store.getters.loggedinUser 
-      var isLikedBefor = this.story.comments[commentIdx].likedBy.some(user => {
-        return (user._id===theloggedInUser._id)
-      })
-       return isLikedBefor
-    }
-
-
-
-
   },
   components:{
     storyComment,
