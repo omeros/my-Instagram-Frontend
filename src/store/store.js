@@ -5,7 +5,7 @@ import { userStore } from './user.store.js'
 import { socketStore } from './socket.store.js'
 import { reviewStore } from './review.store.js'
 import { storyService } from "../services/story.service.js";
-import { utilService } from "../services/util.service.js";
+import { utilService } from '../services/util.service.js'
 
 Vue.use(Vuex)
 
@@ -295,7 +295,7 @@ export const store = new Vuex.Store({
           throw new Error('Cannot update comment in  stories');
         })
     },
-    loadStories({ commit, state }) {                           // <================================= load from DB
+    loadStories({ commit, state }) {                          
       storyService.query(state.filter || undefined)
         .then(stories => {
           storyService.querySmiley()

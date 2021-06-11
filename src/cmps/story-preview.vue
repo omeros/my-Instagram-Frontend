@@ -108,8 +108,6 @@
 </template>
 
 <script>
-import { eventBus } from "@/services/event-bus.service.js";
-import { storyService } from "../services/story.service.js";
 export default {
   name: "story-preview",
   props: ["story","smiles"],
@@ -162,7 +160,7 @@ export default {
       return (smile._id===id)
     })
       console.log('emoji in story-preview',smile[0].emoji) 
-      this.txt += String.fromCodePoint(smile[0].emoji); 
+      !this.txt ?  this.txt = String.fromCodePoint(smile[0].emoji) : this.txt += String.fromCodePoint(smile[0].emoji)
     },
     openSmily(){
         this.isSmilyModal = !this.isSmilyModal;
