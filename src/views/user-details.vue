@@ -46,8 +46,8 @@
       </div>
     </div>
     <span class="profile-tabs-tab"><svg height="12" viewBox="0 0 48 48" class="svg-test" width="12"><path clip-rule="evenodd" d="M45 1.5H3c-.8 0-1.5.7-1.5 1.5v42c0 .8.7 1.5 1.5 1.5h42c.8 0 1.5-.7 1.5-1.5V3c0-.8-.7-1.5-1.5-1.5zm-40.5 3h11v11h-11v-11zm0 14h11v11h-11v-11zm11 25h-11v-11h11v11zm14 0h-11v-11h11v11zm0-14h-11v-11h11v11zm0-14h-11v-11h11v11zm14 28h-11v-11h11v11zm0-14h-11v-11h11v11zm0-14h-11v-11h11v11z" fill-rule="evenodd"></path></svg> Posts </span>
-    <div class="profile-posts"  v-if="storiestest" @click.self="closeModal()">
-      <div class="profile-posts-item" v-for="story in storiestest" :key="story._id"  >
+    <div class="profile-posts"  v-if="storiesComputed" @click.self="closeModal()">
+      <div class="profile-posts-item" v-for="story in storiesComputed" :key="story._id"  >
         <img :src="story.imgUrl"  class="details-stories-img" @click.stop="openModal(story._id)" />
       </div>
     </div>
@@ -115,7 +115,6 @@ export default {
       this.isSaved = !this.isSaved
     },
     imgUserChoosed(uploadedImg){
-      console.log('from no user img upload',uploadedImg )
       this.user.imgUrl = uploadedImg  
       this.isEdit = !this.isEdit
     },
@@ -123,26 +122,27 @@ export default {
       this.$store.dispatch({ type: 'setLikeToStory', storyId: id })
     },
     addCommentToStory(commentStory){
-      console.log('addCommentToStory in user-details')
       this.$store.dispatch({ type: 'addCommentToStory', comment: commentStory })
     },
     addLikeToComment(details){
-      console.log('yesdsssss' )
       this.$store.dispatch({ type: 'addLikeToComment', theDetails : details })
     },
 
     removepost(){
-  //      console.log('remove post on user-datails')
+    //  console.log('remove post on user-datails')
         this.$store.dispatch({ type: 'removeStory', storyToRemoveId: this.storyToShow._id })
         this.isModal = false;
 
     },
     openModal(storyId) {
-      var storyToShow = this.stories.filter((story) => {
+      this.stories =  this.$store.getters.getStoryByUserId(this.userId);
+      const storyToShow = this.stories.filter((story) => {
         if (story._id === storyId) {
           return story;
         }
+
       });
+        console.log(" no : ")
       this.storyToShow = storyToShow[0];
       this.isModal = true;
     },
@@ -152,7 +152,7 @@ export default {
     },
   },
   computed: {
-    storiestest(){
+    storiesComputed(){
         return this.$store.getters.getStoryByUserId(this.userId);   
     },
       smiliesToShow (){
@@ -162,8 +162,10 @@ export default {
             this.isLiked = !this.isLiked
     },
     storyToShowFromComputed(){
-      if(this.storyToShow)
-        return  this.$store.getters.getStoryById(this.storyToShow._id)
+      if(this.storyToShow){
+        const test =  this.$store.getters.getStoryById(this.storyToShow._id)
+        return test
+      }
     },
     followersNum() {
       return this.user.followers.length;
@@ -174,13 +176,6 @@ export default {
     numPosts() {
       return this.stories.length;
     },
-
-    // userLogIn() {
-    //   return this.$store.getters.watchedUser;
-    // },
-    // userId() {
-    //   return this.$route.params.id;
-    // },
   },
   components: {
     storyPreviewModal,

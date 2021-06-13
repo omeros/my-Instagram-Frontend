@@ -110,14 +110,14 @@
     color: #262626;
 }
 .smily-modal-new-story{
-    background-color: rgb(255, 255, 245);
-    max-width: 350px;
+    box-shadow: 5px 5px 5px 5px  #888888be;
+    background-color: rgb(255, 255, 255);
+    max-width: 320px;
     max-height: 500px;
     position: absolute;
     margin-top:   0;
     top:  125px;
     right: 1;
-    //  right: 0;
     z-index: 999;
     border-radius: 15px 0px 0 15px ;
 }
@@ -160,6 +160,7 @@
     //   flex-grow: 1;
         width: 150px;
         height: inherit;
+        border-left-style: outset;
     }
     .column-direction{
         width: fit-content;

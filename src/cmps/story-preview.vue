@@ -122,7 +122,7 @@ export default {
     };
   },
   created(){
-    console.log('smiles in story-preview',this.smiles)
+  //  console.log('smiles in story-preview',this.smiles)
   },
   mounted() { 
   },

@@ -1,6 +1,4 @@
-.abc{
-  // position: relative;
-}
+
 .story-preview-modal{
     // display: flex;
     // justify-content: center;
@@ -44,7 +42,10 @@
 .story-preview-post-modal{
     // flex-grow: 5;
     // flex-shrink: 2;
-    max-width: 365px;
-    height: 100%;
+    // max-width: 365px;
+    // height: 100%;
     // height: inherit;
-  }
+    border-collapse: collapse;
+    border-left-style: outset;
+    padding-left: 0px;
+}
