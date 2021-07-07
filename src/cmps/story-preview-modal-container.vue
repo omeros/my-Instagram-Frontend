@@ -5,9 +5,9 @@
           <div v-if="story" class="story-preview-modal-img-container">
             <img :src="story.imgUrl" class="story-preview-img-modal" />
           </div>
-          <div class="story-preview-post-modal">
+          <!-- <div class="story-preview-post-modal">
+          </div> -->
             <storyPreviewModal  :story="story" :smiles="smiles" @removepost="removepost" />
-          </div>
       </div>
     </div>
 </template>

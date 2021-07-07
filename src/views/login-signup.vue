@@ -1,55 +1,46 @@
 <template>
-  <div class="login-layout">
-
-    <div class="login-container">
-     
+  <div class="login-layout" @click.self="closecreatNewUser">
+    <div class="login-container" @click.self="closecreatNewUser">    
           <p class="faild-login">{{ msg }}</p>
-
           <div v-if="loggedinUser">
             <h3 class="login-h3"> Loggedin User:    <span class="login-user-name">   {{ loggedinUser.username }}     </span> </h3>
-            <button class="logout-btn" @click="doLogout">Logout</button>
+            <button class="logout-btn" @click="doLogout">Log Out</button>
           </div>
           <div v-else>
-            <h2>Choose User To Login</h2>
-          <div v-if="!loggedinUser"   class="login-warning">  You Need to Login First !      </div>
-            <form @submit.prevent="doLogin">
-              <select class="login-input" v-model="loginCred.username">
-                <!-- <option value="">Select User</option> -->
-                <option v-for="user in users" :key="user._id" :value="user.username">{{user.fullname}}</option>
-              </select>
-            <button class="login-btn">Login</button>
-            </form>
-            <!-- <p class="mute">user1 or admin, pass:123 </p> -->
-            <form @submit.prevent="doSignup">
-              <h2>Or Sign Up First</h2>
-              <div class="input-padding"> <input  class="login-input"  type="text" v-model="signupCred.fullname" placeholder="Your full name" />  </div>
-              <div  class="input-padding" > <input class="login-input"    type="password"  v-model="signupCred.password"  placeholder="Password"  />  </div>
-              <div class="input-padding"> <input class="login-input"  type="text"  v-model="signupCred.username"  placeholder="Username" />  </div>
-              <button class="signup-btn">Sign Up Now</button>
-            </form>
+                <h2>   You Need to Login First ! </h2>
+              <div v-if="!loggedinUser"   class="login-warning">  Choose User To Login     </div>
+                <form @submit.prevent="doLogin" class="login-form">
+                  <select class="login-input" v-model="loginCred.username">
+                    <!-- <option value="">Select User</option> -->
+                    <option v-for="user in users" :key="user._id" :value="user.username">{{user.fullname}}</option>
+                  </select>
+                  <div class="login-btn-container"></div>
+                  <button class="login-btn">Log In</button>
+                  <div class="login-line"></div>
+                  <div class="new-account-btn-separation"></div>
+                  <button class="newaccount-btn" @click.prevent="creatNewUser" >Creat New Account</button> 
+                </form>
+              <transition name="fade2">
+                <div class="signup-container" v-if="newUserModal">
+                  <signup  @signupCred=doSignup />
+                </div>
+              </transition>
           </div>
-          <hr />
-          <!-- <details>
-            <summary>
-              Admin Section
-            </summary>
-            <ul>
-              <li v-for="user in users" :key="user._id">
-                <pre>{{ user }}</pre>
-                <button @click="removeUser(user._id)">x</button>
-              </li>
-            </ul>
-          </details> -->
+       
+
     </div>
   </div>
 </template>
 
 <script>
 import { socketService } from "@/services/socket.service";
+import signup from "@/cmps/signup";
+
 export default {
-  name: "test",
+  name: "login-signup",
   data() {
     return {
+      newUserModal : false,
       userId : null,
       msg: "",
       loginCred: {username: 'victoria_o', password: '1234'},
@@ -75,6 +66,12 @@ export default {
     
   },
   methods: {
+    closecreatNewUser(){
+        this.newUserModal = false
+    },
+    creatNewUser(){   
+      this.newUserModal = !this.newUserModal 
+    },
     async doLogin() {
       if (!this.loginCred.username) {
         this.msg = "Please enter username/password"
@@ -100,20 +97,18 @@ export default {
       this.$store.dispatch({ type: "logout" });
       socketService.emit("user-disconnect", this.$store.getters.loggedinUser); 
     },
-    async doSignup() {
+    async doSignup(signupCred) {
       console.log('do signup in login-logout')
-      if (!this.signupCred.fullname || !this.signupCred.password || !this.signupCred.username) {
+      if (!signupCred.fullname || !signupCred.password || !signupCred.username) {
         this.msg = "Please fill up the form"
         return
       }
-      await this.$store.dispatch({ type: "signup", userCred: this.signupCred });
+      this.newUserModal = false
+      await this.$store.dispatch({ type: "signup", userCred: signupCred });
       this.userId = this.$store.getters.loggedinUser._id
       await this.$store.dispatch({ type: "loadStories" });
       await this.$store.dispatch({ type: "loadUsers" });
-      this.$router.push(`/user/${this.userId}`)
-
-  
-      
+      this.$router.push(`/user/${this.userId}`) 
     },
     loadUsers() {
       this.$store.dispatch({ type: "loadUsers" });
@@ -126,6 +121,9 @@ export default {
         this.msg = 'Failed to remove user'
       }
     }
-  }
+  },
+    components: {
+    signup
+  },
 };
 </script>

@@ -56,7 +56,9 @@ export default {
     await this.$store.dispatch({ type: "loadStories" });
     await this.$store.dispatch({ type: "loadUsers" });
     this.loggedinUser = this.$store.getters.loggedinUser;
+      console.log(" this.loggedinUser", this.loggedinUser);
     if(!this.loggedinUser){
+        console.log("yesssssss");
         const userToLogin = this.$store.getters.users
         const loginCred  =  {username: 'Charles.g', password: '1234'}
         loginCred.username = userToLogin[4].username ;
@@ -64,12 +66,12 @@ export default {
         this.loggedinUser = this.$store.getters.loggedinUser;
         socketService.emit("user-connected-details", this.loggedinUser); 
         socketService.on("user-now-connected", this.addUserDetails);
-        }else{
+    }else{
         socketService.emit("user-connected-details", this.loggedinUser); 
         socketService.on("user-now-connected", this.addUserDetails);
     }
     socketService.on("usersConnections", this.usersConnections);
-    this.allLoggedinUsers = userService.getLoggedinUsers()
+    // this.allLoggedinUsers = userService.getLoggedinUsers()
    // console.log("this.loggedinUser  in app.vue ", this.loggedinUser);
     socketService.on("updateLoginUser", this.updateLoginUser);
     socketService.on("user-has-disconnect", this.usersConnections);
@@ -103,8 +105,8 @@ export default {
       //********************* all the users who are connected to the app - comming from Server ************************** */
       usersConnections(usersConnections){
       this.loggedinUser = this.$store.getters.loggedinUser;
-   //   console.log('usersConnections on App on usersConnections',usersConnections)
-   //   console.log('this.loggedinUser on App.vue on usersConnections ',this.loggedinUser)
+      console.log('usersConnections on App on usersConnections',usersConnections)
+      console.log('this.loggedinUser on App.vue on usersConnections ',this.loggedinUser)
       const isContainUser =  usersConnections.some((userToFind)=>{
         return (this.loggedinUser._id === userToFind._id)
       })
@@ -131,7 +133,6 @@ export default {
       if(!this.isChat){
         this.messages.push(msg)
       }
-
       this.$forceUpdate();
     },
     clearChat1(id){
@@ -163,9 +164,15 @@ export default {
         user.gotMsg = false
         this.loggedinUser = this.$store.getters.loggedinUser;
         if(user._id!==this.loggedinUser._id){
-      //    console.log('yes')
-          this.allLoggedinUsers.push( (JSON.parse(JSON.stringify(user))))
+            console.log('yes', user)
+            const isContainUser = this.allLoggedinUsers.some((userToFind)=>{
+            return (user._id === userToFind._id)
+          })
+        if(!isContainUser){
+            this.allLoggedinUsers.push( (JSON.parse(JSON.stringify(user))))
+          }
         }
+          console.log("  addUserDetails : ",   this.$store.getters.loggedinUsers )
       },
     openChat(){
         this.isChat = !this.isChat

@@ -53,9 +53,18 @@ export const userStore = {
         // },
         setLoggedinUser(state, { user }) {
           //  console.log('user in setLoginuser in user store ',user)
-            const objUser = JSON.parse(JSON.stringify(user))
-            state.loggedinUser = objUser;
-            state.loggedinUsers.push(objUser);
+            const objUser = JSON.parse(JSON.stringify(user))       
+            if(user){
+                state.loggedinUser = objUser;
+                state.loggedinUsers.push(objUser);
+            }else{
+                const userChoosed =  state.loggedinUsers.filter((usertoFind)=>{
+                    return (usertoFind._id === state.loggedinUser._id)
+                })
+                const indexOfUser = state.loggedinUsers.indexOf(userChoosed[0])
+                state.loggedinUsers.splice(indexOfUser,1)
+                state.loggedinUser = null
+            }                      
         },
         // setLoggedinUser(state, { user }) {
         //     state.loggedinUser = user;
@@ -74,8 +83,9 @@ export const userStore = {
     actions: {
         async login({ commit }, { userCred }) {
             try {
+               // console.log(' user log in , in user store,  ',userCred)
                 const user = await userService.login(userCred);
-            //    console.log(' user log in , in user store,  ')
+               // console.log('user return from DB on user.store',user)
                 commit({ type: 'setLoggedinUser', user })
                 return user;
             } catch (err) {

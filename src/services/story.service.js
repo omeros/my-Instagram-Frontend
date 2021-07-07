@@ -23,8 +23,8 @@ export const storyService = {
 }
 
 function query(filterBy) {
-   var queryStr = (!filterBy) ? '' : `?name=${filterBy.name}&sort=anaAref`
-   return  httpService.get(`story${queryStr}`)
+  const queryStr = (!filterBy) ? '' : `?name=${filterBy.name}&sort=anaAref`
+  return  httpService.get(`story${queryStr}`)
 
 
 
@@ -76,7 +76,7 @@ function save(story) {
  //   console.log('update story at  strory.sevice')
     return  httpService.put(`story/${story._id}`,story)             // update a story
 } else {
-    console.log('add new story at story.service', story)
+    //console.log('add new story at story.service', story)
     return httpService.post(`story/`,story)                     // addad a  new story
 }
 

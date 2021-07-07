@@ -7,7 +7,6 @@ const gUsers = require('../data/user.json');
 const KEY = 'userDB';
 const SCORE_FOR_REVIEW = 10
 
-
 export const userService = {
     login,
     logout,
@@ -22,30 +21,29 @@ export const userService = {
     getEmpthyUser,
     saveLocalUsers,
     saveChatMessages,
-    getChatMessages 
-   
+    getChatMessages  
 }
 
 window.userService = userService
 
 
 function getUsers() {
-  // return storageService.query('user')
-  return httpService.get(`user`)
+    return httpService.get(`user`)
+    // return storageService.query('user')
 }
 
 function getById(userId) {
-    // return storageService.get(KEY, userId)
     return httpService.get(`user/${userId}`)
+    // return storageService.get(KEY, userId)
 }
 function remove(userId) {
-    // return storageService.remove(KEY, userId)
     return httpService.delete(`user/${userId}`)
+    // return storageService.remove(KEY, userId)
 }
 
 async function update(user) {
-   // return storageService.put('user', user)
     return httpService.put(`user/${user._id}`, user)
+   // return storageService.put('user', user)
     // user = await httpService.put(`user/${user._id}`, user)
     // Handle case in which admin updates other user's details
     //  if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
@@ -59,29 +57,26 @@ async function increaseScore(by = SCORE_FOR_REVIEW) {
 }
 
 async function login(userCred) {
+    const user = await httpService.post('auth/login', userCred)
+    if (user) return _saveLocalUser(user)
     // const users = await storageService.query(KEY)
     // const user = users.find(user => user.username === userCred.username)
     // return _saveLocalUser(user)
-
-    //console.log('vvvvvvvvvvvvvvvv',userCred)
-    const user = await httpService.post('auth/login', userCred)
    // _saveLocalUsers(user)
-    if (user) return _saveLocalUser(user)
 }
 async function signup(userCred) {
     const newUser = getEmpthyUser();
     newUser.fullname = userCred.fullname
     newUser.username = userCred.username
     newUser.password = userCred.password
-
-   // const user = await storageService.post(KEY, newUser)
     const user = await httpService.post('auth/signup', newUser)
-    //_saveLocalUsers(user)
     return _saveLocalUser(user)
+     // const user = await storageService.post(KEY, newUser)
+    //_saveLocalUsers(user)
 }
 async function logout() {
-    // sessionStorage.clear()
     return await httpService.post('auth/logout')
+    // sessionStorage.clear()
 }
 function _saveLocalUser(user) {
     sessionStorage.setItem('loggedinUser', JSON.stringify(user))
@@ -104,9 +99,6 @@ function getChatMessages(){
 }
 function saveLocalUsers(user) {
     const allUsers = JSON.parse(sessionStorage.getItem('loggedinUsers') || 'null')
-    // const filteredUsers = allUsers.filter((value,index) => allUsers.findIndex((val)=> {
-    //   val._id  === value._id   }) === index
-    // )
     if(allUsers){
         const check = allUsers.some((value) => value._id === user._id) 
         if(!check){
@@ -120,12 +112,13 @@ function saveLocalUsers(user) {
         sessionStorage.setItem('loggedinUsers', JSON.stringify(loginusers))
         return loginusers
     }
+    // const filteredUsers = allUsers.filter((value,index) => allUsers.findIndex((val)=> {
+    //   val._id  === value._id   }) === index
+    // )
 }
-  
- 
- function getLoggedinUsers(){
-   return  JSON.parse(sessionStorage.getItem('loggedinUsers') || 'null')
- }
+function getLoggedinUsers(){
+    return  JSON.parse(sessionStorage.getItem('loggedinUsers') || 'null')
+}
 
 
 // if the program have an 'undefined' value for the user in sessionStorage, the program does not load
@@ -147,12 +140,11 @@ function getGuest(){
             "followers": [
             ],
             "savedPostIds": []
-       }
+    }
     return guest
 }
 
 function getEmpthyUser(){
-
     return   {
         fullname : "",
         username : "",
@@ -161,18 +153,18 @@ function getEmpthyUser(){
         bio : "",
         createdAt :   new Date(),
         following : [
-          {
+        {
             _id : "",
             fullname : "",
             imgUrl: ""
-          }
+        }
         ],
         followers  : [
-          {
+        {
             _id  : "",
-             fullname : "",
+            fullname : "",
             imgUrl  : ""
-          }
+        }
         ],
         savedPostIds : ["", "", ""]
     }
