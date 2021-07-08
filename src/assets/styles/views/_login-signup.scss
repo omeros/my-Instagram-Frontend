@@ -1,10 +1,10 @@
+
 .login-layout{
     background-color: #f0f2f5;
    // margin: 0 auto;
-   // max-width: 980px;
     height: 80vh;
     display: flex;
-    justify-content: center;
+     justify-content: center;
     // padding-right: 50px;
     .login-container{
         display: flex;
@@ -17,7 +17,7 @@
             outline:none;
             height: 50px;
             padding: 6px 10px 6px 12px!important;
-            width:fill;
+            width:21vw;
             font-size: large;
             cursor: pointer;
             // padding-bottom: 100px;
@@ -28,7 +28,7 @@ h2{
     text-align: center;
 }
 .input-padding{
- padding-top: 10px;
+    padding-top: 10px;
 }
 
 .login-btn-container{
@@ -40,24 +40,24 @@ h2{
     opacity: 0.6; 
 }
 .login-btn{   
-        background: none;
-        background-color: #1877f2;
-        border: none;
-        border-radius: 6px;
-        box-shadow: none;
-        color: #fff;
-        font-size: 20px;
-        font-weight: 600;
-        height: 50px;
-        padding: 0 32px;
-        cursor: pointer;
-        width:21vw;
+    background: none;
+    background-color: #1877f2;
+    border: none;
+    border-radius: 6px;
+    box-shadow: none;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    height: 50px;
+    padding: 0 32px;
+    cursor: pointer;
+    width:21vw;
         
 }
 .fade2-enter-active, .fade2-leave-active {
     transition: opacity .5s;
 }
-  .fade2-enter, .fade2-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade2-enter, .fade2-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
 }
 
@@ -92,18 +92,18 @@ h2{
     border-radius: 8px;
 }
 .logout-btn{
-        background: none;
-        background-color: #1877f2;
-        border: none;
-        border-radius: 6px;
-        box-shadow: none;
-        color: #fff;
-        font-size: 20px;
-        font-weight: 600;
-        height: 50px;
-        padding: 0 32px;
-        cursor: pointer;
-        width:15vw;   
+    background: none;
+    background-color: #1877f2;
+    border: none;
+    border-radius: 6px;
+    box-shadow: none;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    height: 50px;
+    padding: 0 32px;
+    cursor: pointer;
+    width:15vw;   
 }
 .login-line{
     border-bottom: 2px solid #dadde1;
@@ -114,10 +114,10 @@ h2{
 .new-account-btn-separation{
     padding-top: 25px;
 }
-.newaccount-btn:hover{
+.new-account-btn:hover{
     opacity: 0.6;
 }
-.newaccount-btn{
+.new-account-btn{
     background-color: #42b72a;
     color: #fff;
     border: none;
@@ -142,4 +142,57 @@ h2{
 }
 .uploadImg-user-details{
     width: 300px;
+}
+
+
+@media screen and (max-width: 380px) {
+    .login-layout{
+        display: flex; 
+        padding-right: 60px;
+        .login-container{
+            width: 350px;
+            .login-input{
+                width: 39vw;
+                height: 40px;
+            }
+            .logout-btn{
+                width: 130px;
+                height: 50px;
+                font-size: medium;
+                padding: 0 15;
+                margin-left: 40px;
+            }  
+            .login-h3{
+                margin-left: 40px;
+            }
+        
+            .login-form{
+                width: 200px;
+            }
+        
+            .login-btn{
+                width: 150px;
+                height: 40px;
+                font-size: small;
+            }
+            .new-account-btn{
+                width: 150px;
+                height: 40px;
+                font-size: small;
+                padding: 0px 16px 45px 10px;
+            }
+            h2{
+                font-size: large;
+                padding-right:100px ;
+            }
+            .login-warning{
+                font-size: large;
+                padding-right:130px ;  
+            }
+            .signup-container{
+                left: 20vw;
+            }
+
+        }
+    } 
 }

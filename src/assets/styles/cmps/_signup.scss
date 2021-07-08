@@ -46,17 +46,26 @@
         padding: 0px 32px;
         cursor: pointer;
         width: auto;
-        color: #ffffff;
-       
+        color: #ffffff;      
 }
+@media screen and (max-width: 380px) {
+    .signup-form{
+        width:  55vw;
+        height: 250px;
+        padding: 15px;
+    }
 
-// .signup-btn{
-//     padding-top: 10px;
-//     font-size: large;
-//     color:  $clr3; 
-// }
+    .input-container{
+        padding: 10px;
+        height: 180px;
+    }
+    .signup-input{
+        width: 43vw;
+    }
+    .signup-btn{
+        font-size: medium;
+    }
 
-
-// $clr3: #2cc277;
+}
 
 

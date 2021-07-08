@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import home from './views/home.vue'
-import chat from './views/chat.vue'
 import loginSignup from './views/login-signup.vue'
 import storyApp from './views/story-app.vue'
 import userDetails from './views/user-details.vue'
@@ -26,11 +24,6 @@ export const router = new Router({
       component: storyApp,
     },
 
-    {
-      path: '/chat',
-      name: 'chat',
-      component: chat
-    },
     {
       path: '/user/:id',
       name: 'user-details',

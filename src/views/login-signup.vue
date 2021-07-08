@@ -1,13 +1,14 @@
 <template>
   <div class="login-layout" @click.self="closecreatNewUser">
+    
     <div class="login-container" @click.self="closecreatNewUser">    
           <p class="faild-login">{{ msg }}</p>
           <div v-if="loggedinUser">
             <h3 class="login-h3"> Loggedin User:    <span class="login-user-name">   {{ loggedinUser.username }}     </span> </h3>
             <button class="logout-btn" @click="doLogout">Log Out</button>
           </div>
-          <div v-else>
-                <h2>   You Need to Login First ! </h2>
+          <div v-else @click.self="closecreatNewUser">
+                <h2>  You Need to Login First ! </h2>
               <div v-if="!loggedinUser"   class="login-warning">  Choose User To Login     </div>
                 <form @submit.prevent="doLogin" class="login-form">
                   <select class="login-input" v-model="loginCred.username">
@@ -18,7 +19,7 @@
                   <button class="login-btn">Log In</button>
                   <div class="login-line"></div>
                   <div class="new-account-btn-separation"></div>
-                  <button class="newaccount-btn" @click.prevent="creatNewUser" >Creat New Account</button> 
+                  <button class="new-account-btn" @click.prevent="creatNewUser" >Creat New Account</button> 
                 </form>
               <transition name="fade2">
                 <div class="signup-container" v-if="newUserModal">
@@ -26,10 +27,9 @@
                 </div>
               </transition>
           </div>
-       
-
     </div>
   </div>
+  
 </template>
 
 <script>
