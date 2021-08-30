@@ -14,10 +14,11 @@
 
 .app-center{
     // margin: 0 auto;
-    max-width: 950px;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-right: 20vw;
 }
 
 
@@ -60,4 +61,11 @@
 }
 .portrait-ratio {
     @include aspect-ratio(9, 16);
+}
+
+@media (max-width: 480px){
+    .app-center{
+        padding-right: 0vw;
+
+    }
 }

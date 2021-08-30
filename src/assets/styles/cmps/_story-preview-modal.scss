@@ -8,13 +8,12 @@
     color: #262626;
     height: inherit;
     border-left-style: outset;
-    min-width :330px;
+    width :30vw;
     // border-collapse: collapse;
     border-collapse:inherit
 }
 
 .post-details-header-preview{
-    
     padding: 16px;
     display: flex;
     justify-content : space-between;
@@ -241,4 +240,15 @@
     border: none;
     height: 12px;
 
+}
+
+@media (max-width: 600px){
+
+    .story-details-content-preview{
+        width: 63vw;
+    }
+    
+    .story-row-preview{
+        height: 15vh;
+    }
 }

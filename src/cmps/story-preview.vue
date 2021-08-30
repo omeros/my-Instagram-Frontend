@@ -1,7 +1,6 @@
 <template>
     <section class="main" >
       <div class="story-father" >
-
       <div class="post-details">
         <div class="post-details-header">
             <div class="screen-preview">

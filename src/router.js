@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import loginSignup from './views/login-signup.vue'
 import storyApp from './views/story-app.vue'
 import userDetails from './views/user-details.vue'
+import storyAbout from './views/story-about.vue'
 // import userFilter from "@/cmps/user-filter.vue";
 // import userApp from './views/user-app.vue'
 
@@ -28,6 +29,11 @@ export const router = new Router({
       path: '/user/:id',
       name: 'user-details',
       component: userDetails
+    },
+    {
+      path: '/about',
+      name: 'story-about',
+      component: storyAbout
     }
   ]
 })

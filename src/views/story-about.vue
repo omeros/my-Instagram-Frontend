@@ -1,5 +1,19 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="about-page">
+<div class="gif-container">
+    <img src="@/assets/img/memgengif.gif" alt="">
+
+</div>
+
   </div>
 </template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>

@@ -103,7 +103,7 @@ h2{
     height: 50px;
     padding: 0 32px;
     cursor: pointer;
-    width:15vw;   
+    width:20vw;   
 }
 .login-line{
     border-bottom: 2px solid #dadde1;
@@ -145,6 +145,12 @@ h2{
 }
 
 
+@media  (max-width: 700px) {
+
+    .logout-btn{
+     width: 40vw;
+    }
+}
 @media screen and (max-width: 380px) {
     .login-layout{
         display: flex; 
@@ -156,7 +162,6 @@ h2{
                 height: 40px;
             }
             .logout-btn{
-                width: 130px;
                 height: 50px;
                 font-size: medium;
                 padding: 0 15;

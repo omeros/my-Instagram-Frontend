@@ -1,94 +1,84 @@
-
-.body{
-    font-family: Arial,sans-serif;
+.body {
+    font-family: Arial, sans-serif;
     line-height: 1.8;
     color: #262626;
     margin: 0;
     min-height: 150vh;
-    padding-bottom: 100px; 
+    padding-bottom: 100px;
 }
 
-
-.app{
+.app {
 }
-#nav{
-    padding: 0px 0px  0px 0px  ;
+#nav {
+    padding: 0px 0px 0px 0px;
 }
-.users-for-chat-container{
-   position: absolute;
-   top: 100px;
-   right: 50vh;
-  
+.users-for-chat-container {
+    position: absolute;
+    top: 100px;
+    right: 50vh;
 }
-.users-for-chat{
- 
+.users-for-chat {
     display: flex;
     flex-direction: column;
 
-  
-    .users-img-for-chat:hover{
+    .users-img-for-chat:hover {
         opacity: 0.5;
     }
-    .users-img-for-chat{
+    .users-img-for-chat {
         border-radius: 100px;
         width: 50px;
         height: 50px;
         cursor: pointer;
         border: 3px solid rgb(15, 15, 15);
     }
-    .gotmsg{
+    .gotmsg {
         box-shadow: 0 0 3pt 2pt red;
     }
-    .sendTo{
+    .sendTo {
         box-shadow: 0 0 3pt 2pt rgb(36, 202, 58);
-
     }
 }
 
-
-.absolute-pos{
+.absolute-pos {
     position: absolute;
     top: 100px;
- 
-    .fixed-pos{
+
+    .fixed-pos {
         // position: absolute;
-     //    position: -webkit-sticky;
+        //    position: -webkit-sticky;
         position: fixed;
         right: 70px;
         padding-left: 0px;
         font-size: 20px;
-     
-     }
- }
- .btn-absolute-pos{
+    }
+}
+.btn-absolute-pos {
     position: absolute;
     top: 100px;
- 
-    .btn-absolute-pos{
+
+    .btn-absolute-pos {
         // position: absolute;
-     //    position: -webkit-sticky;
+        //    position: -webkit-sticky;
         position: fixed;
         right: 10px;
         padding-left: 0px;
         font-size: 20px;
-     }
- }
+    }
+}
 
- @media screen and (max-width: 950px) {
-    .open-chat{
+@media screen and (max-width: 950px) {
+    .open-chat {
         display: none;
     }
-    .absolute-pos{
+    .absolute-pos {
         display: none;
     }
 }
 
-
-
-.open-chat:hover{
+.open-chat:hover {
     opacity: 0.4;
 }
-.open-chat{
+.open-chat {
     cursor: pointer;
     //font-size:17px ;
     width: 58px;
@@ -96,17 +86,15 @@
     border-radius: 100%;
     background: #fcfcfc;
     outline: #fcfcfc;
-    box-shadow: 5px 5px 8px 3px #d8d5d5be;    
-
-
+    box-shadow: 5px 5px 8px 3px #d8d5d5be;
 }
 
-.fade-enter-active{
-    transition: opacity .9s;
-} 
+.fade-enter-active {
+    transition: opacity 0.9s;
+}
 .fade-leave-active {
-    transition: opacity .5s;
-  }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
-  }
+}
