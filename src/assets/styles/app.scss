@@ -13,9 +13,9 @@
     padding: 0px 0px 0px 0px;
 }
 .users-for-chat-container {
-    position: absolute;
+    position: fixed;
     top: 100px;
-    right: 50vh;
+    right: 15vw;
 }
 .users-for-chat {
     display: flex;
@@ -30,6 +30,12 @@
         height: 50px;
         cursor: pointer;
         border: 3px solid rgb(15, 15, 15);
+        box-shadow: 5px 5px 8px 3px #d8d5d5be;
+    }
+
+    .users-txt-for-chat-name{
+        font-family: 'Segoe UI Historic', Tahoma, Geneva, Verdana, sans-serif;
+        
     }
     .gotmsg {
         box-shadow: 0 0 3pt 2pt red;
@@ -47,7 +53,7 @@
         // position: absolute;
         //    position: -webkit-sticky;
         position: fixed;
-        right: 70px;
+        right: 5vw;
         padding-left: 0px;
         font-size: 20px;
     }
@@ -63,15 +69,6 @@
         right: 10px;
         padding-left: 0px;
         font-size: 20px;
-    }
-}
-
-@media screen and (max-width: 950px) {
-    .open-chat {
-        display: none;
-    }
-    .absolute-pos {
-        display: none;
     }
 }
 
@@ -98,3 +95,26 @@
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
 }
+
+
+@media screen and (max-width: 950px) {
+    .open-chat {
+        display: none;
+    }
+    .absolute-pos {
+        display: none;
+    }
+    .users-for-chat-container {
+        right: 5vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .users-for-chat-container {
+        right: -30vw;
+        z-index: 2;
+        display: none;
+    }
+
+}
+

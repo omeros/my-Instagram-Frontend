@@ -79,10 +79,12 @@
                     <!-- smily-modal  -->
           <div class="smily-modal  hide" v-bind:class="{show: isSmilyModal }">
             <div class="inner-smily-modal">
-                <div class="most-popular"> Most Popular </div>
-                  <div class="grid">
-                    <div  class="smily-img " v-for="s in smiles" :key="s._id">
-                      <img  :src="s.url"  @click="addIcon(s._id)">
+                <div class="smily-most-popular"> Most Popular </div>
+                  <div class="grid-container">
+                    <div class="smily-grid">
+                      <div  class="smily-img " v-for="s in smiles" :key="s._id">
+                        <img  :src="s.url"  @click="addIcon(s._id)">
+                    </div>
                   </div>
                 </div>
             </div>

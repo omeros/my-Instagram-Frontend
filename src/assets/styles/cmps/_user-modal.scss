@@ -1,45 +1,42 @@
-
 // .user-modal-container{
 //     height:  400px;
 // }
-.user-modal-cmps-container{
-   display: flex;
-   justify-content: space-between;
-   
+.user-modal-cmps-container {
+    display: flex;
+    justify-content: space-between;
 }
 
-.user-modal-profile-logo{
+.user-modal-profile-logo {
     position: relative;
-    top :0;
+    top: 0;
     padding: 16px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     // height: 200px;
 }
-.user-modal-profile-logo-name{
+.user-modal-profile-logo-name {
     text-decoration: none;
     color: rgb(30, 31, 32);
     cursor: pointer;
     padding-left: 16px;
     font-size: medium;
 }
-.test5{
+.test5 {
     text-decoration: none;
 }
-.line-user-modal{
-    border-bottom: 1px solid rgba(var(--ce3,239,239,239),1);
- }
- .log-out-user-modal{
+.line-user-modal {
+    border-bottom: 1px solid rgba(var(--ce3, 239, 239, 239), 1);
+}
+.log-out-user-modal {
     text-decoration: none;
-   cursor: pointer;
-   padding-inline-start: 10px;
- }
- .log-out-user-modal-container{
+    cursor: pointer;
+    padding-inline-start: 10px;
+}
+.log-out-user-modal-container {
     //  position: relative;
     //  bottom: 0px;
- }
-.login-router-link{
+}
+.login-router-link {
     color: rgb(30, 31, 32);
-   
 }

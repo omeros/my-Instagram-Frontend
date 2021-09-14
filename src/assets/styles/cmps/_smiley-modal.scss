@@ -1,27 +1,36 @@
 .inner-smiley-modal{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-left: 10px;
+    flex-direction: column;
+ 
+    padding-left: 0px;
     padding-right: 0;
     width: 100%;
     height: 70%;
 }
 
 .most-popular{
-    width: 300px;
+    width: 20vw;
     font-size: large;
     color: rgb(155, 152, 152);
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    padding: 10px;  
+    padding: 0.5vw; 
+    text-align: center; 
 }
-
+.grid-container{
+    display: flex;
+    justify-content: center;
+    padding-bottom:  20px; 
+   
+}
 .grid-smiley{
     width: 80%;
     height: 80%;
     display: grid;
-    grid-template-columns: 70px  70px 70px 70px;
-    grid-template-rows: 60px 60px 60px ;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: (3,1fr);
+    grid-gap: 1vw;
+    // grid-template-columns: 70px  70px 70px 70px;
+    // grid-template-rows: 60px 60px 60px ;
     padding: 0;  
 }
 
@@ -33,5 +42,5 @@
     width: 33px;
     height: 33px;
     cursor: pointer;
-//  padding: 10px;
+  
 }

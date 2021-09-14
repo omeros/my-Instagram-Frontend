@@ -10,14 +10,14 @@
     </transition>
     <div class="users-for-chat-container" v-if="!isChat">
         <div v-for="user in allLoggedinUsers" :key="user._id" class="users-for-chat"  >
-            <img class="users-img-for-chat" :src="user.imgUrl"  @click.stop="chooseUser(user)"  v-bind:class="{ gotmsg: user.gotMsg , sendTo: user.sendTo }"/>
-            {{user.username}}
+            <img class="users-img-for-chat" :src="user.imgUrl"   title="choos user to chat with..." @click.stop="chooseUser(user)"  v-bind:class="{ gotmsg: user.gotMsg , sendTo: user.sendTo }"/>
+            <span class="users-txt-for-chat-name" >  {{user.username}} </span>
         </div>
     </div>
       <div class="btn-absolute-pos" >
         <div  class="btn-absolute-pos">
-          <button  class="open-chat" @click.stop="openChat()" v-if="!isChat" ><i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yc/r/pZnj7-h1xop.png&quot;); background-position: 0px -504px; background-size: 26px 1636px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"  ></i> </button>
-          <button  class="open-chat" @click.stop="openChat()" v-if="isChat" > <svg width="26px" height="26px" viewBox="-4 -4 24 24"><line x1="2" x2="14" y1="2" y2="14" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"></line><line x1="2" x2="14" y1="14" y2="2" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"  ></line></svg> </button>
+          <button  class="open-chat"  title="click to open chat" @click.stop="openChat()" v-if="!isChat" > <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yc/r/qmGmdzZd_W3.png&quot;); background-position: 0px -872px; background-size: 26px 2028px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i></button>
+          <button  class="open-chat" title="click to close chat" @click.stop="openChat()" v-if="isChat" > <svg width="26px" height="26px" viewBox="-4 -4 24 24"><line x1="2" x2="14" y1="2" y2="14" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"></line><line x1="2" x2="14" y1="14" y2="2" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"  ></line></svg> </button>
         </div>
       </div>
       <app-header  />

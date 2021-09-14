@@ -1,10 +1,12 @@
 <template>
         <div class="inner-smiley-modal">
             <div class="most-popular">Most Popular</div>
+            <div class="grid-container">
             <div class="grid-smiley">
                 <div class="smily-img" v-for="s in smiles" :key="s._id">
                     <img :src="s.url" @click="addIcon(s._id)" />
                 </div>
+            </div>
             </div>
         </div>
 </template>

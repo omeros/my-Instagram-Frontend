@@ -1,5 +1,4 @@
-
-.header-container{
+.header-container {
     margin: 0 auto;
     max-width: 980px;
     display: flex;
@@ -13,50 +12,46 @@ header {
 
     // display: flex;
     // justify-content: space-between;
-    height:60px;
-    border-bottom:1px solid $clr2; 
+    height: 60px;
+    border-bottom: 1px solid $clr2;
 
     // from asi
     // background: gainsboro;
     padding: 0px;
-.inner-header{
-    display: flex;
-    justify-content: space-between;
-    -webkit-box-pack: justify;
-
-}
-
-
+    .inner-header {
+        display: flex;
+        justify-content: space-between;
+        -webkit-box-pack: justify;
+    }
 
     nav {
-        width: 600px;
-        padding: 0 50px 0 150px;
-        
+        width: 50vw;
+        padding: 0 50px 0 20vw;
     }
-    .home-logo{
+    .home-logo {
         padding: 20px;
         //  padding-top: 60px;
     }
-    .pluse-img-btn{
-      padding-right: 16px;
+    .pluse-img-btn {
+        padding-right: 16px;
     }
-    .pluse-img{
+    .pluse-img {
         width: 30px;
         padding-right: 0px;
     }
 
-    .hart{
+    .hart {
         padding-top: 13px;
         padding-left: 8px;
         padding-right: 8px;
         padding-bottom: 4px;
-        background-color:#f0f2f5;
+        background-color: #f0f2f5;
         border-radius: 100%;
         // height: 80px;
         margin-bottom: 400px;
     }
 
-    .user-logo{
+    .user-logo {
         cursor: pointer;
         width: 38px;
         height: 38px;
@@ -66,7 +61,7 @@ header {
         margin-right: 8px;
         border: 3px solid rgb(88, 218, 56);
     }
-    .user-logo-logout{
+    .user-logo-logout {
         cursor: pointer;
         width: 38px;
         height: 38px;
@@ -76,142 +71,146 @@ header {
         margin-right: 8px;
         border: 3px solid rgb(218, 121, 56);
     }
-    .pressed{
+    .pressed {
         opacity: 0.3;
     }
-    .h1-header{
+    .h1-header {
         width: 103px;
         height: 29px;
         cursor: pointer;
-        font-family: Cookie,cursive;
+        font-family: Cookie, cursive;
         margin: 0;
         font-weight: 400;
     }
-    .add-story{
+    .add-story {
         padding-right: 8px;
     }
-    .instagram-router-link{
-        color : #262626 ;
+    .instagram-router-link {
+        color: #262626;
         text-decoration: none;
     }
-    .login-router-link{
+    .login-router-link {
         text-decoration: none;
         // display: inline;
         margin: 0;
     }
 
-    .nav-bar{
-       // position: relative;
+    .nav-bar {
+        // position: relative;
         width: 100%;
         display: flex;
-        justify-content : flex-start;
+        // justify-content : flex-start;
+        justify-content: center;
         align-items: center; // from asi
-        -webkit-box-pack: flex;  // from asi
+        // -webkit-box-pack: flex;  // from asi
     }
-    // .logo-container{
-    //     display: flex;
+    .logo-container{
+        display: flex;
     //     width:636px ;
     //     padding-left: 180px;
     //     padding-right: 100px;
-    // }
-    .about:hover{
+    }
+    .about:hover {
         opacity: 0.4;
     }
-    .about{
-        display:inline-flex;
+    .about {
+        display: inline-flex;
         width: 35px;
         margin-left: 20px;
     }
 
-
-    .modal-container{
+    .modal-container {
         // position: absolute;
-        
     }
 
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity .1s;
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity 0.1s;
     }
-      .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
         opacity: 0;
     }
-    .user-modal-container{
+    .user-modal-container {
         position: absolute;
         top: 60px;
-        right: 150px;
-        width :230px;
+        right: 20vw;
+        width: 230px;
         height: 194px;
         background-color: rgb(255, 255, 255);
         z-index: 999;
         border-radius: 6px;
-        box-shadow: 5px 5px 8px 3px #d8d5d5be;    
-
+        box-shadow: 5px 5px 8px 3px #d8d5d5be;
     }
- 
 }
 
+// @media screen and (min-width: 1100px) {
 
+
+// }
 @media screen and (min-width: 1100px) {
-    .search-container{
+    .logo-container {
+        display: flex;
+        align-items: center;
+        width: 636px;
+        max-width: 50%;
+        padding-left: 170px;
+        padding-right: 10px;
+    }
+    .search-container {
         position: relative;
-        padding: 10px 50px 20px 180px;
-        width:199px ;
+        padding: 10px 10px 20px 10vw;
+        width: 20vw;
         display: inline;
         // height: 28px;
     }
-}
-@media screen and (min-width: 1100px) {
-    .logo-container{
-        display: flex;
-        align-items: center;
-        width:636px ;
-        padding-left: 170px;
-        padding-right: 10px;
-        
-    }
+    
 }
 
+// @media screen and (max-width: 1100px) {
+//     nav{
+//         padding-left: 0;
+//     }
+
+// }
 @media screen and (max-width: 600px) {
-    .search-container{
+    .search-container {
         display: none;
     }
 }
 @media screen and (max-width: 900px) {
-    .app-center2{
+    .app-center2 {
         // max-width: 100%;
         // display: flex;
         // flex-direction: center;
         // align-items: center;
     }
-    
-    
-    header{
+
+    header {
         nav {
-            max-width: 100%;
+            width: 100%;
             // background-color: $clr4;
-            padding: 0px 0px 0px 10px ;
+            padding: 0px 10px 10px 10vw;
             height: 60px;
         }
-        .header-links{
+        .header-links {
             // display: inline;
             width: 100%;
-            padding: 0px 0px 0px 12px ;
-            
+            padding: 0px 0px 0px 12px;
         }
-        .home-logo{
+        .home-logo {
             padding-left: 15px;
             padding-right: 15px;
 
             //  padding-top: 60px;
         }
-        .pluse-img-btn{
+        .pluse-img-btn {
             padding-left: 14px;
-          }
-          .pluse-img{
-              width: 30px;
-              padding-right: 0px;
-          }
-        .logo-container{
+        }
+        .pluse-img {
+            width: 30px;
+            padding-right: 0px;
+        }
+        .logo-container {
             display: flex;
             align-items: center;
             max-height: 100%;
@@ -220,33 +219,33 @@ header {
             padding-top: 10px;
         }
 
-        
-    .hart{
-        padding-left: 15px;
-        padding-right: 15px;
-        padding-top: 12px;
-      }
+        .hart {
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 12px;
+        }
 
-    .user-logo{
-        cursor: pointer;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        padding-left: 0px;
-        margin-top: 12px;
-    }
-    
-        .user-modal-container{
+        .user-logo {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            padding-left: 0px;
+            margin-top: 12px;
+        }
+
+        .user-modal-container {
             position: absolute;
             top: 50px;
             right: 30px;
-            width :130px;
+            width: 130px;
             height: 100px;
             background-color: rgb(255, 255, 255);
             z-index: 999;
-            border-radius: 6px;           
+            border-radius: 6px;
+        }
+        .search-container {
+             padding-left: 20vw;
         }
     }
-
-
 }
