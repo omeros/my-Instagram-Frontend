@@ -106,22 +106,15 @@ export const store = new Vuex.Store({
     },
 
     setStory(state, payload) {
-    //  console.log('on store on mutex befor update state.stories', payload)
-
+      console.log('set new story on store : ', payload)
       const storyUpdated = JSON.parse(JSON.stringify(payload.updatedStory))
-   //   console.log('on store on mutex middle update state.stories', storyUpdated)
       state.stories.unshift(storyUpdated);
-      // let e = [...state.stories]
-      // console.log('on store on mutex after update state.stories',e)
     },
     removeStory(state, payload) {
   //    console.log('story to remove in mutation store', payload)
       const idx = state.stories.findIndex(p => p._id === payload.storyToRemoveId)
       state.stories.splice(idx, 1,);
     },
-    //   var storyRemoveLike = state.stories.filter(story => {
-    //     return (story._id===storyId)
-    //   })
     updateStories(state, payload) {
       //  console.log('payload.updatedStory in store',payload.updatedStory)
       const idx = state.stories.findIndex(p => p._id === payload.updatedStory._id)
@@ -167,34 +160,20 @@ export const store = new Vuex.Store({
         fullname: theUser.fullname,
         imgUrl: theUser.imgUrl
       }
-      //console.log('payload.details.',payload.theDetails)
       storyService.getById(storyId)
         .then(storyCommentToLike => {
-          // console.log('storyCommentToLike',storyCommentToLike)
-
           var isLikedBefor = [false];
           isLikedBefor = storyCommentToLike.comments[commentIdx].likedBy.filter(user => {
             if (user._id === userDetails._id) {
               const isItTheUser = (element) => element._id === user._id;
               var idx = storyCommentToLike.comments[commentIdx].likedBy.findIndex(isItTheUser)
-              //   console.log('the id of the comment array to splice ',idx)
               storyCommentToLike.comments[commentIdx].likedBy.splice(idx, 1)
-              // context.commit({ type: 'commentLikedBefor' });
-              // this.state.isCommentLikedBefor = true
               return true
             }
           })
-
-          // console.log(' after filter the comment equal to id of the user',isLikedBefor)
-          if (isLikedBefor.length === 0) {
-            //    console.log(' a new liker')
-            // context.commit({ type: 'commentNotLikedBefor' });
-            // this.state.isCommentLikedBefor = false
+          if (isLikedBefor.length === 0) {      
             storyCommentToLike.comments[commentIdx].likedBy.push(userDetails)
           }
-
-
-
           storyService.save(storyCommentToLike)
             .then(updatedStory => {
               context.commit({ type: 'updateStories', updatedStory });
@@ -204,18 +183,15 @@ export const store = new Vuex.Store({
           console.log('Store: Cannot update like to comment in  stories', err);
           throw new Error('Cannot update like to comment in  stories');
         })
-
     },
+
     removeLikeFromStory(context, payload) {
       var storyId = payload.storyId
       var theloggedInUser = userStore.state.loggedinUser
       storyService.getById(storyId)
         .then(storyRemoveLike => {
-          //  console.log('Store: storyRemoveLike',storyRemoveLike)
           const idx = storyRemoveLike.likedBy.findIndex(user => user._id === theloggedInUser._id)
           storyRemoveLike.likedBy.splice(idx, 1);
-
-          // storyRemoveLike.likedBy.pop();
           storyService.save(storyRemoveLike)
             .then(updatedStory => {
               context.commit({ type: 'updateStories', updatedStory });
@@ -225,10 +201,6 @@ export const store = new Vuex.Store({
           console.log('Store: Cannot remove liket in  stories', err);
           throw new Error('Cannot remove like in  stories');
         })
-      // var storyRemoveLike = state.stories.filter(story => {
-      //   return (story._id===storyId)
-      // })
-      // storyRemoveLike[0].likedBy.pop();
     },
     setLikeToStory(context, payload) {
       console.log('setLikeToStory in store');

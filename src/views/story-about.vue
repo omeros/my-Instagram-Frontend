@@ -1,7 +1,7 @@
 <template>
   <div class="about-page">
 <div class="gif-container">
-    <img src="@/assets/img/memgengif.gif" alt="">
+    <img src="@/assets/img/myinstagram-gif.gif" alt="">
 
 </div>
 

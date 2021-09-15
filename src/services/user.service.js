@@ -83,19 +83,26 @@ function _saveLocalUser(user) {
     return user
 }
 function saveChatMessages(msg){
-    const allMessages =  JSON.parse(sessionStorage.getItem('chatMessages') || 'null')
+    const allMessages =  JSON.parse(localStorage.getItem('chatMessages') || 'null')
+    console.log('allMessages in user service',allMessages)
     if(allMessages){
+        console.log('yes')
+        console.log('msg in user service',msg)
         allMessages.push(msg)
+        localStorage.setItem('chatMessages', JSON.stringify(allMessages))
+        console.log('allMessages after push in user service',allMessages)
+        return allMessages
     }else{
+        console.log('no')
         const messages=[]
         messages.push(msg)
-        sessionStorage.setItem('chatMessages', JSON.stringify(messages))
+        localStorage.setItem('chatMessages', JSON.stringify(messages))
         return messages
     }
 }
 
 function getChatMessages(){
-    return JSON.parse(sessionStorage.getItem('chatMessages'))
+    return JSON.parse(localStorage.getItem('chatMessages'))
 }
 function saveLocalUsers(user) {
     const allUsers = JSON.parse(sessionStorage.getItem('loggedinUsers') || 'null')

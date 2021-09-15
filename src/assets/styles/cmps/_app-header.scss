@@ -29,47 +29,49 @@ header {
         padding: 0 50px 0 20vw;
     }
     .home-logo {
-        padding: 20px;
+        // padding: 20px;
+        
+        padding: 1vw;
         //  padding-top: 60px;
     }
     .pluse-img-btn {
-        padding-right: 16px;
+        // padding-right: 16px;
+        padding-left: 0.5vw;
+        padding-right: 0.5vw;
     }
     .pluse-img {
-        width: 30px;
+        width: 2.3vw;
         padding-right: 0px;
-    }
-
-    .hart {
-        padding-top: 13px;
-        padding-left: 8px;
-        padding-right: 8px;
-        padding-bottom: 4px;
-        background-color: #f0f2f5;
-        border-radius: 100%;
-        // height: 80px;
-        margin-bottom: 400px;
     }
 
     .user-logo {
         cursor: pointer;
-        width: 38px;
-        height: 38px;
+        width: 2.3vw;
+        height: 2.3vw;
         border-radius: 50%;
         padding-left: 0px;
-        margin-left: 8px;
-        margin-right: 8px;
+        margin-left: 1vw;
+        margin-right: 1vw;
         border: 3px solid rgb(88, 218, 56);
     }
     .user-logo-logout {
         cursor: pointer;
-        width: 38px;
-        height: 38px;
+        width: 2.3vw;
+        height: 2.3vw;
         border-radius: 50%;
         padding-left: 0px;
-        margin-left: 8px;
-        margin-right: 8px;
+        margin-left: 1vw;
+        margin-right: 1vw;
         border: 3px solid rgb(218, 121, 56);
+    }
+    .about:hover {
+        opacity: 0.4;
+    }
+    .about {
+        display: inline-flex;
+        width: 2.5vw;
+        height: 2.5vw;
+        margin-left: 1vw;
     }
     .pressed {
         opacity: 0.3;
@@ -109,14 +111,6 @@ header {
     //     width:636px ;
     //     padding-left: 180px;
     //     padding-right: 100px;
-    }
-    .about:hover {
-        opacity: 0.4;
-    }
-    .about {
-        display: inline-flex;
-        width: 35px;
-        margin-left: 20px;
     }
 
     .modal-container {
@@ -172,11 +166,9 @@ header {
 //     }
 
 // }
-@media screen and (max-width: 600px) {
-    .search-container {
-        display: none;
-    }
-}
+
+
+
 @media screen and (max-width: 900px) {
     .app-center2 {
         // max-width: 100%;
@@ -184,7 +176,7 @@ header {
         // flex-direction: center;
         // align-items: center;
     }
-
+    
     header {
         nav {
             width: 100%;
@@ -200,11 +192,11 @@ header {
         .home-logo {
             padding-left: 15px;
             padding-right: 15px;
-
+            
             //  padding-top: 60px;
         }
         .pluse-img-btn {
-            padding-left: 14px;
+            padding-left: 1vw;
         }
         .pluse-img {
             width: 30px;
@@ -218,13 +210,10 @@ header {
             padding-left: 20px;
             padding-top: 10px;
         }
-
-        .hart {
-            padding-left: 15px;
-            padding-right: 15px;
-            padding-top: 12px;
+        .about{
+            width: 5vw;
+            height: 5vw;
         }
-
         .user-logo {
             cursor: pointer;
             width: 30px;
@@ -245,7 +234,23 @@ header {
             border-radius: 6px;
         }
         .search-container {
-             padding-left: 20vw;
+            padding-left: 20vw;
+        }
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .search-container {
+        display: none;
+    }
+    header{
+        .about{
+            width: 8vw;
+            height: 8vw;
+        }
+        .pluse-img-btn {
+            padding-left: 0px;
         }
     }
 }

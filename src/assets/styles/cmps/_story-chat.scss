@@ -49,6 +49,7 @@
   border-top-left-radius: 6px;
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
+  font-family: 'Segoe UI Historic', Tahoma, Geneva, Verdana, sans-serif;
 
 }
 .img-user-chat{
@@ -93,18 +94,41 @@
 }
 
 .chat-btn:hover{
-  color: rgba(38, 165, 34, 0.479);
+  color: rgba(255, 255, 255, 0.479);
+  font-weight: 700;
+  background-color: rgb(17, 17, 17);
 }
+
+.form-chat-btn-container{
+  display: flex;
+  width: inherit;
+  justify-content: center;
+ 
+}
+
+
 .chat-btn{
-    border-radius: 6px;
-    padding-top: 10px;
-    border: none;
     background: none;
-    font-size: large;
-    font-weight: 800;
-    color: rgba(38, 165, 34, 0.966);
-    border:2px;
-    outline:2px;
+    background-color: #1877f2;
+    border: none;
+    border-radius: 6px;
+    box-shadow: none;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    height: 40px;
+    padding: 0 32px;
+    cursor: pointer;
+    width:13vw;   
+    // border-radius: 6px;
+    // padding-top: 10px;
+    // border: none;
+    // background: none;
+    // font-size: large;
+    // font-weight: 800;
+    // color: rgba(38, 165, 34, 0.966);
+    // border:2px;
+    // outline:2px;
    
 }
 

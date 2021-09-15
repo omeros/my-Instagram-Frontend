@@ -16,8 +16,8 @@
     </div>
       <div class="btn-absolute-pos" >
         <div  class="btn-absolute-pos">
-          <button  class="open-chat"  title="click to open chat" @click.stop="openChat()" v-if="!isChat" > <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yc/r/qmGmdzZd_W3.png&quot;); background-position: 0px -872px; background-size: 26px 2028px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i></button>
-          <button  class="open-chat" title="click to close chat" @click.stop="openChat()" v-if="isChat" > <svg width="26px" height="26px" viewBox="-4 -4 24 24"><line x1="2" x2="14" y1="2" y2="14" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"></line><line x1="2" x2="14" y1="14" y2="2" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"  ></line></svg> </button>
+          <button  class="open-chat"  title="open chat" @click.stop="openChat()" v-if="!isChat" > <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yc/r/qmGmdzZd_W3.png&quot;); background-position: 0px -872px; background-size: 26px 2028px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i></button>
+          <button  class="open-chat" title="close chat" @click.stop="openChat()" v-if="isChat" > <svg width="26px" height="26px" viewBox="-4 -4 24 24"><line x1="2" x2="14" y1="2" y2="14" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"></line><line x1="2" x2="14" y1="14" y2="2" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"  ></line></svg> </button>
         </div>
       </div>
       <app-header  />
@@ -72,7 +72,6 @@ export default {
     }
     socketService.on("usersConnections", this.usersConnections);
     // this.allLoggedinUsers = userService.getLoggedinUsers()
-   // console.log("this.loggedinUser  in app.vue ", this.loggedinUser);
     socketService.on("updateLoginUser", this.updateLoginUser);
     socketService.on("user-has-disconnect", this.usersConnections);
   },
@@ -122,8 +121,7 @@ export default {
    //     console.log('this.allLoggedinUsers',this.allLoggedinUsers)
     },
     addMsg(msg){
-   //   console.log('got msg on app',msg)
-   //   console.log('this.allLoggedinUsers on app',this.allLoggedinUsers)
+      const savedMsgs = userService.saveChatMessages(msg)   
       const userChoosed = this.allLoggedinUsers.filter((user)=>{
         return (user._id === msg.from._id)
       })

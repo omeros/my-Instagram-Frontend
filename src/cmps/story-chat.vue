@@ -13,16 +13,19 @@
         </div>
       </div>
     </div>
-    <form @submit.prevent="sendMsg">
-      <div class="chat-input-container">
-        <input class="chat-input" type="text" v-model="msg.txt" @input="userTyping()" />
-      </div>
-      <button class="chat-btn">Send</button>
-    </form>
+      <form @submit.prevent="sendMsg">
+        <div class="chat-input-container">
+          <input class="chat-input" type="text" v-model="msg.txt" @input="userTyping()" />
+        </div>
+        <div class="form-chat-btn-container">
+            <button class="chat-btn">Send</button>
+        </div>
+      </form>
   </div>
 </template>
 
 <script>
+import { userService } from "@/services/user.service";
 import { socketService } from "@/services/socket.service";
 export default {
   name: "story-chat",
@@ -53,6 +56,11 @@ export default {
     this.firstMessages.forEach(msg => {
       this.addMsg(msg)
     });
+    const savedMsgs = userService.getChatMessages()
+    if((savedMsgs)&&(savedMsgs.length>0)){
+      this.msgs = JSON.parse(JSON.stringify(savedMsgs))
+    }
+
   },
   methods: {
     myFunction() {
@@ -71,12 +79,10 @@ export default {
     },
     addMsg(msg) {
       console.log('got msg in story chat, and the msg is : ',msg)
+      
       this.msgs.push(msg);
       this.msg = JSON.parse(JSON.stringify(msg))
       this.msg.txt = ""
-    
-    //  this.sendToUserId = msg.from._id
-
     },
     sendMsg() {
     console.log('this.msg before sending it before update ',this.msg)
@@ -97,6 +103,7 @@ export default {
       console.log('this.msg before sending it after update ',newMsg)
       socketService.emit("multi-chat", newMsg);
       this.msgs.push(newMsg);
+      const savedMsgs = userService.saveChatMessages(newMsg) 
       this.msg.txt = ""
       this.$emit('clearChat')
     },
