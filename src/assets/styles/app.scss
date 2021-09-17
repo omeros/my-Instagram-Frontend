@@ -15,7 +15,7 @@
 .users-for-chat-container {
     position: fixed;
     top: 100px;
-    right: 15vw;
+    right: 23vw;
 }
 .users-for-chat {
     display: flex;
@@ -97,7 +97,7 @@
 }
 
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 650px) {
     .open-chat {
         display: none;
     }

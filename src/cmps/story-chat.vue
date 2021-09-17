@@ -4,12 +4,12 @@
     <div class="ul-chat">
       <div v-for="(msg, idx) in msgs" :key="idx">
         <div v-if="msg.from._id === loggedinUser._id" class="user-container">
-          <img class="img-user-chat" :src="msg.from.imgUrl" />
+          <img class="img-user-chat" :src="msg.from.imgUrl"  alt="image"/>
           <span class="txt-user-chat"> {{ msg.txt }} </span>
         </div>
         <div v-else class="incoming-user-container">
           <span class="txt-incoming-user-chat"> {{ msg.txt }} </span>
-          <img class="img-incoming-user-chat" :src="msg.from.imgUrl" />
+          <img class="img-incoming-user-chat" :src="msg.from.imgUrl" alt="user image"/>
         </div>
       </div>
     </div>
@@ -56,9 +56,16 @@ export default {
     this.firstMessages.forEach(msg => {
       this.addMsg(msg)
     });
-    const savedMsgs = userService.getChatMessages()
+    var savedMsgs = userService.getChatMessages()
     if((savedMsgs)&&(savedMsgs.length>0)){
-      this.msgs = JSON.parse(JSON.stringify(savedMsgs))
+       savedMsgs  = JSON.parse(JSON.stringify(savedMsgs))
+      savedMsgs.forEach((userMsg)=>{
+        if(this.loggedinUser._id === userMsg.from._id){
+            this.msgs = savedMsgs
+            return
+        }
+
+      })
     }
 
   },

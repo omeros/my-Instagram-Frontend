@@ -1,48 +1,46 @@
 <template>
     <div>
-      <div class="modal-header2 flex "  v-bind:class="{left: myImage }" @click.stop="stayOpen()">
-        <div class="img-side">
-          <div class="image-container-new-story">
-              <img  class="image-new-story" v-if="myImage" :src="myImage" width="" height="">
-              <div class="img-flex">
-                    <label v-if="!isLoading&&!myImage" for="imgUploader"  @drop.prevent="handleFile" @dragover.prevent="dragOver"  @dragleave="isDragOver = false"  >
-                        <img  class="input-img1"  src="https://res.cloudinary.com/omerphoto/image/upload/v1618335628/upload3_te8f2v.png">
-                    </label>
-                      <img   v-if="isLoading" class=""  src="https://motiongraphicsphoebe.files.wordpress.com/2018/10/animated-loading-c397-1.gif">
-                      <!-- <img   v-if="isLoading" class="input-img"  src="https://cdn.dribbble.com/users/1186261/screenshots/3718681/_______.gif"> -->
-                  
-                  <!-- <img  class="input-img"  src="https://res.cloudinary.com/omerphoto/image/upload/v1617824183/iconfinder_file_add_48761_tfhfua.png" width="" height=""> -->
-                  <!-- <img  class="input-img"  src="https://res.cloudinary.com/omerphoto/image/upload/v1618335628/upload3_te8f2v.png"> -->
-                <input v-if="!myImage"  id="imgUploader" class="file-btn round"  type="file" accept="image/*" @change="uploadImage($event)" >
+        <div class="modal-header2 header2-flex "  v-bind:class="{left: myImage }" @click.stop="stayOpen()">
+            <div class="img-side">
+              <div class="image-container-new-story">
+                  <img  class="image-new-story" v-if="myImage" :src="myImage" width="" height="" alt="image">
+                  <div class="img-flex">
+                        <label v-if="!isLoading&&!myImage" for="imgUploader"  @drop.prevent="handleFile" @dragover.prevent="dragOver"  @dragleave="isDragOver = false"  >
+                            <img  class="input-img1"  src="https://res.cloudinary.com/omerphoto/image/upload/v1618335628/upload3_te8f2v.png" alt="image">
+                        </label>
+                          <img   v-if="isLoading" class=""  src="https://motiongraphicsphoebe.files.wordpress.com/2018/10/animated-loading-c397-1.gif" alt="image">
+                          <!-- <img   v-if="isLoading" class="input-img"  src="https://cdn.dribbble.com/users/1186261/screenshots/3718681/_______.gif"> -->
+                        <!-- <img  class="input-img"  src="https://res.cloudinary.com/omerphoto/image/upload/v1617824183/iconfinder_file_add_48761_tfhfua.png" width="" height=""> -->
+                      <!-- <img  class="input-img"  src="https://res.cloudinary.com/omerphoto/image/upload/v1618335628/upload3_te8f2v.png"> -->
+                    <input v-if="!myImage"  id="imgUploader" class="file-btn round"  type="file" accept="image/*" @change="uploadImage($event)" >
+                  </div>
               </div>
-          </div>
-        </div>
-          <div class="post-side">
-                <div class="column-direction"  >             
-                  <div class="post-details-header-preview">
-                            <div class="screen-preview">
-                                <router-link :to="`/user/${ emptyStory.by._id}`" > <img :src="emptyStory.by.imgUrl" class="story-details-img-preview opacity" /></router-link>
-                                <span >
-                                    <router-link :to="`/user/${ emptyStory.by._id}`"  class="post-details-router-name-preview opacity" > {{ emptyStory.by.fullname }} </router-link>
-                                </span>
+            </div>
+            <div class="post-side">
+                    <div class="column-direction"  >             
+                            <div class="post-details-header-preview">
+                                <div class="screen-preview2">
+                                    <router-link :to="`/user/${ emptyStory.by._id}`" > <img :src="emptyStory.by.imgUrl" class="story-details-img-preview opacity" alt="image" /></router-link>
+                                    <span >
+                                        <router-link :to="`/user/${ emptyStory.by._id}`"  class="post-details-router-name-preview opacity" > {{ emptyStory.by.fullname }} </router-link>
+                                    </span>
+                                </div>
+                                <button class="post-details-header-btn-preview opacity">
+                                    <svg height="16" viewBox="0 0 48 48" width="16"><circle clip-rule="evenodd" cx="8" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="24" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="40" cy="24" fill-rule="evenodd" r="4.5"></circle></svg>
+                                </button>
                             </div>
-                            <button class="post-details-header-btn-preview opacity">
-                                <svg height="16" viewBox="0 0 48 48" width="16"><circle clip-rule="evenodd" cx="8" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="24" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="40" cy="24" fill-rule="evenodd" r="4.5"></circle></svg>
-                            </button>
-                        </div>
-                  </div>                     
-                    <div class="line2"></div>
-                    <div class="comment-input-cmp">
-                        <commentInput  :storyId="test"       @openSmiley=openSmiley   @closeSmiley=closeSmiley  />
-                    </div>
-                    <div class="line3"></div>
-                    <div class="smily-modal-new-story  " v-if="isSmilyModal">
-                        <smileyMoldal   :smiles="smiles"  @smileyToShow=addIcon />
-                    </div>
-                </div>
+                    </div>                     
+                      <div class="line2"></div>
+                      <div class="comment-input-cmp">
+                          <commentInput  :storyId="test"       @openSmiley=openSmiley   @closeSmiley=closeSmiley  />
+                      </div>
+                      <div class="line3"></div>
+                      <div class="smily-modal-new-story" v-if="isSmilyModal">
+                          <smileyMoldal   :smiles="smiles"  @smileyToShow=addIcon />
+                      </div>
+            </div>
               
-          </div>
-
+        </div>
           <!-- <button >   <img  class="save-btn" v-if="myImage" src="https://res.cloudinary.com/omerphoto/image/upload/v1617099828/save_q9xvig.png" width="20" height="20">
           </button>  
           <label for=""  v-if="myImage" >say somthing : </label>
