@@ -58,14 +58,17 @@ export default {
     });
     var savedMsgs = userService.getChatMessages()
     if((savedMsgs)&&(savedMsgs.length>0)){
-       savedMsgs  = JSON.parse(JSON.stringify(savedMsgs))
-      savedMsgs.forEach((userMsg)=>{
-        if(this.loggedinUser._id === userMsg.from._id){
-            this.msgs = savedMsgs
-            return
-        }
-
-      })
+      savedMsgs  = JSON.parse(JSON.stringify(savedMsgs))
+          for(let i =0 ;i<savedMsgs.length;i++){
+            if(this.loggedinUser._id === savedMsgs[i].from._id){
+                this.msgs = savedMsgs
+            }
+            for(let j =0 ;j<savedMsgs[i].toUsers.length;j++){
+              if(this.loggedinUser._id ===savedMsgs[i].toUsers[j]._id ){
+                  this.msgs = savedMsgs
+              }
+            }
+        } 
     }
 
   },

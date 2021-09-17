@@ -121,7 +121,7 @@ export default {
    //     console.log('this.allLoggedinUsers',this.allLoggedinUsers)
     },
     addMsg(msg){
-      const savedMsgs = userService.saveChatMessages(msg)   
+     // const savedMsgs = userService.saveChatMessages(msg)   
       const userChoosed = this.allLoggedinUsers.filter((user)=>{
         return (user._id === msg.from._id)
       })
