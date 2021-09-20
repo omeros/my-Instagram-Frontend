@@ -84,7 +84,7 @@ export default {
             }
               relevantMessages = savedMsgs.map((message)=>{
               for( let j =0 ; j<message.toUsers.length;j++){
-                    if (message.toUsers[j]._id === this.loggedinUser._id){
+                    if ( (message.toUsers[j]._id === this.loggedinUser._id) ||(message.from._id=== this.loggedinUser._id)){
                         console.log('message.toUsers[j]._id === this.loggedinUser._id')
                       return message
                     }else{
