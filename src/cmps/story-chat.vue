@@ -53,26 +53,57 @@ export default {
     socketService.on("user-typing", (isTyping) => {
       console.log("user is typing ");
     });
-    this.firstMessages.forEach(msg => {
-      this.addMsg(msg)
-    });
-    var savedMsgs = userService.getChatMessages()
-    if((savedMsgs)&&(savedMsgs.length>0)){
-      savedMsgs  = JSON.parse(JSON.stringify(savedMsgs))
-          for(let i =0 ;i<savedMsgs.length;i++){
-            if(this.loggedinUser._id === savedMsgs[i].from._id){
-                this.msgs = savedMsgs
-            }
-            for(let j =0 ;j<savedMsgs[i].toUsers.length;j++){
-              if(this.loggedinUser._id ===savedMsgs[i].toUsers[j]._id ){
-                  this.msgs = savedMsgs
-              }
-            }
-        } 
+      if(this.firstMessages&&(this.firstMessages.length>0)){
+          console.log('this.firstMessages',this.firstMessages)
+        this.firstMessages.forEach(msg => {
+        this.addMsg(msg)
+      });
+    }else{
+      const lastMsgs = userService.getChatMessages()
+      console.log(' const lastMsgs = user.userService.getAllUsers()',lastMsgs)
+      this.msg = lastMsgs[lastMsgs.length-2]
     }
+
+ // test for messages to upload (depend on the user )
+  this.checkUsers()
 
   },
   methods: {
+    // test for messages to upload (depend on the user )
+    checkUsers(){
+    var savedMsgs = userService.getChatMessages()
+    console.log('savedMsgs in story-chat  : ',savedMsgs)
+    var relevantMessages = null
+    if((savedMsgs)&&(savedMsgs.length>0)){
+      savedMsgs  = JSON.parse(JSON.stringify(savedMsgs))
+          for(let i =0 ;i<savedMsgs.length;i++){   // using "for" instead "forEach" to reduce running time
+            if(this.loggedinUser._id === savedMsgs[i].from._id){
+                this.msgs = savedMsgs
+                  console.log(' this.msgs = savedMsgs')
+                break
+            }
+              relevantMessages = savedMsgs.map((message)=>{
+              for( let j =0 ; j<message.toUsers.length;j++){
+                    if (message.toUsers[j]._id === this.loggedinUser._id){
+                        console.log('message.toUsers[j]._id === this.loggedinUser._id')
+                      return message
+                    }else{
+                      return null
+                    }
+                }
+              })             
+            }  
+               // this.msgs = relevantMessages        
+              console.log('this relevantMessages',relevantMessages)
+              if(relevantMessages){
+                this.msgs = relevantMessages.filter((msg)=>{
+                        return (msg!==null) 
+                })
+              }
+                console.log('this msgsssssssssssssssssssssssssssssssssss',this.msgs)
+        } 
+    },
+
     myFunction() {
       console.log("user is typing");
     },
@@ -89,14 +120,13 @@ export default {
     },
     addMsg(msg) {
       console.log('got msg in story chat, and the msg is : ',msg)
-      
       this.msgs.push(msg);
       this.msg = JSON.parse(JSON.stringify(msg))
       this.msg.txt = ""
     },
     sendMsg() {
     console.log('this.msg before sending it before update ',this.msg)
-    if(!this.msg.from) {                          // if the user choosed some users list for sending message
+    if( (!this.msg.from)&&(this.toUser.length>0) ){                          // if the user choosed some users list for sending message
       this.msg.toUsers = this.toUser             
       console.log('yes')
     }else  if(this.msg.from._id !==this.loggedinUser._id){       

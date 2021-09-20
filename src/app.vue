@@ -56,9 +56,7 @@ export default {
     await this.$store.dispatch({ type: "loadStories" });
     await this.$store.dispatch({ type: "loadUsers" });
     this.loggedinUser = this.$store.getters.loggedinUser;
-      console.log(" this.loggedinUser", this.loggedinUser);
     if(!this.loggedinUser){
-        console.log("yesssssss");
         const userToLogin = this.$store.getters.users
         const loginCred  =  {username: 'Charles.g', password: '1234'}
         loginCred.username = userToLogin[4].username ;
@@ -81,6 +79,7 @@ export default {
 
   mounted(){
     console.log("app.vue was mounted!!!");
+    //this.setColorsForChatImg()
 },
   computed: {
     isMsgComputed(){
@@ -94,6 +93,30 @@ export default {
     }
   },
   methods: {
+    // set the color for showing sentTo and gotMessage color logo
+    setColorsForChatImg(){
+      const users = userService.getAllUsers()
+      if(users&&users.length>0){
+          users.forEach((user)=>{
+            if( (user.sendTo)){
+              console.log('user.sendTo != undefined')
+                console.log(' this.allLoggedinUsers',this.allLoggedinUsers)
+                const idx = this.allLoggedinUsers.findIndex((user2)=>{  
+                      if (user._id===user2._id){return true}
+                })
+                console.log(' idx',idx)
+                this.allLoggedinUsers[idx].sendTo = true
+                console.log(' this.allLoggedinUsers[idx].sendTo', this.allLoggedinUsers[idx].sendTo)
+            }else if(user.gotMsg){
+              console.log('user.gotMsg')
+              const idx2 = this.allLoggedinUsers.findIndex((user2)=>{  
+                      if (user._id===user2._id){return true}
+                })
+                this.allLoggedinUsers[idx2].gotMsg = true
+            }
+          })
+      }
+    },
       updateLoginUser(loggedinUser){
     //  console.log(' loggedinUser on updateLoginUser on app.vue', loggedinUser)
       socketService.off(`${this.loggedinUser._id}`, this.addMsg);
@@ -104,8 +127,6 @@ export default {
       //********************* all the users who are connected to the app - comming from Server ************************** */
       usersConnections(usersConnections){
       this.loggedinUser = this.$store.getters.loggedinUser;
-      console.log('usersConnections on App on usersConnections',usersConnections)
-      console.log('this.loggedinUser on App.vue on usersConnections ',this.loggedinUser)
       const isContainUser =  usersConnections.some((userToFind)=>{
         return (this.loggedinUser._id === userToFind._id)
       })
@@ -118,10 +139,12 @@ export default {
         usersConnections.splice(indexToRemove,1)
         this.allLoggedinUsers = JSON.parse(JSON.stringify(usersConnections))
       }
-   //     console.log('this.allLoggedinUsers',this.allLoggedinUsers)
+      // get users from sessionStorage for showing sentTo and gotMessage color logo
+      this.setColorsForChatImg()
+
     },
+  //************* got message from another user *****************//
     addMsg(msg){
-     // const savedMsgs = userService.saveChatMessages(msg)   
       const userChoosed = this.allLoggedinUsers.filter((user)=>{
         return (user._id === msg.from._id)
       })
@@ -131,6 +154,7 @@ export default {
       if(!this.isChat){
         this.messages.push(msg)
       }
+      userService.saveAllUsers(this.allLoggedinUsers)
       this.$forceUpdate();
     },
     clearChat1(id){
@@ -155,6 +179,8 @@ export default {
       }else{
           userChoosed[0].sendTo = true
       }
+     
+      userService.saveAllUsers(this.allLoggedinUsers)
       this.$forceUpdate();
       },
       // ********** a single user have just connected, and he sent his details to the other users **************//
@@ -162,7 +188,7 @@ export default {
         user.gotMsg = false
         this.loggedinUser = this.$store.getters.loggedinUser;
         if(user._id!==this.loggedinUser._id){
-            console.log('yes', user)
+        //    console.log('yes', user)
             const isContainUser = this.allLoggedinUsers.some((userToFind)=>{
             return (user._id === userToFind._id)
           })
@@ -170,7 +196,6 @@ export default {
             this.allLoggedinUsers.push( (JSON.parse(JSON.stringify(user))))
           }
         }
-          console.log("  addUserDetails : ",   this.$store.getters.loggedinUsers )
       },
     openChat(){
         this.isChat = !this.isChat
@@ -179,6 +204,7 @@ export default {
             user.gotMsg = false
             user.sendTo = false 
         })
+        userService.saveAllUsers(this.allLoggedinUsers)
       }
     },
     closeModal() {

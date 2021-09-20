@@ -21,7 +21,9 @@ export const userService = {
     getEmpthyUser,
     saveLocalUsers,
     saveChatMessages,
-    getChatMessages  
+    getChatMessages,
+    saveAllUsers,
+    getAllUsers
 }
 
 window.userService = userService
@@ -78,10 +80,6 @@ async function logout() {
     return await httpService.post('auth/logout')
     // sessionStorage.clear()
 }
-function _saveLocalUser(user) {
-    sessionStorage.setItem('loggedinUser', JSON.stringify(user))
-    return user
-}
 function saveChatMessages(msg){
     const allMessages =  JSON.parse(localStorage.getItem('chatMessages') || 'null')
     console.log('allMessages in user service',allMessages)
@@ -100,10 +98,26 @@ function saveChatMessages(msg){
         return messages
     }
 }
-
 function getChatMessages(){
     return JSON.parse(localStorage.getItem('chatMessages'))
 }
+function _saveLocalUser(user) {
+    sessionStorage.setItem('loggedinUser', JSON.stringify(user))
+    return user
+}
+
+function saveAllUsers(allUsers) {
+    sessionStorage.setItem('allLogedInUsers', JSON.stringify(allUsers))
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    // const allUsers = JSON.parse(sessionStorage.getItem('loggedinUsers') || 'null')
+    // if(allUsers){
+    // }
+}
+
+function getAllUsers(){
+    return  JSON.parse(sessionStorage.getItem('allLogedInUsers') || 'null')
+}
+
 function saveLocalUsers(user) {
     const allUsers = JSON.parse(sessionStorage.getItem('loggedinUsers') || 'null')
     if(allUsers){
