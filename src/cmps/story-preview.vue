@@ -1,10 +1,10 @@
 <template>
-    <section class="main" >
+    <section class="preview-main" >
       <div class="story-father" >
       <div class="post-details">
         <div class="post-details-header">
             <div class="screen-preview">
-              <router-link :to="`/user/${ story.by._id}`" > <img :src="story.by.imgUrl" class="story-details-img opacity" /></router-link>
+              <router-link :to="`/user/${ story.by._id}`" > <img :src="story.by.imgUrl" class="story-details-img opacity" alt="story user image" /></router-link>
                 <span class="post-details-router-name opacity">
                 <router-link :to="`/user/${ story.by._id}`" class="story-name" > {{ story.by.fullname }} </router-link>
               </span>
@@ -13,14 +13,11 @@
               <svg height="16" viewBox="0 0 48 48" width="16"><circle clip-rule="evenodd" cx="8" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="24" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="40" cy="24" fill-rule="evenodd" r="4.5"></circle></svg>
           </button>
         </div>
-
                     <!------ Main image ------->
-        <img class="story-img" :src="story.imgUrl" />
-
+        <img class="story-img" :src="story.imgUrl" alt="story image"/>
           <!------------ main-post-details-content --------------->
       <div class="story-details-content"  @click.stop="closeModal()" >
         <div class="post-actions">
-
             <div class="post-btn"  >
             <button class="post-actions-btn-like opacity" @click.stop="addLike(story._id)">
               <svg v-if="isLiked" height="24" viewBox="0 0 48 48" width="24" class="like likeAnimation"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
@@ -37,7 +34,6 @@
                 <svg aria-label="Save" height="24" viewBox="0 0 48 48" width="24"><path d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 29 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1zM24 26c.8 0 1.6.3 2.2.9l15.8 16V3H6v39.9l15.8-16c.6-.6 1.4-.9 2.2-.9z"></path></svg>
               </button>
         </div>
-
           <div>
             <button class="post-like-btn"> {{story.likedBy.length}} likes </button>
           </div>
@@ -49,7 +45,6 @@
                   {{ story.txt }}
               </div>
             </div>
-
             <a class="view-comments"  v-if="story.comments.length>2" tabindex="0"  @click.stop="openModal()">View all <span>{{story.comments.length}}</span> comments</a>
             <!-- <button  @click.stop="openModal(story._id)">  View all <span>{{story.comments.length}}</span> comment    </button> -->
     
@@ -75,7 +70,6 @@
                     </button>
               </div>
           </div>   
-
                     <!-- smily-modal  -->
           <div class="smily-modal  hide" v-bind:class="{show: isSmilyModal }">
             <div class="inner-smily-modal">
@@ -83,7 +77,7 @@
                   <div class="grid-container">
                     <div class="smily-grid">
                       <div  class="smily-img " v-for="s in smiles" :key="s._id">
-                        <img  :src="s.url"  @click="addIcon(s._id)">
+                        <img  :src="s.url"  @click="addIcon(s._id)" alt="smiley image">
                     </div>
                   </div>
                 </div>
@@ -100,10 +94,8 @@
             <textarea name="" :id="story._id" cols="" rows="1" placeholder="add a comment..." @click.stop="closeSmily()" class="comment-input"   v-model="txt"   ></textarea>
             <button class="post-details-add-comment-btn "  @click="addComment(story._id)" v-bind:class="{istxt: txt }">Post</button>
         </div>
-
       </div>
   </div>
-
   </section>
 
 </template>

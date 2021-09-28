@@ -49,19 +49,30 @@ export default {
     socketService.terminate();
   },
   mounted() {
+       // console.log('this.firstMessagessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss')
     socketService.on(`${this.loggedinUser._id}`, this.addMsg);
     socketService.on("user-typing", (isTyping) => {
       console.log("user is typing ");
     });
-      if(this.firstMessages&&(this.firstMessages.length>0)){
+      if((this.firstMessages)&&(this.firstMessages.length>0)){
           console.log('this.firstMessages',this.firstMessages)
         this.firstMessages.forEach(msg => {
         this.addMsg(msg)
       });
     }else{
       const lastMsgs = userService.getChatMessages()
-      console.log(' const lastMsgs = user.userService.getAllUsers()',lastMsgs)
-      this.msg = lastMsgs[lastMsgs.length-2]
+      if((lastMsgs)&&(lastMsgs.length>0)){
+        console.log(' const lastMsgs = user.userService.getAllUsers()',lastMsgs)
+        for( let i = lastMsgs.length-1; i>=0 ;i--){
+          const toThisUser = lastMsgs[i].toUsers.some((toUser)=>{
+            return  (toUser._id ===this.loggedinUser._id)
+          })
+            if(toThisUser){
+              this.msg = lastMsgs[i]
+              break
+            }
+        }
+      }
     }
 
  // test for messages to upload (depend on the user )

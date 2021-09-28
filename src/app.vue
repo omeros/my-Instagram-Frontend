@@ -178,8 +178,7 @@ export default {
           userChoosed[0].sendTo = false 
       }else{
           userChoosed[0].sendTo = true
-      }
-     
+      }   
       userService.saveAllUsers(this.allLoggedinUsers)
       this.$forceUpdate();
       },
