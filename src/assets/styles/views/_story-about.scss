@@ -1,12 +1,27 @@
-.about-page{
+.about-page {
     background-color: #f0f2f5;
     height: 80vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    .gif-container{
-        width: 50vw;
 
+    .gif-container {
+        z-index: 22;
+        background-color: #fff;
+        display: flex;
+        justify-content: flex-start;
+        // padding-left: 3vw;
+    }
+    .gif {
+        z-index: 22;
+        width: 50vw;
+    }
+    .welcome-txt {
+        display: flex;
+        justify-content: center;
+        font-size: 2vw;
+        padding: 4vw;
+        text-shadow: 2px 2px 8px rgb(49, 73, 34);
     }
 }

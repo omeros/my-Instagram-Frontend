@@ -26,15 +26,15 @@
     flex-grow: 25;
 }
 .image-container-new-story{
-    width: fill;
-    height: 450px;
-   
+    width:fill;
+    // height: 450px;  
+    height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
 
     .img-flex{
-        height: 50%;  
+        // height: 50%;  
     }
 }
 .image-new-story{

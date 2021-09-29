@@ -69,6 +69,7 @@ export default {
           })
             if(toThisUser){
               this.msg = lastMsgs[i]
+              this.msg.txt = ""
               break
             }
         }
@@ -84,33 +85,42 @@ export default {
     checkUsers(){
     var savedMsgs = userService.getChatMessages()
     console.log('savedMsgs in story-chat  : ',savedMsgs)
-    var relevantMessages = null
+    var relevantMessages = []
     if((savedMsgs)&&(savedMsgs.length>0)){
       savedMsgs  = JSON.parse(JSON.stringify(savedMsgs))
-          for(let i =0 ;i<savedMsgs.length;i++){   // using "for" instead "forEach" to reduce running time
-            if(this.loggedinUser._id === savedMsgs[i].from._id){
-                this.msgs = savedMsgs
-                  console.log(' this.msgs = savedMsgs')
-                break
-            }
-              relevantMessages = savedMsgs.map((message)=>{
-              for( let j =0 ; j<message.toUsers.length;j++){
-                    if ( (message.toUsers[j]._id === this.loggedinUser._id) ||(message.from._id=== this.loggedinUser._id)){
+
+          for(let i = 0 ;i<savedMsgs.length;i++){   // using "for" instead "forEach" to reduce running time
+            // if(this.loggedinUser._id === savedMsgs[i].from._id){
+            //     this.msgs = savedMsgs
+            //       console.log(' this.msgs = savedMsgs')
+            //     break
+            // }
+              const userMsgs = []
+           //   const userMsgs = savedMsgs[i].toUsers.map((user)=>{
+              for( let j = 0 ; j<savedMsgs[i].toUsers.length;j++){
+                    if ( (savedMsgs[i].toUsers[j]._id === this.loggedinUser._id) ){
                         console.log('message.toUsers[j]._id === this.loggedinUser._id')
-                      return message
+                      relevantMessages =  relevantMessages.concat( savedMsgs[i] )
                     }else{
-                      return null
-                    }
+                     // return null
+             //       }
                 }
-              })             
-            }  
-               // this.msgs = relevantMessages        
-              console.log('this relevantMessages',relevantMessages)
-              if(relevantMessages){
-                this.msgs = relevantMessages.filter((msg)=>{
-                        return (msg!==null) 
-                })
               }
+              // if(userMsgs.lemgth>0){
+              //     relevantMessages.concat(userMsgs)
+              // }   
+               console.log('this relevantMessages1',relevantMessages)
+              if((savedMsgs[i].from._id===this.loggedinUser._id)){
+             relevantMessages =  relevantMessages.concat(savedMsgs[i])
+              }          
+            }  
+              console.log('this relevantMessages2',relevantMessages)
+              this.msgs = relevantMessages;
+              // if(relevantMessages.length>0){
+              //   this.msgs = relevantMessages.filter((msg)=>{
+              //           return (msg!==null) 
+              //   })
+              // }
                 console.log('this msgsssssssssssssssssssssssssssssssssss',this.msgs)
         } 
     },
@@ -140,7 +150,8 @@ export default {
     if( (!this.msg.from)&&(this.toUser.length>0) ){                          // if the user choosed some users list for sending message
       this.msg.toUsers = this.toUser             
       console.log('yes')
-    }else  if(this.msg.from._id !==this.loggedinUser._id){       
+    }else if(this.msg.from){
+      if(this.msg.from._id !==this.loggedinUser._id){       
         console.log('no')           
         const userChoosed = this.msg.toUsers.filter((usertoFind)=>{     //  updating the "toUsers" with the sender user, and take out the current user from the list
                 return (usertoFind._id === this.loggedinUser._id)
@@ -149,6 +160,7 @@ export default {
         this.msg.toUsers.splice(indexOfUser,1)
         this.msg.toUsers.push(this.msg.from)
       } 
+    }
       this.msg.from = this.loggedinUser
       const newMsg =  JSON.parse(JSON.stringify(this.msg))
       console.log('this.msg before sending it after update ',newMsg)
