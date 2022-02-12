@@ -12,8 +12,8 @@ export const uploadImg2 = async (ev) => {
     FORM_DATA.append('public_id', `Instagram/${ev.target.files[0].name}`)
     // Sending a post method request to Cloudniarys' API
     try {
-         const res = await axios.post(UPLOAD_URL, FORM_DATA)
-         return res.data;
+        const res = await axios.post(UPLOAD_URL, FORM_DATA)
+        return res.data;
     } catch (err) {
         console.error('ERROR!', err)
     }

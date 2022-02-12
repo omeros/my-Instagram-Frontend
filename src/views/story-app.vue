@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import { socketService } from "@/services/socket.service";
 import { eventBus } from "@/services/event-bus.service.js";
 import { storyService } from "../services/story.service.js";
 import storyList from "@/cmps/story-list";
@@ -76,7 +75,6 @@ export default {
     async getSmilies(){
         this.smiliesToShow =  await this.$store.getters.smiley
         console.log('smily in story-app ',  this.smiliesToShow)
-      //  console.log('smily in appppppppppppppp from bbbbbbbbbbbbbbbbbbb',  this.smiliesToShow)
       },
     addLikeFromActionBar(id){
       console.log('addLikeFromActionBar in  story-App',id)

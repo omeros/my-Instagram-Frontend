@@ -20,15 +20,12 @@ export const userStore = {
            // console.log('loggedinUser in user store', loggedinUser)
             return loggedinUser
         },
-
-
         getUserById: (state) => (id) => {
             var userToFind = null
             state.users.find(user => {
                 if (user._id === id) {
                     userToFind = user;
                 }
-
             })
             return userToFind
         },
@@ -65,6 +62,28 @@ export const userStore = {
                 state.loggedinUsers.splice(indexOfUser,1)
                 state.loggedinUser = null
             }                      
+        },
+        updateLoggedinUser(state, { user }){
+            const objUser = JSON.parse(JSON.stringify(user)) 
+            state.loggedinUser = objUser;
+
+            // for users list 
+            const [userChoosed] =  state.users.filter((usertoFind)=>{
+                return (usertoFind._id === objUser._id)
+            })
+          //  console.log('state.users in user-store before ',state.users)
+            var indexOfUser = state.users.indexOf(userChoosed)
+            state.users.splice(indexOfUser,1,objUser)
+          //  console.log('state.users in user-store  after update',state.users)
+
+            
+            // for loggedInUsers list :
+            [userChoosed] =   state.loggedinUsers.filter((usertoFind)=>{
+                return (usertoFind._id === objUser._id)
+            })
+            indexOfUser = state.loggedinUsers.indexOf(userChoosed)
+            state.loggedinUsers.splice(indexOfUser,1,objUser)
+
         },
         // setLoggedinUser(state, { user }) {
         //     state.loggedinUser = user;
@@ -150,7 +169,7 @@ export const userStore = {
             try {
                 const userFromDB = await userService.update(user);
                 console.log('userFromDB after update, on updateUser func ', userFromDB)
-                commit({ type: 'setLoggedinUser', user : userFromDB })
+                commit({ type: 'updateLoggedinUser', user : userFromDB })
             } catch (err) {
                 console.log('userStore: Error in updateUser', err)
                 throw err

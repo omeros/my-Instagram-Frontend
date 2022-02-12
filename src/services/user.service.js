@@ -36,15 +36,20 @@ function getUsers() {
 
 function getById(userId) {
     return httpService.get(`user/${userId}`)
+    //**** only Front : **/
     // return storageService.get(KEY, userId)
 }
 function remove(userId) {
     return httpService.delete(`user/${userId}`)
+    //**** only Front : **/
     // return storageService.remove(KEY, userId)
 }
 
 async function update(user) {
-    return httpService.put(`user/${user._id}`, user)
+    const updatedUser = await httpService.put(`user/${user._id}`, user)
+    console.log('updatedUser on function update :',updatedUser)
+    return  _saveLocalUser(updatedUser)
+    //**** only Front : **/
    // return storageService.put('user', user)
     // user = await httpService.put(`user/${user._id}`, user)
     // Handle case in which admin updates other user's details
@@ -61,6 +66,8 @@ async function increaseScore(by = SCORE_FOR_REVIEW) {
 async function login(userCred) {
     const user = await httpService.post('auth/login', userCred)
     if (user) return _saveLocalUser(user)
+
+    //**** only Front : **/
     // const users = await storageService.query(KEY)
     // const user = users.find(user => user.username === userCred.username)
     // return _saveLocalUser(user)
@@ -148,7 +155,7 @@ function getLoggedinUser() {
 }
 
 function getGuest(){
-    const  guest = {
+    return  {
             "_id" : "70981b985a3a1a1820e6bb4b",
             "username": "🎀 Guest 🎀",
             "password": "$2b$10$P2ha9WUeOn1jH.jQo/EvbOMBNipzSUSE25c/ramUHhJfo4dCdyjom",
@@ -162,7 +169,7 @@ function getGuest(){
             ],
             "savedPostIds": []
     }
-    return guest
+
 }
 
 function getEmpthyUser(){

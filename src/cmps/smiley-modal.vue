@@ -3,8 +3,8 @@
             <div class="most-popular">Most Popular</div>
             <div class="grid-container">
             <div class="grid-smiley">
-                <div class="smily-img" v-for="s in smiles" :key="s._id">
-                    <img :src="s.url" @click="addIcon(s._id)" />
+                <div class="smiley-img-modal-container" v-for="s in smiles" :key="s._id">
+                    <img :src="s.url" class="smiley-img-modal"  @click="addIcon(s._id)"  alt="smiley image"/>
                 </div>
             </div>
             </div>

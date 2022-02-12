@@ -15,8 +15,8 @@
         </div>
     </div>
       <div class="btn-absolute-pos" >
-        <div  class="btn-absolute-pos">
-          <button  class="open-chat"  title="open chat" @click.stop="openChat()" v-if="!isChat" > <em data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1"  style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yc/r/qmGmdzZd_W3.png&quot;); background-position: 0px -872px; background-size: 26px 2028px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"   ></em></button>
+        <div  class="btn-absolute-pos">                                                         
+          <button  class="open-chat"  title="open chat" @click.stop="openChat()" v-if="!isChat" ><em data-visualcompletion="css-img" class="" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yt/r/kqWz_rDzdJb.png&quot;); background-position: 0px -960px; background-size: 26px 1890px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></em></button>
           <button  class="open-chat" title="close chat" @click.stop="openChat()" v-if="isChat" > <svg width="26px" height="26px" viewBox="-4 -4 24 24"><line x1="2" x2="14" y1="2" y2="14" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"></line><line x1="2" x2="14" y1="14" y2="2" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"  ></line></svg> </button>
         </div>
       </div>
@@ -63,14 +63,14 @@ export default {
         await this.$store.dispatch({ type: "login", userCred: loginCred });
         this.loggedinUser = this.$store.getters.loggedinUser;
         socketService.emit("user-connected-details", this.loggedinUser); 
-        socketService.on("user-now-connected", this.addUserDetails);
+        socketService.on("user-now-connected", this.addUserDetails);  // after user connected
     }else{
         socketService.emit("user-connected-details", this.loggedinUser); 
         socketService.on("user-now-connected", this.addUserDetails);
     }
-    socketService.on("usersConnections", this.usersConnections);
+    socketService.on("usersConnections", this.usersConnections);  // after user connected
     // this.allLoggedinUsers = userService.getLoggedinUsers()
-    socketService.on("updateLoginUser", this.updateLoginUser);
+    socketService.on("updateLoginUser", this.updateLoginUser);   // after user connected
     socketService.on("user-has-disconnect", this.usersConnections);
   },
     destroyed() {
@@ -182,7 +182,7 @@ export default {
       userService.saveAllUsers(this.allLoggedinUsers)
       this.$forceUpdate();
       },
-      // ********** a single user have just connected, and he sent his details to the other users **************//
+      // ********** a single user has just connected, and he sent his details to the other users **************//
       addUserDetails(user){
         user.gotMsg = false
         this.loggedinUser = this.$store.getters.loggedinUser;

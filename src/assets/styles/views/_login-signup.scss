@@ -17,7 +17,7 @@
             outline:none;
             height: 50px;
             padding: 6px 10px 6px 12px!important;
-            width:21vw;
+            width:21.5vw;
             font-size: large;
             cursor: pointer;
             // padding-bottom: 100px;
@@ -33,7 +33,7 @@ h2{
 
 .login-btn-container{
     padding: 10px; 
-    width:21vw;
+    width:21.5vw;
     margin: auto;
 }
 .login-btn:hover{  
@@ -51,7 +51,7 @@ h2{
     height: 50px;
     padding: 0 32px;
     cursor: pointer;
-    width:21vw;
+    width:21.5vw;
         
 }
 .fade2-enter-active, .fade2-leave-active {
@@ -90,6 +90,10 @@ h2{
     width:25vw;
     height: 270px;
     border-radius: 8px;
+}
+.logout-btn-container{
+    display: flex;
+    justify-content: center;
 }
 .logout-btn{
     background: none;
@@ -136,9 +140,11 @@ h2{
     font-size: large;
     color:  $clr8; 
     padding-bottom: 5px;
+    text-align: center;
 }
 .login-user-name{
     color:  $clr7; 
+    text-align: center;
 }
 .uploadImg-user-details{
     width: 300px;
@@ -154,11 +160,15 @@ h2{
 @media screen and (max-width: 380px) {
     .login-layout{
         display: flex; 
-        padding-right: 60px;
+        justify-content: center;
         .login-container{
             width: 350px;
+            .user-logout{
+                display: flex; 
+                justify-content: center;
+            }
             .login-input{
-                width: 39vw;
+                width: 39.5vw;
                 height: 40px;
             }
             .logout-btn{
@@ -188,11 +198,11 @@ h2{
             }
             h2{
                 font-size: large;
-                padding-right:100px ;
+                // padding-right:100px ;
             }
             .login-warning{
                 font-size: large;
-                padding-right:130px ;  
+                // padding-right:130px ;  
             }
             .signup-container{
                 left: 20vw;

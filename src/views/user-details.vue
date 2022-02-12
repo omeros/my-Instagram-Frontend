@@ -2,7 +2,7 @@
   <section class="main-details " v-if="user" @click.self="closeModal()"  >
     <div class="profile" @click.self="closeModal()">
       <div class="img-container">
-        <img  v-if="user.imgUrl&&isEdit" :src="user.imgUrl" class="details-img" />
+        <img  v-if="user.imgUrl&&isEdit" :src="user.imgUrl" class="details-img"  alt="user profile button"/>
         <img-upload @imgSaved="imgUserChoosed" v-if="!user.imgUrl|| !isEdit " />
       </div>
       <div class="details-container">
@@ -48,7 +48,7 @@
     <span class="profile-tabs-tab"><svg height="12" viewBox="0 0 48 48" class="svg-test" width="12"><path clip-rule="evenodd" d="M45 1.5H3c-.8 0-1.5.7-1.5 1.5v42c0 .8.7 1.5 1.5 1.5h42c.8 0 1.5-.7 1.5-1.5V3c0-.8-.7-1.5-1.5-1.5zm-40.5 3h11v11h-11v-11zm0 14h11v11h-11v-11zm11 25h-11v-11h11v11zm14 0h-11v-11h11v11zm0-14h-11v-11h11v11zm0-14h-11v-11h11v11zm14 28h-11v-11h11v11zm0-14h-11v-11h11v11zm0-14h-11v-11h11v11z" fill-rule="evenodd"></path></svg> Posts </span>
     <div class="profile-posts"  v-if="storiesComputed" @click.self="closeModal()">
       <div class="profile-posts-item" v-for="story in storiesComputed" :key="story._id"  >
-        <img :src="story.imgUrl"  class="details-stories-img" @click.stop="openModal(story._id)"  />
+        <img :src="story.imgUrl"  class="details-stories-img" @click.stop="openModal(story._id)" alt="" />
       </div>
     </div>
     <div class="details-story-modal" v-if="isModal">
@@ -78,12 +78,13 @@ export default {
       isSaved : false
     };
   },
-  async created() {
-  },
+  // async created() {
+  // },
   watch: {},
   created() {
       this.userId = this.$route.params.id;
       const objUser = this.$store.getters.getUserById(this.userId);
+      console.log('objUser from store on user-details load  : ',objUser)
       this.user = JSON.parse(JSON.stringify(objUser))
       this.stories =  this.$store.getters.getStoryByUserId(this.userId);
       eventBus.$on("closeDetailsModal", () => {
@@ -176,6 +177,9 @@ export default {
     numPosts() {
       return this.stories.length;
     },
+    getUserFromStore(){
+      this.user = this.$store.getters.getUserById(this.user._id)
+    }
   },
   components: {
     storyPreviewModal,

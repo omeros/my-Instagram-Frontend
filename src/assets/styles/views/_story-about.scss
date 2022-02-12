@@ -24,4 +24,12 @@
         padding: 4vw;
         text-shadow: 2px 2px 8px rgb(49, 73, 34);
     }
+
+
+    /* mobile */
+@media only screen and (max-width: 576px) {
+    .gif-container {
+         flex-direction: column-reverse;
+    }
+}
 }

@@ -76,8 +76,8 @@
                 <div class="smily-most-popular"> Most Popular </div>
                   <div class="grid-container">
                     <div class="smily-grid">
-                      <div  class="smily-img " v-for="s in smiles" :key="s._id">
-                        <img  :src="s.url"  @click="addIcon(s._id)" alt="smiley image">
+                      <div  class="smily-img-container " v-for="s in smiles" :key="s._id">
+                        <img  :src="s.url" class="smiley-img " @click="addIcon(s._id)" alt="smiley image">
                     </div>
                   </div>
                 </div>

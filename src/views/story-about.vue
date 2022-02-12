@@ -3,11 +3,11 @@
 <div class="gif-container">
     <img src="@/assets/img/myinstagram-gif.gif"  class="gif" alt="">
     <div class="welcome-txt">
-                Hello and Welcome to My Instagram, <br/>
+                Build from scratch with Vue, Vuex <br/>
                 <br/>
-                Watch the gif to see how to use it, <br/>
+                Node.js and MongoDB, <br/>
                 <br/>
-                Enjoy !
+                
     </div>
 </div>
 
