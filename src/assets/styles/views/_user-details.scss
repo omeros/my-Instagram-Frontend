@@ -52,12 +52,12 @@
   .profile-posts{
     grid-template-columns: repeat(3,1fr);
     display: grid;
-    // grid-gap: 20px 30px ;    from asi
-    //grid-template-rows: (3,1fr);
     padding-right: 200px;
-    // from asi
     grid-gap: 30px;
     width: 70%;
+    // grid-gap: 20px 30px ;    from asi
+    //grid-template-rows: (3,1fr);
+    // from asi
   }
 
   .profile-posts-item{

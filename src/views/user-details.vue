@@ -81,7 +81,9 @@ export default {
   // async created() {
   // },
   watch: {},
-  created() {
+ async created() {
+      await this.$store.dispatch({ type: "loadStories" });
+      await this.$store.dispatch({ type: "loadUsers" });
       this.userId = this.$route.params.id;
       const objUser = this.$store.getters.getUserById(this.userId);
       console.log('objUser from store on user-details load  : ',objUser)
@@ -110,6 +112,7 @@ export default {
     saveUserDetails(){
       this.$store.dispatch({ type: 'updateUser', user : this.user }) 
       this.isSaved = !this.isSaved
+      this.isEdit = !this.isEdit
     },
     editUserDetails(){
       this.isEdit = !this.isEdit

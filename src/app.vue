@@ -16,7 +16,8 @@
     </div>
       <div class="btn-absolute-pos" >
         <div  class="btn-absolute-pos">                                                         
-          <button  class="open-chat"  title="open chat" @click.stop="openChat()" v-if="!isChat" ><em data-visualcompletion="css-img" class="" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yt/r/kqWz_rDzdJb.png&quot;); background-position: 0px -960px; background-size: 26px 1890px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></em></button>
+          <button  class="open-chat"  title="open chat" @click.stop="openChat()" v-if="!isChat" > <img src="https://res.cloudinary.com/omerphoto/image/upload/v1645829347/Instagram/facebook2_crnrxx.png" alt="">
+            </button>
           <button  class="open-chat" title="close chat" @click.stop="openChat()" v-if="isChat" > <svg width="26px" height="26px" viewBox="-4 -4 24 24"><line x1="2" x2="14" y1="2" y2="14" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"></line><line x1="2" x2="14" y1="14" y2="2" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"  ></line></svg> </button>
         </div>
       </div>
@@ -27,6 +28,7 @@
   </div>
 </template>
 
+            // <em data-visualcompletion="css-img" class="" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yt/r/kqWz_rDzdJb.png&quot;); background-position: 0px -960px; background-size: 26px 1890px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></em>
 
 
 <script>
