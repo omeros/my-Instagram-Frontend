@@ -21,7 +21,7 @@ export const userStore = {
             return loggedinUser
         },
         getUserById: (state) => (id) => {
-            var userToFind = null
+            let userToFind = null
             state.users.find(user => {
                 if (user._id === id) {
                     userToFind = user;

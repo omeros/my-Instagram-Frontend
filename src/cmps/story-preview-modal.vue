@@ -62,7 +62,7 @@ import smileyMoldal from "@/cmps/smiley-modal.vue";
 import { eventBus } from "@/services/event-bus.service.js";
 
 export default {
-    props: ["story","smiles"],
+    props: ["story","smiles"], 
       data() {
       return {
         isActive: false,
@@ -77,14 +77,15 @@ export default {
     };
   },
     created() {
+    
     },
     computed: {
       getStory(){
         return this.story
       },
         isCommentLikedCompute : function (commentIdx){
-          var theloggedInUser =  this.$store.getters.loggedinUser 
-        var isLikedBefor = this.story.comments[commentIdx].likedBy.some(user => {
+          let theloggedInUser =  this.$store.getters.loggedinUser 
+        let isLikedBefor = this.story.comments[commentIdx].likedBy.some(user => {
         return (user._id===theloggedInUser._id)
         })
         return isLikedBefor
@@ -92,8 +93,14 @@ export default {
   },
   methods: {
     removepost(){
-        this.isDeletePost=!this.isDeletePost
-        this.$emit("removepost")
+      let thisStoryId = this.story.by._id
+      let theloggedInUser =  this.$store.getters.loggedinUser._id 
+    if(thisStoryId===theloggedInUser){
+      this.isDeletePost=!this.isDeletePost
+      this.$emit("removepost")
+    }else{
+      alert ('You Are Noe Allowed !')
+    }
     },
     openDeletPost(){
       this.isDeletePost = true
