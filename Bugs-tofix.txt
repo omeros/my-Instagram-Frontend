@@ -1,2 +1,0 @@
-1. fix update webSockes in user image on update image user
-2. fix update user image loader : on secons time update image it looks like it  causes the load image to send an empty image to update
