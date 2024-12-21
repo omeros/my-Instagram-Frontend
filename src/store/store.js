@@ -63,7 +63,7 @@ export const store = new Vuex.Store({
       if (!state.filterBy) return state.stories
       const searchStr = state.filterBy.toLowerCase()
       const storiesToShow = state.stories.filter(story => {
-        return story.by.fullname.toLowerCase().includes(searchStr)
+        return story.by.fullname.toLowerCase().startsWith(searchStr)
       })
       return storiesToShow
     },
@@ -94,7 +94,7 @@ export const store = new Vuex.Store({
   //********************************** Mutations *******************************************/
   mutations: {
     filterByChanged(state, payload) {
-   //   console.log('filterByChanged is running', payload.strFilter.name)
+      console.log('store - filterByChanged is running', payload.strFilter.name)
       state.filterBy = payload.strFilter.name
     },
     setStories(state, { stories }) {

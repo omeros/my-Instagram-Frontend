@@ -196,6 +196,9 @@ function getEmpthyUser(){
         ],
         savedPostIds : ["", "", ""]
     }
-
 }
+
+async function followThisUser({userToFollow}, {theLoggedInUser}){
+    return await httpService.post(`user/followThisUser/${user._id}`, user)
+} 
 

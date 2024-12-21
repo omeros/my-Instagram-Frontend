@@ -5,12 +5,11 @@ export const SOCKET_EVENT_USER_UPDATED = 'user-updated';
 export const SOCKET_EVENT_REVIEW_ADDED = 'review-added';
 
 
-const baseUrl = (process.env.NODE_ENV === 'production')? '' : '//localhost:3030'
+const baseUrl =   (process.env.NODE_ENV === 'production')? '' : '//localhost:3030'
 export const socketService = createSocketService()
 // export const socketService = createDummySocketService()
 
 window.socketService = socketService
-
 
 function createSocketService() {
   var socket
@@ -30,6 +29,7 @@ function createSocketService() {
     },
     emit(eventName, data) {
       if (!socket) socketService.setup();
+      console.log("emit!!");
       socket.emit(eventName, data)
     },
     terminate() {

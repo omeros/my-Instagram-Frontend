@@ -15,6 +15,8 @@ export default {
   },
   methods: {
     setFilter() {
+      // console.log('user-filter runnibg!');
+      
       this.$emit("filtered", this.filterBy);
     },
   },

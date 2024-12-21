@@ -99,7 +99,7 @@ export default {
       }, 1000);  
       },
       setFilter(filterBy) {
-     //       console.log("set filter is running", filterBy);
+            // console.log("app-header - set filter is running!", filterBy);
             this.$store.commit({ type: "filterByChanged", strFilter: filterBy });
       },
       goHome() {

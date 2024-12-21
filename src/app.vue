@@ -28,7 +28,6 @@
   </div>
 </template>
 
-            // <em data-visualcompletion="css-img" class="" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yt/r/kqWz_rDzdJb.png&quot;); background-position: 0px -960px; background-size: 26px 1890px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></em>
 
 
 <script>
@@ -65,9 +64,11 @@ export default {
         await this.$store.dispatch({ type: "login", userCred: loginCred });
         this.loggedinUser = this.$store.getters.loggedinUser;
         socketService.emit("user-connected-details", this.loggedinUser); 
+        console.log("user-connected-details1");
         socketService.on("user-now-connected", this.addUserDetails);  // after user connected
     }else{
         socketService.emit("user-connected-details", this.loggedinUser); 
+        console.log("user-connected-details2");
         socketService.on("user-now-connected", this.addUserDetails);
     }
     socketService.on("usersConnections", this.usersConnections);  // after user connected
@@ -145,7 +146,7 @@ export default {
       this.setColorsForChatImg()
 
     },
-  //************* got message from another user *****************//
+  //************* got message from another user *****************//    
     addMsg(msg){
       const userChoosed = this.allLoggedinUsers.filter((user)=>{
         return (user._id === msg.from._id)

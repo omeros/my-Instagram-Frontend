@@ -17,9 +17,7 @@ import storyPreviewModalContainer from "@/cmps/story-preview-modal-container";
 
 export default {
       data() {
-
-    return {
-    
+    return { 
       filterBy: null,
       loggedinUser : null,
       // storiesToEdit : storyService.getEmptystory(),
@@ -28,8 +26,6 @@ export default {
     //  smiliesToShow :  null , // this.$store.getters.smiley,
       isLiked : false
   // this.emptyStory =  this.$store.getters.getEmptyStory
-     
-   
     };
   },
  async created() {

@@ -1,10 +1,10 @@
 <template>
   <section class="story-app-container">
     <div class="story-list-container">
-      <div  class="story-container" v-for="story in stories" :key="story._id">
+      <div class="story-container" v-for="story in stories" :key="story._id">
         <!-- <story-preview :story="story" >   <router-view /> </story-preview> -->
-        <story-preview :story="story"  @storyToModal=storyToModal :smiles="smiles" >   </story-preview>
-     </div>
+        <story-preview :story="story" @storyToModal=storyToModal :smiles="smiles"> </story-preview>
+      </div>
     </div>
   </section>
 </template>
@@ -20,15 +20,15 @@ export default {
       type: Array,
     },
   },
-     mounted (){
-  //      console.log('story in list',this.stories)
-      },
-       methods: {
-         storyToModal(story){
-    //       console.log('open modal is story ',story)
-           this.$emit("storyToModal",story)
-         }
-       },
+  mounted() {
+    //      console.log('story in list',this.stories)
+  },
+  methods: {
+    storyToModal(story) {
+      //       console.log('open modal is story ',story)
+      this.$emit("storyToModal", story)
+    }
+  },
 
   components: {
     storyPreview,
@@ -36,5 +36,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

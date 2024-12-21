@@ -21,7 +21,7 @@ export const userStore = {
             return loggedinUser
         },
         getUserById: (state) => (id) => {
-            let userToFind = null
+            var userToFind = null
             state.users.find(user => {
                 if (user._id === id) {
                     userToFind = user;
@@ -174,7 +174,12 @@ export const userStore = {
                 console.log('userStore: Error in updateUser', err)
                 throw err
             }
-
+        },
+        async followThisUser({userToFollow}, {theLoggedInUser}){
+            console.log('userToFollow:',userToFollow, 'theLoggedInUser: ',theLoggedInUser);
+            const userFromDB = await userService.followThisUser({theLoggedInUser, userToFollow});
+            commit({ type: 'updateLoggedinUser', user : userFromDB })
+            console.log('userFromDB in store:', userFromDB)
         }
     }
 }

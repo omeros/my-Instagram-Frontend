@@ -94,7 +94,6 @@ export default {
         // const loggedinUser = this.$store.getters.loggedinUser;
         //  socketService.emit("updateLoginUser",loggedinUser);
         socketService.emit("user-connected-details", loginUser);
-        //this.userId = this.$store.getters.loggedinUser._id
         this.userId = loginUser._id;
         this.$router.push(`/user/${this.userId}`);
         // this.$router.push('/')
