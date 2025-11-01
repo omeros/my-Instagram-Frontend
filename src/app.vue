@@ -21,7 +21,7 @@
           <button  class="open-chat" title="close chat" @click.stop="openChat()" v-if="isChat" > <svg width="26px" height="26px" viewBox="-4 -4 24 24"><line x1="2" x2="14" y1="2" y2="14" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"></line><line x1="2" x2="14" y1="14" y2="2" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"  ></line></svg> </button>
         </div>
       </div>
-      <app-header  />
+      <app-header class="site-header"/>
       <router-view />
       <app-footer />
     </div>

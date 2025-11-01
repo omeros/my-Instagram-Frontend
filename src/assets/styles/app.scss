@@ -100,6 +100,14 @@
     opacity: 0;
 }
 
+.site-header {
+  position: sticky;        /* או: position: -webkit-sticky; לתמיכה ישנה */
+  top: 0;                  /* נקודת ההדבקה */
+  z-index: 1000;           /* כדי להישאר מעל התוכן */
+  background: #fff;        /* חשוב כדי שלא יראו תוכן “מתחת” בזמן גלילה */
+  /* אופציונלי: צל עדין */
+  box-shadow: 0 2px 6px rgba(0,0,0,.06);
+}
 
 @media screen and (max-width: 650px) {
     .open-chat {
