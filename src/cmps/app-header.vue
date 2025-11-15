@@ -1,7 +1,7 @@
 <template>
   <header class="">        
-    <div class="inner-header2">
-      <div class="nav-bar main-header-inner">
+    <div class="header-container">
+      <div class="nav-bar ">
               <div class="logo-container ">
                     <router-link to="/" class="instagram-router-link" title="home page">
                       <img  class="h1-header opacity"  v-bind:class="{pressed: instagramPressed }"  @click="instagramIsPressed()" src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"  alt="profile pic" />
